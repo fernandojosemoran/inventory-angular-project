@@ -40,3 +40,26 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+## package manager
+
+bun.lockb
+
+## env files
+
+.env
+.env.production
+.env.test
+.env.development
+
+/src/environments/environments.production.ts
+/src/environments/environments.ts
+/src/environments/environment.test.ts
+
+## test
+
+/coverage
+
+## build
+
+/dist
