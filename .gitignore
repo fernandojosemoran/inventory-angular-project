@@ -55,6 +55,7 @@ bun.lockb
 /src/environments/environments.production.ts
 /src/environments/environments.ts
 /src/environments/environment.test.ts
+/src/environments/environments.testing.ts
 
 ## test
 
