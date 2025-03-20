@@ -28,4 +28,20 @@ export const routes: Routes = [
     path: "sales",
     loadChildren: () => import("./sales/sales.module").then(m => m.SalesModule)
   },
+  {
+    path: "shopping-cart",
+    loadChildren: () => import("./shopping-cart/shopping-cart.module").then(m => m.ShoppingCartModule)
+  },
+  {
+    path: "user",
+    loadChildren: () => import("./user/user.module").then(m => m.UserModule)
+  },
+  {
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+  },
+  {
+    path: "dashboard",
+    loadChildren: () => import("./dashboard/dashboard.module").then(m => m.DashboardModule)
+  }
 ];
