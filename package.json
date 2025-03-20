@@ -4,12 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run changeEnvironmentFileNames && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:inventory": "node dist/inventory/server/server.mjs",
     "lint": "ng lint",
-    "lint:fix": "ng lint --fix"
+    "lint:fix": "ng lint --fix",
+    "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js"
   },
   "private": true,
   "dependencies": {
