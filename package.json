@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run changeEnvironmentFileNames && ng build",
+    "build": "npm run changeEnvironmentFileNames && ng build --aot --optimization",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:inventory": "node dist/inventory/server/server.mjs",
