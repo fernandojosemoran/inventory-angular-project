@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: "",
     component: ShoppingCardPageLayoutComponent,
-    title: "Inventory | Shopping Cart"
+    title: "SIM | Shopping Cart"
   }
 ];
 

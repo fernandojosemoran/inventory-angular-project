@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: "",
     component: ReportPageLayoutComponent,
-    title: "Inventory | Reports",
+    title: "SIM | Reports",
     children: []
   }
 ];

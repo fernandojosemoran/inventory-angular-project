@@ -1,0 +1,38 @@
+
+
+:host {
+  display: block;
+  background-color: var(--secondary-color);
+  width: 8em;
+  height: 100vh;
+  color: var(--primary-text-color);
+}
+
+.logo__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  width: 5em;
+  transform: translateY(2em);
+  margin: 0 auto;
+  padding: 0.5em;
+  border-radius: 50%;
+  background-color: var(--business-color);
+}
+
+.sidebar__navbar__container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 5em;
+}
+
+.sidebar__navbar__li {
+  list-style: none;
+}
+
+.sidebar-navbar-link {
+  text-decoration: none;
+  color: var(--primary-text-color)
+}

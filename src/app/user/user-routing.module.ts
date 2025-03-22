@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: "",
     component: UserPageLayoutComponent,
-    title: "Inventory | User"
+    title: "SIM | Users"
   }
 ];
 

@@ -1,0 +1,19 @@
+<aside>
+  <div class="logo__container">
+    <app-sim-logo-icon width="50" height="50" />
+  </div>
+
+  <nav class="sidebar__navbar__container">
+    @for (item of listPath; track $index) {
+      <li class="sidebar__navbar__li">
+        <a
+          routerLink="{{ item.path }}"
+          routerLinkActive="{{ item.activate }}"
+          class="sidebar-navbar-link"
+        >
+          {{ item.name }}
+        </a>
+      </li>
+    }
+  </nav>
+</aside>

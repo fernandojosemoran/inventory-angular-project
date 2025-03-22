@@ -1,0 +1,6 @@
+.dashboard-container {
+  display: flex;
+  color: var(--primary-text-color);
+  font-family: 'Satoshi-Light';
+  font-weight: 300;
+}
