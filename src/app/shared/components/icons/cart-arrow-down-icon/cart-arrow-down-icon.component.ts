@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
 })
 
 export class CartArrowDownIconComponent  {
-  public width: InputSignal<string> = input<string>("50");
-  public height: InputSignal<string> = input<string>("50");
+  public width: InputSignal<string> = input<string>("30");
+  public height: InputSignal<string> = input<string>("30");
   public fill: InputSignal<string> = input<string>("#eeee");
 }

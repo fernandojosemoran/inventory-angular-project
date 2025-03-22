@@ -12,13 +12,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5em;
-  width: 5em;
+  height: 2.5em;
+  width: 3.5em;
   transform: translateY(2em);
   margin: 0 auto;
   padding: 0.5em;
   border-radius: 50%;
-  background-color: var(--business-color);
+  /* background-color: var(--primary-business-color); */
 }
 
 .sidebar__navbar__container {
@@ -32,7 +32,15 @@
   list-style: none;
 }
 
-.sidebar-navbar-link {
+.sidebar__navbar__link {
   text-decoration: none;
-  color: var(--primary-text-color)
+  color: var(--primary-text-color);
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0.2em;
 }

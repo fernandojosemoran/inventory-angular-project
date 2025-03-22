@@ -111,7 +111,8 @@
 :root {
   --primary-color: #0b0c10;
   --secondary-color: #14161c;
-  --business-color: #1b85fe;
+  --primary-business-color: #1b85fe;
+  --secondary-business-color: #1f4a7a;
   --primary-text-color: #6f707f;
   --secondary-text-color: #42444e;
   --success-color: #00a261;
@@ -125,6 +126,8 @@ body {
 }
 
 .--activate-sidebar-link {
-  background-color: var(--business-color);
+  background-color: var(--primary-business-color);
+  height: 3em;
+  width: 3em;
 }
 

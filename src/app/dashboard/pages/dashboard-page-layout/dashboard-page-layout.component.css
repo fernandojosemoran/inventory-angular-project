@@ -1,6 +1,10 @@
-.dashboard-container {
+.dashboard__container {
   display: flex;
   color: var(--primary-text-color);
   font-family: 'Satoshi-Light';
   font-weight: 300;
+}
+
+.content__container {
+  margin: 2em 4em;
 }

@@ -1,12 +1,22 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SimLogoIconComponent } from '../../../shared/components/icons/sim-logo-icon/sim-logo-icon.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { SimLogoIconComponent } from '@/app/shared/components/icons/sim-logo-icon/sim-logo-icon.component';
+import { LayerGroupIconComponent } from '@/app/shared/components/icons/layer-group-icon/layer-group-icon.component';
+import { TruckRampBoxIconComponent } from '@/app/shared/components/icons/truck-ramp-box-icon/truck-ramp-box-icon-component';
+import { MoneyCheckDollarIconComponent } from '@/app/shared/components/icons/money-check-dollar-icon/money-check-dollar-icon.component';
+import { HandshakeIconComponent } from '@/app/shared/components/icons/handshake-icon/handshake-icon.component';
+import { BookIconComponent } from '@/app/shared/components/icons/book-icon/book-icon.component';
+import { CartArrowDownIconComponent } from '@/app/shared/components/icons/cart-arrow-down-icon/cart-arrow-down-icon.component';
+import { UsersIconComponent } from '@/app/shared/components/icons/users-icon/users-icon.component';
 
 interface ListPath {
   path: string;
   activate: string;
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: any
 }
 
 @Component({
@@ -16,7 +26,7 @@ interface ListPath {
     SimLogoIconComponent,
     RouterLink,
     RouterLinkActive,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: "./side-bar.component.html",
   styleUrl: './side-bar.component.css',
@@ -27,37 +37,44 @@ export class SideBarComponent {
     {
       path: "categories",
       activate: "--activate-sidebar-link",
-      name: "Categories"
+      name: "Categories",
+      icon: LayerGroupIconComponent
     },
     {
       path: "products",
       activate: "--activate-sidebar-link",
-      name: "Products"
+      name: "Products",
+      icon: TruckRampBoxIconComponent
     },
     {
       path: "purchases",
       activate: "--activate-sidebar-link",
-      name: "Purchases"
+      name: "Purchases",
+      icon: MoneyCheckDollarIconComponent
     },
     {
       path: "sales",
       activate: "--activate-sidebar-link",
-      name: "Sales"
+      name: "Sales",
+      icon: HandshakeIconComponent
     },
     {
       path: "reports",
       activate: "--activate-sidebar-link",
-      name: "Reports"
+      name: "Reports",
+      icon: BookIconComponent
     },
     {
       path: "shopping-cart",
       activate: "--activate-sidebar-link",
-      name: "Shopping Cart"
+      name: "Shopping Cart",
+      icon: CartArrowDownIconComponent
     },
     {
-      path: "user",
+      path: "users",
       activate: "--activate-sidebar-link",
-      name: "Users"
+      name: "Users",
+      icon: UsersIconComponent
     }
   ];
 }
