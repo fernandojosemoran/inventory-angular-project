@@ -8,7 +8,7 @@ describe('PurchasePageLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PurchasePageLayoutComponent]
+      imports: [ PurchasePageLayoutComponent ]
     })
     .compileComponents();
 

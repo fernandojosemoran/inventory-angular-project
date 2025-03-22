@@ -129,5 +129,6 @@ body {
   background-color: var(--primary-business-color);
   height: 3em;
   width: 3em;
+  transition-duration: 500ms;
 }
 
