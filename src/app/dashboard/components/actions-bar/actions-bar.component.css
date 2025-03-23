@@ -1,0 +1,15 @@
+#search__input__generic {
+  outline: none;
+  border: none;
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  padding: 0.8em 1em;
+  color: #eee;
+  font-family: "Satoshi-Ligth";
+}
+
+@media (min-width: 360px) and (max-width: 830px) {
+  #search__input__generic {
+    width: 10em;
+  }
+}

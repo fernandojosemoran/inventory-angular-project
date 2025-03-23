@@ -78,3 +78,11 @@ export class SideBarComponent {
     }
   ];
 }
+
+
+// {
+//   path: "home",
+//   activate: "--activate-sidebar-link",
+//   name: "Dashboard",
+//   icon: HomeIconComponent
+// },

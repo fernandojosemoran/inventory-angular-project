@@ -1,13 +1,23 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardPageLayoutComponent } from "./pages/dashboard-page-layout/dashboard-page-layout.component";
+import { DashBoardComponent } from "./pages/dashboard-page/dashboard-page.component";
 
 const routes: Routes = [
   {
     path: "",
     component: DashboardPageLayoutComponent,
-    title: "SIM | Dashboard",
     children: [
+      {
+        path: "",
+        redirectTo: "home",
+        pathMatch: "full",
+      },
+      {
+        path: "home",
+        component: DashBoardComponent,
+        title: "SIM | Dashboard",
+      },
       {
         path: "categories",
         loadChildren: () => import("../categories/categories.module").then(m => m.CategoriesModule),

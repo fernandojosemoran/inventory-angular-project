@@ -1,0 +1,10 @@
+.actions__section {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.8em;
+}

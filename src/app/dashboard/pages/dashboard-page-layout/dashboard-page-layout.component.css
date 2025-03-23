@@ -1,15 +1,3 @@
-/* .dashboard__container {
-  display: flex;
-  color: var(--primary-text-color);
-  font-family: 'Satoshi-Light';
-  font-weight: 300;
-}
-
-.content__container {
-  margin: 2em 4em;
-} */
-
-
 .dashboard__container {
   display: flex;
   height: 100vh;
@@ -19,6 +7,7 @@
 }
 
 .content__container {
+  width: 100%;
   margin: 2em 4em;
 }
 
@@ -26,6 +15,6 @@
   .content__container {
     margin-left: 2em;
     margin-right: 2em;
-    margin-top: 2em;
+    margin-top: 1em;
   }
 }
