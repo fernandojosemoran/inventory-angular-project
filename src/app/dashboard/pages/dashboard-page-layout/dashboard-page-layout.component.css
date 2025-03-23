@@ -11,9 +11,8 @@
 
 
 .dashboard__container {
-  display: grid;
+  display: flex;
   height: 100vh;
-  grid-template-columns: 8em 1fr;
   color: var(--primary-text-color);
   font-family: 'Satoshi-Light';
   font-weight: 300;
@@ -28,13 +27,5 @@
     margin-left: 2em;
     margin-right: 2em;
     margin-top: 2em;
-  }
-
-  .dashboard__container {
-    display: grid;
-    /* todo */
-    /* border-bottom: 5px solid red ; */
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1em;
   }
 }
