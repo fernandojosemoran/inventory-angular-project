@@ -1,4 +1,4 @@
-.dashboard__container {
+/* .dashboard__container {
   display: flex;
   color: var(--primary-text-color);
   font-family: 'Satoshi-Light';
@@ -7,4 +7,34 @@
 
 .content__container {
   margin: 2em 4em;
+} */
+
+
+.dashboard__container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 8em 1fr;
+  color: var(--primary-text-color);
+  font-family: 'Satoshi-Light';
+  font-weight: 300;
+}
+
+.content__container {
+  margin: 2em 4em;
+}
+
+@media (min-width: 360px) and (max-width: 820px) {
+  .content__container {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 2em;
+  }
+
+  .dashboard__container {
+    display: grid;
+    /* todo */
+    /* border-bottom: 5px solid red ; */
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1em;
+  }
 }

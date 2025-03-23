@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "build": "npm run changeEnvironmentFileNames && ng build --aot --optimization",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
