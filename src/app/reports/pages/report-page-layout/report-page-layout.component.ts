@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 
 @Component({
   selector: 'app-report-page-layout',
   standalone: true,
-  imports: [],
+  imports: [ ActionsBarComponent ],
   templateUrl: './report-page-layout.component.html',
   styleUrl: './report-page-layout.component.css'
 })

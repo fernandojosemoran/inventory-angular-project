@@ -1,0 +1,15 @@
+<section class="actions__section">
+  <h1>{{ title() }}</h1>
+
+  <section class="action__bar">
+    <div>
+      <input
+        id="search__input__generic"
+        type="search"
+        required
+        placeholder="Search"
+        (input)="onChangeGenericSearch($event)"
+      />
+    </div>
+  </section>
+</section>

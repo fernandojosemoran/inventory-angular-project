@@ -1,11 +1,19 @@
+.actions__section {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #search__input__generic {
   outline: none;
   border: none;
   background-color: var(--secondary-color);
   border-radius: 20px;
   padding: 0.8em 1em;
-  color: #eee;
+  color: var(--primary-business-color);
   font-family: "Satoshi-Ligth";
+  font-weight: 500;
 }
 
 @media (min-width: 360px) and (max-width: 830px) {

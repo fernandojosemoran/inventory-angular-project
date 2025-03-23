@@ -1,5 +1,5 @@
+import { ActionsBarComponent } from "@/app/shared/components/actions-bar/actions-bar.component";
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { ActionsBarComponent } from "../../components/actions-bar/actions-bar.component";
 
 @Component({
   selector: "app-dashboard",
