@@ -1,4 +1,4 @@
 export const environments = {
-  backendUrl: "https://url-de-backend.com",
-  backendApi: "https://url-de-backend.com/api/v1"
+  backendUrl: "https://workshop-server.up.railway.app",
+  backendApi: "https://workshop-server.up.railway.app/api/v1"
 };
