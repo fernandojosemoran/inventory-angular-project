@@ -1,5 +1,5 @@
 {
-  "name": "inventory",
+  "name": "sim",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "npm run changeEnvironmentFileNames && ng build --aot --optimization",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:inventory": "node dist/inventory/server/server.mjs",
+    "serve:ssr:SIM": "node dist/SIM/server/server.mjs",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js"
