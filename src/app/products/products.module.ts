@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
+import { provideHttpClient } from '@angular/common/http';
 
 
 
@@ -8,7 +9,10 @@ import { ProductsRoutingModule } from './products-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+  ],
+  providers: [
+    provideHttpClient()
   ]
 })
 export class ProductsModule { }

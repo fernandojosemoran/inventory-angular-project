@@ -121,6 +121,7 @@
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--primary-color);
   height: 100vh;
 }
@@ -132,3 +133,8 @@ body {
   transition-duration: 500ms;
 }
 
+.spacer {
+  height: 8em;
+  display: block;
+  width: 100%;
+}

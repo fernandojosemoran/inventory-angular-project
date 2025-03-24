@@ -9,8 +9,13 @@
   outline: none;
   border: none;
   background-color: var(--secondary-color);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 10px center;
   border-radius: 20px;
-  padding: 0.8em 1em;
+  padding-left: 2em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
   color: var(--primary-business-color);
   font-family: "Satoshi-Ligth";
   font-weight: 500;

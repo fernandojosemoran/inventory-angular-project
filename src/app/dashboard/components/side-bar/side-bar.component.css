@@ -2,6 +2,8 @@
 
 :host {
   display: block;
+  position: fixed;
+  height: 100vh;
   background-color: var(--secondary-color);
   width: 8em;
   color: var(--primary-text-color);

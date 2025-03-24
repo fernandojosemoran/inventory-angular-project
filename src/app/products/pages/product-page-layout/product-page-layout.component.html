@@ -1,1 +1,42 @@
 <app-actions-bar title="Productos"> </app-actions-bar>
+
+<table id="product__table__container">
+  <thead>
+    <tr>
+      <th data-sort="code">Code</th>
+      <th data-sort="name">Name</th>
+      <th data-sort="image">Image</th>
+      <th data-sort="stock">Stock</th>
+      <th data-sort="cost">Cost</th>
+      <th data-sort="price">Price</th>
+      <th data-sort="categoryName">Category</th>
+      <th data-sort="available">Available</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(product of productList(); track product.id){
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td class="product__table__header__field__list_image">
+        <img
+          class="product__table__header__field__list_image"
+          src="https://imgs.search.brave.com/_seRCAn5G8vbTPZ7uC2jGAc9AV3_UK1kL7kCLWP_w3k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS81/ZWUwYTAxYjA5Mzg5/ZWViZjRjMDliNDUv/NjY3YzJkZGUyMjNj/OWM2MDAzZjUyY2E0/XzAtQWZ0ZXItRGVz/a3RvcC53ZWJw"
+          alt="product image"
+        />
+      </td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.cost }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.categoryName }}</td>
+      <td>{{ product.available }}</td>
+    </tr>
+    }
+  </tbody>
+  <!-- <tfoot>
+    <tr>
+      <td>f</td>
+    </tr>
+  </tfoot> -->
+</table>
+<span class="spacer"></span>

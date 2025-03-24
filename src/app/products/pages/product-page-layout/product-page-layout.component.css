@@ -1,0 +1,43 @@
+
+#product__table__container {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  border-collapse: separate;
+  border-spacing: 4em;
+}
+
+th {
+  padding: 10px;
+  text-align: start;
+  font-weight: 800;
+}
+
+tr {
+  height: 3em;
+}
+
+td {
+  padding: 10px;
+}
+
+.product__table__header__field__list_image img {
+  max-width: 4em;
+  max-height: 4em;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+  #product__table__container {
+    width: 90%;
+    border-spacing: 10px;
+  }
+
+  th, td {
+    font-size: 0.9em;
+    padding: 5px;
+  }
+}
