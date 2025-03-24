@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
 
 @Component({
   selector: 'app-actions-bar',
@@ -9,12 +9,13 @@ import { ChangeDetectionStrategy, Component, input, InputSignal, signal, Writabl
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsBarComponent {
-  private _genericSearch$: WritableSignal<string> = signal<string>("");
+  public title: InputSignal<string | undefined> = input();
+
+  public productTermSearch: OutputEmitterRef<string> = output<string>();
 
   public onChangeGenericSearch(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    this._genericSearch$.set(inputElement.value);
-  }
 
-  public title: InputSignal<string | undefined> = input();
+    this.productTermSearch.emit(inputElement.value);
+  }
 }

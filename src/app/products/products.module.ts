@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { provideHttpClient } from '@angular/common/http';
 
-
-
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     CommonModule,
-    ProductsRoutingModule,
+    ProductsRoutingModule
   ],
   providers: [
     provideHttpClient()

@@ -1,16 +1,17 @@
-<app-actions-bar title="Productos"> </app-actions-bar>
+<app-actions-bar title="Productos" (productTermSearch)="searchProduct($event)">
+</app-actions-bar>
 
 <table id="product__table__container">
   <thead>
     <tr>
-      <th data-sort="code">Code</th>
-      <th data-sort="name">Name</th>
-      <th data-sort="image">Image</th>
+      <th data-sort="code">Codigo</th>
+      <th data-sort="name">Nombre</th>
+      <th data-sort="image">Imagen</th>
       <th data-sort="stock">Stock</th>
-      <th data-sort="cost">Cost</th>
-      <th data-sort="price">Price</th>
-      <th data-sort="categoryName">Category</th>
-      <th data-sort="available">Available</th>
+      <th data-sort="cost">Costo</th>
+      <th data-sort="price">Precio</th>
+      <th data-sort="categoryName">Categoria</th>
+      <th data-sort="available">Habilitado</th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +30,7 @@
       <td>{{ product.cost }}</td>
       <td>{{ product.price }}</td>
       <td>{{ product.categoryName }}</td>
-      <td>{{ product.available }}</td>
+      <td>{{ product.available | isAvailable }}</td>
     </tr>
     }
   </tbody>

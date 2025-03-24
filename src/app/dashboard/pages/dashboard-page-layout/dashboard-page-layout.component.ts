@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     SideBarComponent,
     RouterOutlet
-],
+  ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
