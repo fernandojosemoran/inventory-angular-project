@@ -17,7 +17,7 @@ export class EditProductDialogComponent {
     this.isConfirm.emit(true);
   }
 
-  public back(): void {
+  public cancel(): void {
     this.isConfirm.emit(false);
   }
 }

@@ -12,9 +12,11 @@ import { BadgeComponent } from '../badge/badge.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDeleteDialogComponent {
+
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
   public title: InputSignal<string> = input<string>("Title Unknown");
   public product: InputSignal<Product> = input<Product>({} as Product);
+
 
   public cancel(): void {
     this.isConfirm.emit(false);

@@ -36,7 +36,6 @@ export class ProductPageLayoutComponent implements OnInit {
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
-
   public ngOnInit(): void {
     this.productService.getAllProducts().subscribe(response => {
       this.productList.set(response);
