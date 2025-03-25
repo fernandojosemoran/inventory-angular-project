@@ -1,0 +1,36 @@
+<div class="confirm__delete__dialog__container">
+  <h2 class="dialog__title">Crear Producto</h2>
+
+  <form [formGroup]="editProductForm" (submit)="submit($event)">
+    <input type="text" formControlName="name" placeholder="Name" required />
+    <input type="file" formControlName="image" required placeholder="Image" />
+    <input type="text" formControlName="stock" placeholder="Stock" required />
+    <input type="text" formControlName="cost" placeholder="Cost" required />
+    <input type="text" formControlName="price" placeholder="Price" required />
+    <input
+      type="text"
+      formControlName="category"
+      placeholder="Category"
+      required
+    />
+    <input
+      type="text"
+      formControlName="available"
+      placeholder="Available"
+      required
+    />
+  </form>
+
+  <div class="dialog__btn__container">
+    <button class="cancel__btn --cancel__btn" (click)="cancel()">
+      Cancelar
+    </button>
+    <button
+      type="submit"
+      class="confirm__btn --confirm__btn"
+      (click)="submit($event)"
+    >
+      Confirmar
+    </button>
+  </div>
+</div>

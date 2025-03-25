@@ -65,7 +65,7 @@ export class ProductPageLayoutComponent implements OnInit {
   public confirmEditProduct(isConfirm: boolean): void {
     if (!isConfirm) return this.editProductModalFlag.update(() => isConfirm);
 
-    this.deleteProductModalFlag.update(() => !isConfirm);
+    this.editProductModalFlag.update(() => !isConfirm);
 
     // this.productService.updateProduct({} as Product);
   }
@@ -76,6 +76,7 @@ export class ProductPageLayoutComponent implements OnInit {
     this.deleteProductModalFlag.update(() => !isConfirm);
     // this.productService.deleteProduct("");
   }
+
 
   public searchProduct(term: string): void {
 
