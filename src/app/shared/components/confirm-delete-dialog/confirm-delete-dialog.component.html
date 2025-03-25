@@ -1,7 +1,49 @@
-<h2 class="dialog__title">{{ title() }}</h2>
-<div class="dialog__btn__container">
-  <button id="back__btn --back__btn" (click)="Back()">Regresar</button>
-  <button id="confirm__btn --confirm__btn" (click)="ConfirmDelete()">
-    Confirmar
-  </button>
+<div class="confirm__delete__dialog__container">
+  <h2 class="dialog__title">{{ title() }}</h2>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Id</td>
+        <td><app-badge [content]="product().id" /></td>
+      </tr>
+      <tr>
+        <td>Nombre</td>
+        <td><app-badge [content]="product().name" /></td>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td><app-badge [content]="product().imageUrl" /></td>
+      </tr>
+      <tr>
+        <td>Stock</td>
+        <td><app-badge [content]="product().stock" /></td>
+      </tr>
+      <tr>
+        <td>Costo</td>
+        <td><app-badge [content]="product().cost" /></td>
+      </tr>
+      <tr>
+        <td>Precio</td>
+        <td><app-badge [content]="product().price" /></td>
+      </tr>
+      <tr>
+        <td>Categoria</td>
+        <td><app-badge [content]="product().categoryName" /></td>
+      </tr>
+      <tr>
+        <td>Habilitado</td>
+        <td><app-badge [content]="product().available | isAvailable" /></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dialog__btn__container">
+    <button class="cancel__btn --cancel__btn" (click)="cancel()">
+      Cancelar
+    </button>
+    <button class="confirm__btn --confirm__btn" (click)="ConfirmDelete()">
+      Confirmar
+    </button>
+  </div>
 </div>

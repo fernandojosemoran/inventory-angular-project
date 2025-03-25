@@ -1,0 +1,10 @@
+.budget {
+  padding: 0.1em 1em;
+  border-radius: 50px;
+  background-color: var(--primary-success-color);
+  color: var(--secondary_success-color);
+  font-size: small;
+  font-weight: 600;
+  text-wrap: wrap;
+  font-family: 'Satoshi-Variable';
+}

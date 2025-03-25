@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AvailablePipe } from '../../pipes/available.pipe';
 import { EditProductDialogComponent } from '../../components/edit-product-dialog/edit-product-dialog.component';
 import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-delete-dialog/confirm-delete-dialog.component';
+import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -15,7 +16,8 @@ import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-de
     CommonModule,
     AvailablePipe,
     EditProductDialogComponent,
-    ConfirmDeleteDialogComponent
+    ConfirmDeleteDialogComponent,
+
   ],
   templateUrl: './product-page-layout.component.html',
   styleUrl: './product-page-layout.component.css',
@@ -24,35 +26,56 @@ import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-de
 export class ProductPageLayoutComponent implements OnInit {
 
   public productService: ProductService = inject(ProductService);
+  public productState: ProductProviderService = inject(ProductProviderService);
 
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
-
   public productTermSearch: WritableSignal<string> = signal<string>("");
+  public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
+  public deleteProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
 
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
+
   public ngOnInit(): void {
-    this.productService.getAllProducts().subscribe(response => this.productList.set(response));
+    this.productService.getAllProducts().subscribe(response => {
+      this.productList.set(response);
+      this.productState.loadProducts(response);
+    });
   }
 
-  public editProduct(): void {
+  public editProduct(id: number): void {
+    const product: Product | undefined = this.productState.getOneProduct(id);
+
+    if (!product) return;
+
+    this.editProductSelected.update(() => product);
+
     this.editProductModalFlag.update(value => !value);
   }
 
-  public deleteProduct(): void {
+  public deleteProduct(id: number): void {
+    const product: Product | undefined = this.productState.getOneProduct(id);
+
+    if (!product) return;
+
+    this.deleteProductSelected.update(() => product);
+
     this.deleteProductModalFlag.update(value => !value);
   }
-  public confirmEditProduct(): void {
-    // TODO: implement this feature
-    this.productService.updateProduct({} as Product);
+  public confirmEditProduct(isConfirm: boolean): void {
+    if (!isConfirm) return this.editProductModalFlag.update(() => isConfirm);
+
+    this.deleteProductModalFlag.update(() => !isConfirm);
+
+    // this.productService.updateProduct({} as Product);
   }
 
   public confirmDeleteProduct(isConfirm: boolean): void {
     if (!isConfirm) return this.deleteProductModalFlag.update(() => isConfirm);
 
     this.deleteProductModalFlag.update(() => !isConfirm);
-    this.productService.deleteProduct("");
+    // this.productService.deleteProduct("");
   }
 
   public searchProduct(term: string): void {

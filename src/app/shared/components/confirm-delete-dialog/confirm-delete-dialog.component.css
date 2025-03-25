@@ -1,5 +1,91 @@
 :host {
+  position: absolute;
+  background-color: aqua;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000000b0;
+}
+
+.confirm__delete__dialog__container {
   display: flex;
   flex-direction: column;
-
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  align-items: center;
+  width: 50%;
+  max-height: 20em;
+  gap: 1em;
+  padding: 2em;
+  overflow: auto;
+  z-index: 100;
 }
+
+.dialog__btn__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+}
+
+table {
+  border-spacing: 1em 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.cancel__btn {
+  outline: none;
+  border: 1px solid var(--third-business-color);
+  background-color: var(--third-business-color);
+  color: var(--second-business-color);
+  font-size: medium;
+  font-weight: 600;
+  padding: 0.2em;
+  width: 23em;
+}
+
+.confirm__btn {
+  outline: none;
+  border: 1px solid var(--third-unsuccess-color);
+  background-color: var(--third-unsuccess-color);
+  color: var(--secondary-unsuccess-color);
+  font-size: medium;
+  font-weight: 600;
+  padding: 0.2em;
+  width: 23em;
+}
+
+@media (min-width: 360px) and (max-width: 820px) {
+  .confirm__delete__dialog__container {
+    width: 80%;
+    max-height: 20em;
+    gap: 1em;
+    padding: 2em;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  table {
+    border-spacing: 0;
+  }
+
+  .cancel__btn {
+    width: 12em;
+  }
+
+  .confirm__btn {
+    width: 12em;
+  }
+}
+
+/* cancel__btn --cancel__btn */

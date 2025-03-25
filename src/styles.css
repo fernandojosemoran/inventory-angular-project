@@ -120,6 +120,8 @@
   --primary-unsuccess-color: #F51720;
   --secondary_success-color: #aeffdf;
   --secondary_unsuccess-color: #ffb2b4;
+  --third-success-color: #00a2612f;
+  --third-unsuccess-color: #f5171e2c;
   --warn-color: #F8D210;
 }
 

@@ -2,12 +2,14 @@
 </app-actions-bar>
 
 <ng-container *ngIf="editProductModalFlag()">
-  <app-edit-product-dialog />
+  <app-edit-product-dialog [product]="editProductSelected()" />
 </ng-container>
+
 <ng-container *ngIf="deleteProductModalFlag()">
   <app-confirm-delete-dialog
     (isConfirm)="confirmDeleteProduct($event)"
-    title="Confirma la eliminacion del producto"
+    [product]="deleteProductSelected()"
+    title="Confirmar eliminacion"
   />
 </ng-container>
 
@@ -44,8 +46,8 @@
       <td>{{ product.available | isAvailable }}</td>
       <td>
         <div class="product__table__header__actions__row">
-          <button (click)="editProduct()">Editar</button>
-          <button (click)="deleteProduct()">Delete</button>
+          <button (click)="editProduct(product.id)">Editar</button>
+          <button (click)="deleteProduct(product.id)">Delete</button>
         </div>
       </td>
     </tr>
