@@ -4,6 +4,8 @@ import { ActionsBarComponent } from "../../../shared/components/actions-bar/acti
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { AvailablePipe } from '../../pipes/available.pipe';
+import { EditProductDialogComponent } from '../../components/edit-product-dialog/edit-product-dialog.component';
+import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -11,7 +13,9 @@ import { AvailablePipe } from '../../pipes/available.pipe';
   imports: [
     ActionsBarComponent,
     CommonModule,
-    AvailablePipe
+    AvailablePipe,
+    EditProductDialogComponent,
+    ConfirmDeleteDialogComponent
   ],
   templateUrl: './product-page-layout.component.html',
   styleUrl: './product-page-layout.component.css',
@@ -25,8 +29,30 @@ export class ProductPageLayoutComponent implements OnInit {
 
   public productTermSearch: WritableSignal<string> = signal<string>("");
 
+  public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
+  public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
+
   public ngOnInit(): void {
     this.productService.getAllProducts().subscribe(response => this.productList.set(response));
+  }
+
+  public editProduct(): void {
+    this.editProductModalFlag.update(value => !value);
+  }
+
+  public deleteProduct(): void {
+    this.deleteProductModalFlag.update(value => !value);
+  }
+  public confirmEditProduct(): void {
+    // TODO: implement this feature
+    this.productService.updateProduct({} as Product);
+  }
+
+  public confirmDeleteProduct(isConfirm: boolean): void {
+    if (!isConfirm) return this.deleteProductModalFlag.update(() => isConfirm);
+
+    this.deleteProductModalFlag.update(() => !isConfirm);
+    this.productService.deleteProduct("");
   }
 
   public searchProduct(term: string): void {

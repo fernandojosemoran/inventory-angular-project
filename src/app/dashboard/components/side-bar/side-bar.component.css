@@ -5,7 +5,7 @@
   position: fixed;
   height: 100vh;
   background-color: var(--secondary-color);
-  width: 8em;
+  width: 6em;
   color: var(--primary-text-color);
 }
 
@@ -24,7 +24,7 @@
 .sidebar__navbar__container {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  /* gap: 1em; */
   margin-top: 5em;
 }
 
