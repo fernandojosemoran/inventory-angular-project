@@ -1,36 +1,75 @@
-<div class="confirm__delete__dialog__container">
-  <h2 class="dialog__title">Crear Producto</h2>
+<div class="edit-product-dialog">
+  <h2 class="edit-product-dialog__title">Editar Producto</h2>
 
-  <form [formGroup]="editProductForm" (submit)="submit($event)">
-    <input type="text" formControlName="name" placeholder="Name" required />
-    <input type="file" formControlName="image" required placeholder="Image" />
-    <input type="text" formControlName="stock" placeholder="Stock" required />
-    <input type="text" formControlName="cost" placeholder="Cost" required />
-    <input type="text" formControlName="price" placeholder="Price" required />
+  <form
+    [formGroup]="editProductForm"
+    (submit)="submit($event)"
+    class="edit-product-dialog__form"
+  >
+    <input
+      type="text"
+      class="edit-product-dialog__input edit-product-dialog__input--name"
+      formControlName="name"
+      placeholder="Name"
+      required
+    />
+    <input
+      type="file"
+      class="edit-product-dialog__input edit-product-dialog__input--image"
+      formControlName="image"
+      required
+      placeholder="Image"
+    />
+    <input
+      type="text"
+      class="edit-product-dialog__input edit-product-dialog__input--stock"
+      formControlName="stock"
+      placeholder="Stock"
+      required
+    />
+    <input
+      type="text"
+      class="edit-product-dialog__input edit-product-dialog__input--cost"
+      formControlName="cost"
+      placeholder="Cost"
+      required
+    />
+    <input
+      type="text"
+      class="edit-product-dialog__input edit-product-dialog__input--price"
+      formControlName="price"
+      placeholder="Price"
+      required
+    />
     <input
       type="text"
       formControlName="category"
       placeholder="Category"
+      class="edit-product-dialog__input edit-product-dialog__input--category"
       required
     />
     <input
       type="text"
       formControlName="available"
       placeholder="Available"
+      class="edit-product-dialog__input edit-product-dialog__input--available"
       required
     />
   </form>
 
-  <div class="dialog__btn__container">
-    <button class="cancel__btn --cancel__btn" (click)="cancel()">
+  <div class="edit-product-dialog__btn-container">
+    <button
+      class="edit-product-dialog__btn edit-product-dialog__btn--cancel"
+      (click)="cancel()"
+    >
       Cancelar
     </button>
     <button
       type="submit"
-      class="confirm__btn --confirm__btn"
+      class="edit-product-dialog__btn edit-product-dialog__btn--accept"
       (click)="submit($event)"
     >
-      Confirmar
+      Aceptar
     </button>
   </div>
 </div>

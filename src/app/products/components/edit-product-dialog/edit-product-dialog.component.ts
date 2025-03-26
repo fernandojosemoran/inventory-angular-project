@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
@@ -12,12 +12,20 @@ import { ProductService } from '../../services/product.service';
   styleUrl: './edit-product-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditProductDialogComponent {
+export class EditProductDialogComponent implements OnInit {
   private readonly _productStateService: ProductProviderService = inject(ProductProviderService);
   private readonly _productService: ProductService = inject(ProductService);
 
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
   public product: InputSignal<Product | undefined> = input<Product>();
+
+  public ngOnInit(): void {
+      this.editProductForm.patchValue({
+         ...this.product(),
+         category: this.product()?.categoryName,
+         available: this.product()?.available ? "Si" : "No"
+      });
+  }
 
   public editProductForm: FormGroup = new FormGroup({
     name: new FormControl<string>('', { validators: [ Validators.required ] }),

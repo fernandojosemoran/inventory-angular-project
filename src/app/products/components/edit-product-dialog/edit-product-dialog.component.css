@@ -1,3 +1,98 @@
 :host {
-  display: block;
+  background-color: aqua;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  overflow: hidden;
+  background-color: #000000d2;
+  backdrop-filter: blur(10px);
+}
+
+.edit-product-dialog {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  align-items: center;
+  width: 50%;
+  max-height: 30em;
+  gap: 1em;
+  padding: 2em;
+  z-index: 100;
+}
+
+.edit-product-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+.edit-product-dialog__input {
+  padding: 0.4em 0.8em;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--primary-business-color);
+  color: var(--secondary-business-color)
+}
+
+
+/* .edit-product-dialog__title {} */
+
+.edit-product-dialog__btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+}
+
+.edit-product-dialog__btn--cancel {
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: var(--secondary-business-color);
+  color: color-mix(in srgb, var(--primary-business-color) 70%, rgba(12, 12, 12, 0.527) 50%);
+  font-size: medium;
+  font-weight: 600;
+  padding: 0.2em;
+  width: 23em;
+  transition-duration: 400ms
+}
+
+.edit-product-dialog__btn:hover {
+  opacity: 85%;
+}
+
+.edit-product-dialog__btn--accept {
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: color-mix(in srgb, var(--primary-unsuccess-color) 70%, rgba(12, 12, 12, 0.527) 50%);
+  background-color: var(--secondary_unsuccess-color);
+  font-size: medium;
+  font-weight: 600;
+  padding: 0.2em;
+  width: 23em;
+  transition-duration: 400ms
+}
+
+.edit-product-dialog__btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (min-width: 360px) and (max-width: 820px) {
+  .edit-product-dialog {
+    width: 80%;
+  }
 }
