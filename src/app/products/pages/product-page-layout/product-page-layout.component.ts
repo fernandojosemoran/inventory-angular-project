@@ -7,6 +7,7 @@ import { AvailablePipe } from '../../pipes/available.pipe';
 import { EditProductDialogComponent } from '../../components/edit-product-dialog/edit-product-dialog.component';
 import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-delete-dialog/confirm-delete-dialog.component';
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
+import { ReverseFillButtonComponent } from '@/app/shared/components/reverse-fill-button/reverse-fill-button.component';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -17,7 +18,7 @@ import { ProductProviderService } from '@/app/shared/provider/product.provider.s
     AvailablePipe,
     EditProductDialogComponent,
     ConfirmDeleteDialogComponent,
-
+    ReverseFillButtonComponent
   ],
   templateUrl: './product-page-layout.component.html',
   styleUrl: './product-page-layout.component.css',

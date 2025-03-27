@@ -6,53 +6,59 @@
     (submit)="submit($event)"
     class="edit-product-dialog__form"
   >
-    <input
+    <app-input-with-label
+      for="name-input"
       type="text"
-      class="edit-product-dialog__input edit-product-dialog__input--name"
       formControlName="name"
       placeholder="Name"
       required
     />
-    <input
+
+    <app-input-with-label
+      for="image-input"
       type="file"
-      class="edit-product-dialog__input edit-product-dialog__input--image"
       formControlName="image"
-      required
       placeholder="Image"
+      required
     />
-    <input
+
+    <app-input-with-label
+      for="stock-input"
       type="text"
-      class="edit-product-dialog__input edit-product-dialog__input--stock"
       formControlName="stock"
       placeholder="Stock"
       required
     />
-    <input
+
+    <app-input-with-label
+      for="cost-input"
       type="text"
-      class="edit-product-dialog__input edit-product-dialog__input--cost"
       formControlName="cost"
       placeholder="Cost"
       required
     />
-    <input
+
+    <app-input-with-label
+      for="price-input"
       type="text"
-      class="edit-product-dialog__input edit-product-dialog__input--price"
       formControlName="price"
       placeholder="Price"
       required
     />
-    <input
+
+    <app-input-with-label
+      for="category-input"
       type="text"
       formControlName="category"
       placeholder="Category"
-      class="edit-product-dialog__input edit-product-dialog__input--category"
       required
     />
-    <input
+
+    <app-input-with-label
+      for="available-input"
       type="text"
       formControlName="available"
       placeholder="Available"
-      class="edit-product-dialog__input edit-product-dialog__input--available"
       required
     />
   </form>

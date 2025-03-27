@@ -34,16 +34,6 @@
   width: 100%;
 }
 
-.edit-product-dialog__input {
-  padding: 0.4em 0.8em;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid var(--primary-business-color);
-  color: var(--secondary-business-color)
-}
-
-
 /* .edit-product-dialog__title {} */
 
 .edit-product-dialog__btn-container {

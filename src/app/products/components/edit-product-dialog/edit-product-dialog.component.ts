@@ -3,11 +3,12 @@ import { Product } from '../../interfaces/product.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
 import { ProductService } from '../../services/product.service';
+import { InputWithLabelComponent } from '@/app/shared/components/input-with-label/input-with-label.component';
 
 @Component({
   selector: 'app-edit-product-dialog',
   standalone: true,
-  imports: [ ReactiveFormsModule ],
+  imports: [ ReactiveFormsModule, InputWithLabelComponent ],
   templateUrl: './edit-product-dialog.component.html',
   styleUrl: './edit-product-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,11 +21,11 @@ export class EditProductDialogComponent implements OnInit {
   public product: InputSignal<Product | undefined> = input<Product>();
 
   public ngOnInit(): void {
-      this.editProductForm.patchValue({
-         ...this.product(),
-         category: this.product()?.categoryName,
-         available: this.product()?.available ? "Si" : "No"
-      });
+    this.editProductForm.patchValue({
+        ...this.product(),
+        category: this.product()?.categoryName,
+        available: this.product()?.available ? "Si" : "No"
+    });
   }
 
   public editProductForm: FormGroup = new FormGroup({
@@ -40,7 +41,6 @@ export class EditProductDialogComponent implements OnInit {
   public submit(event: Event): void {
     event.preventDefault();
 
-    console.log({ formValues: this.editProductForm });
     if (this.editProductForm.invalid) return;
 
     this.createProduct();
@@ -52,7 +52,6 @@ export class EditProductDialogComponent implements OnInit {
     this._productStateService.addOneProduct(product);
     // this._productService.updateProduct(product);
     this.isConfirm.emit(true);
-
   }
 
   public cancel(): void {

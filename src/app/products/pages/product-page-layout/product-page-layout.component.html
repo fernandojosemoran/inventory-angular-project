@@ -49,8 +49,18 @@
       <td>{{ product.available | isAvailable }}</td>
       <td>
         <div class="product__table__header__actions__row">
-          <button (click)="editProduct(product.id)">Editar</button>
-          <button (click)="deleteProduct(product.id)">Eliminar</button>
+          <app-reverse-fill-button
+            text="Editar"
+            buttonType="rounded"
+            (evtClick)="editProduct(product.id)"
+          />
+
+          <app-reverse-fill-button
+            text="Eliminar"
+            color="unsuccess"
+            buttonType="rounded"
+            (evtClick)="deleteProduct(product.id)"
+          />
         </div>
       </td>
     </tr>
