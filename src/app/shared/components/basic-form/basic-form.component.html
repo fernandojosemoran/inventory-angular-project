@@ -1,0 +1,33 @@
+<table id="product__table__container">
+  <thead>
+    <tr>
+      @for (header of headers().headers; track $index) {
+        <th attr.data-sort="column {{ header.name }}">{{ header.name }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of rows().rows; track $index) {
+      <tr class="product-table__row product-table__row--hover">
+        @for (header of headers().headers; track $index) {
+          <td
+            (click)="handlerClick()"
+            [ngClass]="{ product__table__header__field__list_image: header.type === 'image' }"
+          >
+            @switch (header.type) {
+              @case ('image') {
+                <img
+                  src="{{ row[header.name] }}"
+                  alt="product ulr {{ row[header.name] }}"
+                />
+              }
+              @case ('text') {
+                {{ row[header.name] }}
+              }
+            }
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
