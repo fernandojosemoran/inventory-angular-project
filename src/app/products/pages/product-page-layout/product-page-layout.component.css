@@ -1,5 +1,3 @@
-
-
 #product__table__container {
   width: 100%;
   overflow-x: auto;
@@ -47,7 +45,7 @@ td {
   gap: 1em;
 }
 
-.product__table__header__actions__row > button {
+.product__table__header__actions__row>button {
   border-radius: 20px;
   outline: none;
   background-color: transparent;
@@ -59,6 +57,7 @@ td {
     border: 1px solid var(--secondary_success-color);
     color: var(--secondary_success-color);
     padding: 0.5em 1em;
+
     &:hover {
       background-color: var(--secondary_success-color);
       color: var(--primary-success-color);
@@ -70,6 +69,7 @@ td {
     border: 1px solid var(--secondary_unsuccess-color);
     color: var(--secondary_unsuccess-color);
     padding: 0.5em 1em;
+
     &:hover {
       background-color: var(--secondary_unsuccess-color);
       color: var(--primary-unsuccess-color);
@@ -83,7 +83,8 @@ td {
     /* border-spacing: 10px; */
   }
 
-  th, td {
+  th,
+  td {
     font-size: 0.9em;
     padding: 10px 20px;
   }

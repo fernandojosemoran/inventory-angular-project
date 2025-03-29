@@ -1,0 +1,33 @@
+<table class="skeleton__table">
+  <thead>
+    <tr>
+      <th><span class="skeleton --skeleton-header-code"></span></th>
+      <th><span class="skeleton --skeleton-header-name"></span></th>
+      <th><span class="skeleton --skeleton-header-image"></span></th>
+      <th><span class="skeleton --skeleton-header-stock"></span></th>
+      <th><span class="skeleton --skeleton-header-cost"></span></th>
+      <th><span class="skeleton --skeleton-header-price"></span></th>
+      <th><span class="skeleton --skeleton-header-category"></span></th>
+      <th><span class="skeleton --skeleton-header-available"></span></th>
+      <th><span class="skeleton --skeleton-header-actions"></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (data of tableDataList(); track $index) {
+      <tr>
+        <td><span class="skeleton --skeleton-code"></span></td>
+        <td><span class="skeleton --skeleton-name"></span></td>
+        <td><span class="skeleton --skeleton-image"></span></td>
+        <td><span class="skeleton --skeleton-stock"></span></td>
+        <td><span class="skeleton --skeleton-cost"></span></td>
+        <td><span class="skeleton --skeleton-price"></span></td>
+        <td><span class="skeleton --skeleton-category"></span></td>
+        <td><span class="skeleton --skeleton-available"></span></td>
+        <td><span class="skeleton --skeleton-actions"></span></td>
+      </tr>
+    }
+  </tbody>
+  <tfoot class="skeleton__footer">
+    <tr class="skeleton-footer__row"></tr>
+  </tfoot>
+</table>

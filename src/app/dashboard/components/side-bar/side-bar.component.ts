@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -33,7 +33,7 @@ interface ListPath {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
-  public listPath: ListPath[] = [
+  public listPath: Signal<ListPath[]> = computed<ListPath[]>(() => [
     {
       path: "categories",
       activate: "--activate-sidebar-link",
@@ -76,7 +76,7 @@ export class SideBarComponent {
       name: "Users",
       icon: UsersIconComponent
     }
-  ];
+  ]);
 }
 
 

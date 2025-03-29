@@ -16,60 +16,59 @@
   />
 </ng-container>
 
-<table id="product__table__container">
-  <thead>
-    <tr>
-      <th data-sort="code">Codigo</th>
-      <th data-sort="name">Nombre</th>
-      <th data-sort="image">Imagen</th>
-      <th data-sort="stock">Stock</th>
-      <th data-sort="cost">Costo</th>
-      <th data-sort="price">Precio</th>
-      <th data-sort="categoryName">Categoria</th>
-      <th data-sort="available">Habilitado</th>
-      <th data-sort="available">Actiones</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(product of productList(); track product.id){
-    <tr>
-      <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td class="product__table__header__field__list_image">
-        <img
-          class="product__table__header__field__list_image"
-          src="https://imgs.search.brave.com/_seRCAn5G8vbTPZ7uC2jGAc9AV3_UK1kL7kCLWP_w3k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS81/ZWUwYTAxYjA5Mzg5/ZWViZjRjMDliNDUv/NjY3YzJkZGUyMjNj/OWM2MDAzZjUyY2E0/XzAtQWZ0ZXItRGVz/a3RvcC53ZWJw"
-          alt="producto {{ product.name }}"
-        />
-      </td>
-      <td>{{ product.stock }}</td>
-      <td>{{ product.cost }}</td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.categoryName }}</td>
-      <td>{{ product.available | isAvailable }}</td>
-      <td>
-        <div class="product__table__header__actions__row">
-          <app-reverse-fill-button
-            text="Editar"
-            buttonType="rounded"
-            (evtClick)="editProduct(product.id)"
+@if (!skeletonLoaderFlag()) {
+  <table id="product__table__container">
+    <thead>
+      <tr>
+        <th data-sort="code">Codigo</th>
+        <th data-sort="name">Nombre</th>
+        <th data-sort="image">Imagen</th>
+        <th data-sort="stock">Stock</th>
+        <th data-sort="cost">Costo</th>
+        <th data-sort="price">Precio</th>
+        <th data-sort="categoryName">Categoria</th>
+        <th data-sort="available">Habilitado</th>
+        <th data-sort="available">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(product of productList(); track product.id){
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td class="product__table__header__field__list_image">
+          <img
+            class="product__table__header__field__list_image"
+            src="https://imgs.search.brave.com/_seRCAn5G8vbTPZ7uC2jGAc9AV3_UK1kL7kCLWP_w3k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS81/ZWUwYTAxYjA5Mzg5/ZWViZjRjMDliNDUv/NjY3YzJkZGUyMjNj/OWM2MDAzZjUyY2E0/XzAtQWZ0ZXItRGVz/a3RvcC53ZWJw"
+            alt="producto {{ product.name }}"
           />
+        </td>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.cost }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.categoryName }}</td>
+        <td>{{ product.available | isAvailable }}</td>
+        <td>
+          <div class="product__table__header__actions__row">
+            <app-reverse-fill-button
+              text="Editar"
+              buttonType="rounded"
+              (evtClick)="editProduct(product.id)"
+            />
 
-          <app-reverse-fill-button
-            text="Eliminar"
-            color="unsuccess"
-            buttonType="rounded"
-            (evtClick)="deleteProduct(product.id)"
-          />
-        </div>
-      </td>
-    </tr>
-    }
-  </tbody>
-  <!-- <tfoot>
-    <tr>
-      <td>f</td>
-    </tr>
-  </tfoot> -->
-</table>
+            <app-reverse-fill-button
+              text="Eliminar"
+              color="unsuccess"
+              buttonType="rounded"
+              (evtClick)="deleteProduct(product.id)"
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+}@else {
+  <app-table-skeleton [tableDataList]="[1,2,3,4,5,6,7,8,9]"/>
+}
 <span class="spacer"></span>

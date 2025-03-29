@@ -1,0 +1,139 @@
+.skeleton__table {
+  width: 100%;
+  /* max-width: 70em; */
+  margin: 0 auto;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1b85fe1f 25%, #1b85fe2a 50%, #1b85fe0e 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  display: block;
+}
+
+td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--third-business-color);
+  font-weight: 600;
+}
+
+th {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--third-business-color);
+  font-weight: 600;
+  background-color: transparent;
+  height: 3.75em;
+}
+
+.--skeleton-header-code {
+  width: 3.2em;
+  height: 3.5em;
+}
+
+.--skeleton-header-name {
+  width: 9em;
+  height: 3.5em;
+}
+
+.--skeleton-header-image {
+  width: 5em;
+  height: 3.5em;
+}
+
+.--skeleton-header-stock {
+  width: 3.2em;
+  height: 3.5em;
+}
+
+.--skeleton-header-cost {
+  width: 3.75em;
+  height: 3.5em;
+}
+
+.--skeleton-header-price {
+  width: 3.75em;
+  height: 3.5em;
+}
+
+.--skeleton-header-category {
+  width: 9em;
+  height: 3.5em;
+}
+
+.--skeleton-category {
+  width: 9em;
+  height: 3.5em;
+}
+
+.--skeleton-header-available {
+  width: 5em;
+  height: 3.5em;
+}
+
+.--skeleton-header-actions {
+  width: 15em;
+  height: 3.5em;
+}
+
+.--skeleton-available {
+  width: 5em;
+  height: 3.5em;
+}
+
+.--skeleton-image {
+  width: 5em;
+  height: 3.5em;
+  border-radius: 10px;
+}
+
+.--skeleton-id {
+  width: 30px;
+  height: 3.5em;
+}
+
+.--skeleton-code {
+  width: 3.2em;
+  height: 3.5em;
+}
+
+.--skeleton-name {
+  width: 9em;
+  height: 3.5em;
+}
+
+.--skeleton-price,
+.--skeleton-stock {
+  width: 3.75em;
+  height: 3.5em;
+}
+
+.--skeleton-cost {
+  width: 3.75em;
+  height: 3.5em;
+}
+
+.--skeleton-actions {
+  width: 15em;
+  height: 3.5em;
+}
+
+.--skeleton-available {
+  width: 5em;
+  height: 3.5em;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}

@@ -1,44 +1,44 @@
 import { Product } from '@/app/products/interfaces/product.interface';
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { IProductProvider } from '../interfaces/product.provider.interface';
+import { ProductService } from '@/app/products/services/product.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProductProviderService implements IProductProvider {
-  private products: Product[] = [];
+
+  private readonly productService: ProductService = inject(ProductService);
+
+  private products: WritableSignal<Product[]> = signal<Product[]>([]);
+
+  public constructor() {
+    this.productService.getAllProducts().subscribe(response => this.products.set(response));
+  }
 
   public getProducts(): Product[] {
-    return this.products;
+    return this.products();
   }
 
   public getOneProduct(id: number): Product | undefined {
-    // console.log({ getOneProduct : this.products });
-    return this.products.find(product => product.id === id);
+    return this.products().find(product => product.id === id);
   }
 
   public searchProducts(name: string): Product[] {
-    // console.log({ searchProducts : this.products });
-    return this.products.filter(product => product.name === name);
-  }
-
-  public loadProducts(products: Product[]): void {
-    // console.log({ loadProducts : this.products });
-    this.products = products;
+    const searchTerm = name.trim().toLowerCase();
+    return this.products().filter(product => product.name.trim().toLowerCase().startsWith(searchTerm));
   }
 
   public addOneProduct(product: Product): void {
-    // console.log({ addOneProduct : this.products });
-    this.products = [ ...this.products, product ];
+    this.products.update((products) => [ ...products, product ]);
   }
 
   public deleteOneProduct(id: number): Product | undefined {
-    // console.log({ deleteOneProduct : this.products });
     const getProduct: Product | undefined = this.getOneProduct(id);
 
     if (getProduct) return undefined;
 
-    const products: Product[] = this.products.filter(product => product.id !== id);
+    const products: Product[] = this.products().filter(product => product.id !== id);
 
-    this.products = products;
+    this.products.set(products);
 
     return getProduct;
   }

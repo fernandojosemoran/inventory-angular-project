@@ -1,13 +1,13 @@
 import { Product } from './../../interfaces/product.interface';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
-import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { AvailablePipe } from '../../pipes/available.pipe';
 import { EditProductDialogComponent } from '../../components/edit-product-dialog/edit-product-dialog.component';
 import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-delete-dialog/confirm-delete-dialog.component';
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
 import { ReverseFillButtonComponent } from '@/app/shared/components/reverse-fill-button/reverse-fill-button.component';
+import { TableSkeletonComponent } from '@/app/shared/components/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -18,18 +18,28 @@ import { ReverseFillButtonComponent } from '@/app/shared/components/reverse-fill
     AvailablePipe,
     EditProductDialogComponent,
     ConfirmDeleteDialogComponent,
-    ReverseFillButtonComponent
+    ReverseFillButtonComponent,
+    TableSkeletonComponent
   ],
   templateUrl: './product-page-layout.component.html',
   styleUrl: './product-page-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductPageLayoutComponent implements OnInit {
-
-  public productService: ProductService = inject(ProductService);
+export class ProductPageLayoutComponent implements OnInit{
   public productState: ProductProviderService = inject(ProductProviderService);
+  public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
 
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
+
+  public ngOnInit(): void {
+      const allProducts: Product[] = this.productState.getProducts();
+
+      if (allProducts.length > 0) {
+        this.skeletonLoaderFlag.set(false);
+        this.productList.set(allProducts);
+      }
+  }
+
   public productTermSearch: WritableSignal<string> = signal<string>("");
   public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
   public deleteProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
@@ -37,19 +47,12 @@ export class ProductPageLayoutComponent implements OnInit {
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
-  public ngOnInit(): void {
-    this.productService.getAllProducts().subscribe(response => {
-      this.productList.set(response);
-      this.productState.loadProducts(response);
-    });
-  }
-
   public editProduct(id: number): void {
     const product: Product | undefined = this.productState.getOneProduct(id);
 
     if (!product) return;
 
-    this.editProductSelected.update(() => product);
+    this.editProductSelected.set(product);
 
     this.editProductModalFlag.update(value => !value);
   }
@@ -59,14 +62,14 @@ export class ProductPageLayoutComponent implements OnInit {
 
     if (!product) return;
 
-    this.deleteProductSelected.update(() => product);
+    this.deleteProductSelected.set(product);
 
     this.deleteProductModalFlag.update(value => !value);
   }
   public confirmEditProduct(isConfirm: boolean): void {
     if (!isConfirm) return this.editProductModalFlag.update(() => isConfirm);
 
-    this.editProductModalFlag.update(() => !isConfirm);
+    this.editProductModalFlag.set(!isConfirm);
 
     // this.productService.updateProduct({} as Product);
   }
@@ -74,17 +77,16 @@ export class ProductPageLayoutComponent implements OnInit {
   public confirmDeleteProduct(isConfirm: boolean): void {
     if (!isConfirm) return this.deleteProductModalFlag.update(() => isConfirm);
 
-    this.deleteProductModalFlag.update(() => !isConfirm);
+    this.deleteProductModalFlag.set(!isConfirm);
     // this.productService.deleteProduct("");
   }
 
 
   public searchProduct(term: string): void {
+    if (term.trim().length === 0) return this.productList.set(this.productState.getProducts());
 
-    console.log({ term });
+    const productsSearched: Product[] = this.productState.searchProducts(term);
 
-    // const productsFiltered: Product[] = this.productList().filter(product => product.name.trim().toLowerCase() === term.trim().toLowerCase());
-
-    // this.productList.update(() => productsFiltered);
+    this.productList.set(productsSearched);
   }
 }
