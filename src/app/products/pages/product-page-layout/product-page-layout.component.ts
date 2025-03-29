@@ -8,6 +8,7 @@ import { ConfirmDeleteDialogComponent } from '@/app/shared/components/confirm-de
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
 import { ReverseFillButtonComponent } from '@/app/shared/components/reverse-fill-button/reverse-fill-button.component';
 import { TableSkeletonComponent } from '@/app/shared/components/table-skeleton/table-skeleton.component';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -27,18 +28,10 @@ import { TableSkeletonComponent } from '@/app/shared/components/table-skeleton/t
 })
 export class ProductPageLayoutComponent implements OnInit{
   public productState: ProductProviderService = inject(ProductProviderService);
+  public productService: ProductService = inject(ProductService);
   public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
 
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
-
-  public ngOnInit(): void {
-      const allProducts: Product[] = this.productState.getProducts();
-
-      if (allProducts.length > 0) {
-        this.skeletonLoaderFlag.set(false);
-        this.productList.set(allProducts);
-      }
-  }
 
   public productTermSearch: WritableSignal<string> = signal<string>("");
   public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
@@ -46,6 +39,14 @@ export class ProductPageLayoutComponent implements OnInit{
 
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
+
+  public ngOnInit(): void {
+      const allProducts: Product[] = this.productState.getProducts();
+      if (allProducts.length > 0) {
+        this.skeletonLoaderFlag.set(false);
+        this.productList.set(allProducts);
+      }
+  }
 
   public editProduct(id: number): void {
     const product: Product | undefined = this.productState.getOneProduct(id);
@@ -66,6 +67,7 @@ export class ProductPageLayoutComponent implements OnInit{
 
     this.deleteProductModalFlag.update(value => !value);
   }
+
   public confirmEditProduct(isConfirm: boolean): void {
     if (!isConfirm) return this.editProductModalFlag.update(() => isConfirm);
 
@@ -78,9 +80,17 @@ export class ProductPageLayoutComponent implements OnInit{
     if (!isConfirm) return this.deleteProductModalFlag.update(() => isConfirm);
 
     this.deleteProductModalFlag.set(!isConfirm);
-    // this.productService.deleteProduct("");
-  }
 
+    const products = this.productState.deleteOneProduct(this.deleteProductSelected().id);
+
+    // TODO: replace console.error() with custom errors
+    if (!products) return console.error("delete product not work");
+
+    this.productList.set(products);
+
+    this.productService.deleteProduct(this.deleteProductSelected().id);
+    console.log({ confirmDeleteProduct: true });
+  }
 
   public searchProduct(term: string): void {
     if (term.trim().length === 0) return this.productList.set(this.productState.getProducts());

@@ -17,7 +17,7 @@ export class ProductService implements IProductService {
     return this._http.get<ProductListResponse>(`${BACKEND_API}/products`).pipe(map(response => response.response));
   }
 
-  public getProduct(id: string): Observable<Product> {
+  public getProduct(id: number): Observable<Product> {
     return this._http.get<ProductResponse>(`${BACKEND_API}/products/${id}`).pipe(map(response => response.response));
   }
 
@@ -29,11 +29,11 @@ export class ProductService implements IProductService {
     return this._http.put<ProductResponse>(`${BACKEND_API}/products/${product.id}`, product).pipe(map(response => response.response));
   }
 
-  public deleteProduct(id: string): Observable<boolean> {
+  public deleteProduct(id: number): Observable<boolean> {
     return this._http.delete(`${BACKEND_API}/products/${id}`, { observe: "response" }).pipe(map(response => response.ok));
   }
 
   public searchProduct(name: string): Observable<Product[]> {
-    return this._http.get<ProductListResponse>(`${BACKEND_API}/products/search/${name}`).pipe(map(response => response.response));
+    return this._http.get<ProductListResponse>(`${BACKEND_API}/products/search/keyword?=${name}`).pipe(map(response => response.response));
   }
 }
