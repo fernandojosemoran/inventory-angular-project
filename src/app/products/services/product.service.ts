@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 import { Product, ProductResponse, ProductListResponse } from "../interfaces/product.interface";
@@ -29,11 +29,18 @@ export class ProductService implements IProductService {
     return this._http.put<ProductResponse>(`${BACKEND_API}/products/${product.id}`, product).pipe(map(response => response.response));
   }
 
-  public deleteProduct(id: number): Observable<boolean> {
-    return this._http.delete(`${BACKEND_API}/products/${id}`, { observe: "response" }).pipe(map(response => response.ok));
+  public deleteProduct(id: number): Observable<boolean | undefined> {
+    return this._http.delete(`${BACKEND_API}/products/${id}`, { observe: "response" })
+    .pipe(
+      catchError(({ error }) => {
+        console.error({ error: error });
+        return of(undefined);
+      }),
+      map(response => response!.ok)
+    );
   }
 
   public searchProduct(name: string): Observable<Product[]> {
-    return this._http.get<ProductListResponse>(`${BACKEND_API}/products/search/keyword?=${name}`).pipe(map(response => response.response));
+    return this._http.get<ProductListResponse>(`${BACKEND_API}/products/search?keyword=${name}`).pipe(map(response => response.response));
   }
 }

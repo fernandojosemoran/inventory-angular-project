@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
+import { CircleSearchInputComponent } from '../circle-search-input/circle-search-input.component';
 
 @Component({
   selector: 'app-actions-bar',
   standalone: true,
-  imports: [],
+  imports: [ CircleSearchInputComponent ],
   templateUrl: './actions-bar.component.html',
   styleUrl: './actions-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,9 +14,8 @@ export class ActionsBarComponent {
 
   public productTermSearch: OutputEmitterRef<string> = output<string>();
 
-  public onChangeGenericSearch(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
+  public onChangeGenericSearch(term: string) {
 
-    this.productTermSearch.emit(inputElement.value);
+    this.productTermSearch.emit(term);
   }
 }

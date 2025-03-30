@@ -27,6 +27,7 @@ import { ProductService } from '../../services/product.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductPageLayoutComponent implements OnInit{
+
   public productState: ProductProviderService = inject(ProductProviderService);
   public productService: ProductService = inject(ProductService);
   public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
@@ -88,15 +89,14 @@ export class ProductPageLayoutComponent implements OnInit{
 
     this.productList.set(products);
 
-    this.productService.deleteProduct(this.deleteProductSelected().id);
-    console.log({ confirmDeleteProduct: true });
+    this.productService.deleteProduct(this.deleteProductSelected().id).subscribe(res => console.log(res));
   }
 
   public searchProduct(term: string): void {
-    if (term.trim().length === 0) return this.productList.set(this.productState.getProducts());
+    if (term.length === 0) return this.productList.set(this.productState.getProducts());
 
-    const productsSearched: Product[] = this.productState.searchProducts(term);
+    this.productService.searchProduct(term)
+    .subscribe(response => this.productList.set(response));
 
-    this.productList.set(productsSearched);
   }
 }

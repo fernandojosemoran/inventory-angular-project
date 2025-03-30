@@ -6,6 +6,6 @@ export interface IProductService {
   getProduct(id: number): Observable<Product>;
   createProduct(product: Product): Observable<Product>;
   updateProduct(product: Product): Observable<Product>;
-  deleteProduct(id: number): Observable<boolean>;
+  deleteProduct(id: number): Observable<boolean | undefined>;
   searchProduct(name: string): Observable<Product[]>
 }

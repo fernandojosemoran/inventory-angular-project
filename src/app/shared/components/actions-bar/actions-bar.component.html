@@ -3,13 +3,7 @@
 
   <section class="action__bar">
     <div>
-      <input
-        id="search__input__generic"
-        type="search"
-        required
-        placeholder="Search"
-        (input)="onChangeGenericSearch($event)"
-      />
+      <app-circle-search-input (productTermSearch)="onChangeGenericSearch($event)" />
     </div>
   </section>
 </section>
