@@ -1,9 +1,11 @@
+// edit-product-dialog.component.ts
+
 import { ChangeDetectionStrategy, Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
-import { ProductService } from '../../services/product.service';
 import { InputWithLabelComponent } from '@/app/shared/components/input-with-label/input-with-label.component';
+import { imageValidator } from '@/app/shared/validators/validate-image-type.validator';
 
 @Component({
   selector: 'app-edit-product-dialog',
@@ -15,28 +17,44 @@ import { InputWithLabelComponent } from '@/app/shared/components/input-with-labe
 })
 export class EditProductDialogComponent implements OnInit {
   private readonly _productStateService: ProductProviderService = inject(ProductProviderService);
-  private readonly _productService: ProductService = inject(ProductService);
 
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
   public product: InputSignal<Product | undefined> = input<Product>();
 
+  private nameFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+  private imageFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required,imageValidator ] };
+  private stockFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+  private costFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+  private priceFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+  private categoryFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+  private availableFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
+
+  public editProductForm: FormGroup = new FormGroup({
+    name: new FormControl<string>('', this.nameFieldValidator ),
+    image: new FormControl<File | null>(null, this.imageFieldValidator ),
+    stock: new FormControl<number>(0, this.stockFieldValidator ),
+    cost: new FormControl<number>(0, this.costFieldValidator ),
+    price: new FormControl<number>(0, this.priceFieldValidator ),
+    category: new FormControl<string>('', this.categoryFieldValidator ),
+    available: new FormControl<boolean>(false, this.availableFieldValidator ),
+  });
+
   public ngOnInit(): void {
     this.editProductForm.patchValue({
-        ...this.product(),
-        category: this.product()?.categoryName,
-        available: this.product()?.available ? "Si" : "No"
+      ...this.product(),
+      category: this.product()?.categoryName,
+      available: this.product()?.available ? "Si" : "No"
     });
   }
 
-  public editProductForm: FormGroup = new FormGroup({
-    name: new FormControl<string>('', { validators: [ Validators.required ] }),
-    image: new FormControl<string>('', { validators: [ Validators.required ] }),
-    stock: new FormControl<number>(0, { validators: [ Validators.required ] }),
-    cost: new FormControl<number>(0 , { validators: [ Validators.required ] }),
-    price: new FormControl<number>(0 , { validators: [ Validators.required ] }),
-    category: new FormControl<string>('', { validators: [ Validators.required ] }),
-    available: new FormControl<boolean>(false , { validators: [ Validators.required ] }),
-  });
+  public handlerOnChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+
+    if (!(inputElement.files && inputElement.files.length > 0)) return;
+
+    const file = inputElement.files[0];
+    this.editProductForm.get('image')?.setValue(file);
+  }
 
   public submit(event: Event): void {
     event.preventDefault();
@@ -50,7 +68,6 @@ export class EditProductDialogComponent implements OnInit {
     const product: Product = this.editProductForm.value;
 
     this._productStateService.addOneProduct(product);
-    // this._productService.updateProduct(product);
     this.isConfirm.emit(true);
   }
 

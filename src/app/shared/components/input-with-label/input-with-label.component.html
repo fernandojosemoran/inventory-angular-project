@@ -1,18 +1,33 @@
 <div class="edit-product-dialog__input__container">
-  <label
-    class="edit-product-dialog__label"
-    [ngClass]="{ ' edit-product-dialog__label--active': value !== '' }"
-    for="{{ for() }}"
-  >
-    {{ placeholder() }}
-  </label>
-  <input
-    id="{{ for() }}"
-    type="{{ type() }}"
-    class="edit-product-dialog__input edit-product-dialog__input"
-    required
-    (input)="handlerOnChange($event)"
-    (blur)="onTouched()"
-    [value]="value"
-  />
+  @if (type() === "file") {
+    <form enctype="multipart/form-data">
+      <input
+        id="{{ for() }}"
+        type="file"
+        class="edit-product-dialog__input edit-product-dialog__input"
+        required
+        (change)="handlerOnChange($event)"
+        (blur)="onTouched()"
+        accept=".png, .jpeg, .jpg, .webp"
+      />
+    </form>
+  }
+  @else {
+    <label
+      class="edit-product-dialog__label"
+      [ngClass]="{ ' edit-product-dialog__label--active': value !== '' }"
+      for="{{ for() }}"
+    >
+      {{ placeholder() }}
+    </label>
+    <input
+      id="{{ for() }}"
+      type="{{ type() }}"
+      class="edit-product-dialog__input edit-product-dialog__input"
+      required
+      (input)="handlerOnChange($event)"
+      (blur)="onTouched()"
+      [value]="value"
+    />
+  }
 </div>
