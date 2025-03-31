@@ -18,6 +18,10 @@ export class ProductProviderService implements IProductProvider {
     return this.products();
   }
 
+  public getProductByCategory(category: string): Product[] {
+    return this.products().filter(product => product.categoryName.trim().toLowerCase() === category.trim().toLowerCase());
+  }
+
   public getOneProduct(id: number): Product | undefined {
     return this.products().find(product => product.id === id);
   }

@@ -3,7 +3,7 @@ import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { ICategoryService } from "../interfaces/category.service.interface";
 
-import { Category, CategoryListResponse, CategoryResponse } from "../interfaces/category.interface";
+import { Category, CategoriesResponse, CategoryResponse } from "../interfaces/category.interface";
 import { environments } from "@/environments/environments";
 
 // hidden dependencies
@@ -16,7 +16,7 @@ export class CategoryService implements ICategoryService {
   private readonly _http: HttpClient = inject(HttpClient);
 
   public getAllCategories(): Observable<Category[]> {
-    return this._http.get<CategoryListResponse>(`${BACKEND_API}/categories`).pipe(map(response => response.response));
+    return this._http.get<CategoriesResponse>(`${BACKEND_API}/categories`).pipe(map(response => response.response));
   }
 
   public createCategory(category: Category): Observable<Category> {
@@ -36,6 +36,6 @@ export class CategoryService implements ICategoryService {
   }
 
   public searchCategory(name: string): Observable<Category[]> {
-    return this._http.get<CategoryListResponse>(`${BACKEND_API}/categories/search/${name}`).pipe(map(response => response.response));
+    return this._http.get<CategoriesResponse>(`${BACKEND_API}/categories/search/${name}`).pipe(map(response => response.response));
   }
 }

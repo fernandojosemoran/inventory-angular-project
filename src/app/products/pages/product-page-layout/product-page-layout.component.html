@@ -1,4 +1,10 @@
-<app-actions-bar title="Productos" (productTermSearch)="searchProduct($event)">
+<app-actions-bar
+  title="Productos"
+  dropdownTitle="Selecciona una categoria"
+  (productTermSearch)="searchProduct($event)"
+  (evtDropdownOptionSelected)="dropdownOptionSelected($event)"
+  [dropdownCategoriesList]="getCategories()"
+>
 </app-actions-bar>
 
 <ng-container *ngIf="editProductModalFlag()">

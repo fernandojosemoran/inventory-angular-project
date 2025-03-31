@@ -1,11 +1,14 @@
-interface CategorySkeleton { message: string }
-
-export interface CategoryListResponse extends CategorySkeleton{
-  response: Category[]
+export interface CategoryResponse {
+  status:   string;
+  response: Category;
 }
-
-export interface CategoryResponse extends CategorySkeleton {
-  response: Category
+export interface CategoriesResponse {
+  status:   string;
+  response: Category[];
+}
+export interface CategoriesErrorResponse {
+  status:   string;
+  response: string;
 }
 
 export interface Category {
@@ -16,3 +19,4 @@ export interface Category {
   created_at:  Date;
   update_at:   Date;
 }
+

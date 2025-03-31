@@ -1,9 +1,15 @@
-<section class="actions__section">
+<div class="actions">
   <h1>{{ title() }}</h1>
 
-  <section class="action__bar">
-    <div>
-      <app-circle-search-input (productTermSearch)="onChangeGenericSearch($event)" />
-    </div>
+  <section class="actions__sections">
+    <app-dropdown-with-searcher
+      class="category__dropdown"
+      (optionSelected)="dropdownOptionSelected($event)"
+      (evtSearch)="dropdownSearchCategory($event)"
+      [optionsList]="dropdownCategoriesList()"
+      title="{{ dropdownTitle() }}"
+    />
+
+    <app-circle-search-input (productTermSearch)="onChangeGenericSearch($event)" />
   </section>
-</section>
+</div>

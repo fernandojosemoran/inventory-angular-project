@@ -1,6 +1,21 @@
-.actions__section {
+.actions {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+}
+
+.actions__sections {
+  display: flex;
+  gap: 0.6em;
+}
+
+.category__dropdown {
+  width: 15em;
+}
+
+@media (min-width: 360px) and (max-width: 830px) {
+  .category__dropdown {
+    display: none;
+  }
 }
