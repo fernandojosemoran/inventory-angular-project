@@ -5,11 +5,10 @@
     <app-dropdown-with-searcher
       class="category__dropdown"
       (optionSelected)="dropdownOptionSelected($event)"
-      (evtSearch)="dropdownSearchCategory($event)"
-      [optionsList]="dropdownCategoriesList()"
+      (evtSearch)="dropdownSearch($event)"
+      [optionsList]="dropdownOptions()"
       title="{{ dropdownTitle() }}"
     />
-
     <app-circle-search-input (productTermSearch)="onChangeGenericSearch($event)" />
   </section>
 </div>
