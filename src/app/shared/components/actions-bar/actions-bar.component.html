@@ -2,6 +2,13 @@
   <h1>{{ title() }}</h1>
 
   <section class="actions__sections">
+    <button
+      class="create-new__btn"
+      (click)="clickHandler()"
+    >
+      Nuevo
+    </button>
+
     <app-dropdown-with-searcher
       class="category__dropdown"
       (optionSelected)="dropdownOptionSelected($event)"

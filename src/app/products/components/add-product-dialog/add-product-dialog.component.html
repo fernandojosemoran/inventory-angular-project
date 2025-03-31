@@ -1,0 +1,74 @@
+<dialog class="add-product-dialog">
+  <h2 class="add-product-dialog__title">{{ dialogTitle() }}</h2>
+  <form
+    (submit)="submit($event)"
+    [formGroup]="dialogForm"
+    class="add-product-dialog__form"
+  >
+    <app-input-with-label
+      for="name-input"
+      placeholder="Name"
+      formControlName="name"
+      type="text"
+      required
+    />
+    <app-input-with-label
+      for="image-input"
+      placeholder="Image"
+      formControlName="image"
+      type="file"
+    />
+    <app-input-with-label
+      for="stock-input"
+      placeholder="Stock"
+      formControlName="stock"
+      type="text"
+      required
+    />
+    <app-input-with-label
+      for="cost-input"
+      placeholder="Cost"
+      formControlName="cost"
+      type="text"
+      required
+    />
+    <app-input-with-label
+      for="price-input"
+      placeholder="Price"
+      formControlName="price"
+      type="text"
+      required
+    />
+    <app-input-with-label
+      for="category-input"
+      placeholder="Category"
+      formControlName="category"
+      type="text"
+      required
+    />
+    <app-input-with-label
+      for="available-input"
+      placeholder="Available"
+      formControlName="available"
+      type="text"
+      required
+    />
+
+    <div class="add-product-dialog__btn-container">
+      <button
+        type="submit"
+        (click)="cancel()"
+        class="add-product-dialog__btn add-product-dialog__btn--cancel"
+      >
+        cancelar
+      </button>
+      <button
+        type="submit"
+        (submit)="submit($event)"
+        class="add-product-dialog__btn add-product-dialog__btn--accept"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</dialog>

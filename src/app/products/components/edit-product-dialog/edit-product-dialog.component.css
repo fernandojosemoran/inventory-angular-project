@@ -21,7 +21,7 @@
   border-radius: 5px;
   align-items: center;
   width: 50%;
-  max-height: 30em;
+  max-height: 32em;
   gap: 1em;
   padding: 2em;
   z-index: 100;
@@ -34,7 +34,9 @@
   width: 100%;
 }
 
-/* .edit-product-dialog__title {} */
+.edit-product-dialog__title {
+  color: var(--primary-text-color);
+}
 
 .edit-product-dialog__btn-container {
   display: flex;

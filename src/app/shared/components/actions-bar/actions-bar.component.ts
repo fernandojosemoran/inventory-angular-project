@@ -17,6 +17,8 @@ export class ActionsBarComponent implements OnInit{
   public dropdownOptionList: InputSignal<string[]> = input<string[]>([]);
   public dropdownOptions: WritableSignal<string[]> = signal<string[]>([]);
 
+  public evtCreateNewBtnClicked: OutputEmitterRef<boolean> = output<boolean>();
+
   public ngOnInit(): void {
       this.dropdownOptions.set(this.dropdownOptionList());
   }
@@ -30,6 +32,10 @@ export class ActionsBarComponent implements OnInit{
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {
     this.evtDropdownOptionSelected.emit(opt);
+  }
+
+  public clickHandler() {
+    this.evtCreateNewBtnClicked.emit(true);
   }
 
   public dropdownSearch(term: string): void {

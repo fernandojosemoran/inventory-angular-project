@@ -3,6 +3,7 @@
   dropdownTitle="Selecciona una categoria"
   (productTermSearch)="searchProduct($event)"
   (evtDropdownOptionSelected)="dropdownOptionSelected($event)"
+  (evtCreateNewBtnClicked)="openCreateNewProductDialog($event)"
   [dropdownOptionList]="getCategories()"
 >
 </app-actions-bar>
@@ -19,6 +20,13 @@
     (isConfirm)="confirmDeleteProduct($event)"
     [product]="deleteProductSelected()"
     title="Confirmar eliminacion"
+  />
+</ng-container>
+
+<ng-container *ngIf="addProductModalFlag()">
+  <app-add-product-dialog
+    dialogTitle="Crear un producto"
+    (evtCloseCreateNew)="closeCreateNewProductDialog($event)"
   />
 </ng-container>
 

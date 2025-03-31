@@ -14,8 +14,16 @@
   width: 15em;
 }
 
+.create-new__btn {
+  cursor: pointer;
+}
+
 @media (min-width: 360px) and (max-width: 830px) {
   .category__dropdown {
+    display: none;
+  }
+
+  .create-new__btn {
     display: none;
   }
 }

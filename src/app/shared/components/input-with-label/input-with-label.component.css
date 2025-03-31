@@ -12,6 +12,7 @@
 .edit-product-dialog__input__container {
   position: relative;
   height: 2em;
+  margin-top: 0.4em;
   display: flex;
   align-items: center;
 }

@@ -1,4 +1,5 @@
 :host {
+  background-color: aqua;
   width: 100%;
   top: 0;
   bottom: 0;
@@ -13,22 +14,31 @@
   backdrop-filter: blur(10px);
 }
 
-.confirm__delete__dialog__container {
+.add-product-dialog {
   display: flex;
   flex-direction: column;
   background-color: var(--secondary-color);
   border-radius: 5px;
   align-items: center;
   width: 50%;
-  max-height: 20em;
+  max-height: 32em;
   gap: 1em;
   padding: 2em;
-  color: var(--primary-text-color);
-  border: none;
   z-index: 100;
 }
 
-.dialog__btn__container {
+.add-product-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
+.add-product-dialog__title {
+  color: var(--primary-text-color);
+}
+
+.add-product-dialog__btn-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,15 +46,7 @@
   width: 100%;
 }
 
-table {
-  border-spacing: 1em 0;
-}
-
-button {
-  cursor: pointer;
-}
-
-.cancel__btn {
+.add-product-dialog__btn--cancel {
   outline: none;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -57,11 +59,11 @@ button {
   transition-duration: 400ms
 }
 
-.--cancel__btn:hover {
+.add-product-dialog__btn:hover {
   opacity: 85%;
 }
 
-.confirm__btn {
+.add-product-dialog__btn--accept {
   outline: none;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -74,34 +76,15 @@ button {
   transition-duration: 400ms
 }
 
-.--confirm__btn:hover {
-  opacity: 85%;
+.add-product-dialog__btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 @media (min-width: 360px) and (max-width: 820px) {
-  .confirm__delete__dialog__container {
+  .add-product-dialog {
     width: 80%;
-    max-height: 20em;
-    gap: 1em;
-    padding: 2em;
-    overflow: hidden;
-    z-index: 100;
-  }
-
-  table {
-    border-spacing: 0;
-  }
-
-  .cancel__btn {
-    width: 100%;
-  }
-
-  .confirm__btn {
-    width: 100%;
   }
 }
-
-/* .confirm__delete__dialog__image {
-  width: 100%;
-  display: block;
-} */

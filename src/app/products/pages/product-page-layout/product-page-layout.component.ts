@@ -11,6 +11,7 @@ import { TableSkeletonComponent } from '@/app/shared/components/table-skeleton/t
 import { ProductService } from '../../services/product.service';
 import { CategoryProvider } from '@/app/shared/provider/categories.provider.service';
 import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interface';
+import { AddProductDialogComponent } from "../../components/add-product-dialog/add-product-dialog.component";
 
 @Component({
   selector: 'app-product-page-layout',
@@ -23,7 +24,8 @@ import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interfa
     ConfirmDeleteDialogComponent,
     ReverseFillButtonComponent,
     TableSkeletonComponent,
-  ],
+    AddProductDialogComponent
+],
   templateUrl: './product-page-layout.component.html',
   styleUrl: './product-page-layout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -38,8 +40,10 @@ export class ProductPageLayoutComponent implements OnInit{
   public productTermSearch: WritableSignal<string> = signal<string>("");
   public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
   public deleteProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
+
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
+  public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
     const allProducts: Product[] = this.productProvider.getProducts();
@@ -68,6 +72,14 @@ export class ProductPageLayoutComponent implements OnInit{
     this.editProductSelected.set(product);
 
     this.editProductModalFlag.update(value => !value);
+  }
+
+  public openCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean) {
+    this.addProductModalFlag.set(wentClickedCreateNewProductBtn);
+  }
+
+  public closeCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean) {
+    this.addProductModalFlag.set(!wentClickedCreateNewProductBtn);
   }
 
   public deleteProduct(id: number): void {
