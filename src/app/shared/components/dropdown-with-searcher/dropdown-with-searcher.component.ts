@@ -9,9 +9,10 @@ import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
   standalone: true,
   imports: [ CommonModule, InputWithLabelComponent, DownArrowIconComponent ],
   template: `
+
     <div class="searchable-dropdown">
       <button
-        class="searchable-dropdown-btn"
+        class="searchable-dropdown-btn searchable-dropdown-btn--hover"
         (click)="openDropdown()"
         aria-label="Open dropdown list"
       >

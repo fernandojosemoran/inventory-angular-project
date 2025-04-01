@@ -16,18 +16,22 @@ interface ListPath {
   activate: string;
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  icon: any
+  icon: any,
+  inputs: {
+    width: number;
+    height: number;
+  }
 }
 
 @Component({
   selector: 'app-dashboard-side-bar',
   standalone: true,
   imports: [
+    CommonModule,
     SimLogoIconComponent,
     RouterLink,
-    RouterLinkActive,
-    CommonModule
-  ],
+    RouterLinkActive
+],
   templateUrl: "./side-bar.component.html",
   styleUrl: './side-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,51 +42,50 @@ export class SideBarComponent {
       path: "categories",
       activate: "--activate-sidebar-link",
       name: "Categories",
-      icon: LayerGroupIconComponent
+      icon: LayerGroupIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "products",
       activate: "--activate-sidebar-link",
       name: "Products",
-      icon: TruckRampBoxIconComponent
+      icon: TruckRampBoxIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "purchases",
       activate: "--activate-sidebar-link",
       name: "Purchases",
-      icon: MoneyCheckDollarIconComponent
+      icon: MoneyCheckDollarIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "sales",
       activate: "--activate-sidebar-link",
       name: "Sales",
-      icon: HandshakeIconComponent
+      icon: HandshakeIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "reports",
       activate: "--activate-sidebar-link",
       name: "Reports",
-      icon: BookIconComponent
+      icon: BookIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "shopping-cart",
       activate: "--activate-sidebar-link",
       name: "Shopping Cart",
-      icon: CartArrowDownIconComponent
+      icon: CartArrowDownIconComponent,
+      inputs: { width: 25, height: 25 }
     },
     {
       path: "users",
       activate: "--activate-sidebar-link",
       name: "Users",
-      icon: UsersIconComponent
+      icon: UsersIconComponent,
+      inputs: { width: 25, height: 25 }
     }
   ]);
 }
-
-
-// {
-//   path: "home",
-//   activate: "--activate-sidebar-link",
-//   name: "Dashboard",
-//   icon: HomeIconComponent
-// },

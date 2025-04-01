@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, input, InputSignal, OnInit, output,
 import { CircleSearchInputComponent } from '../circle-search-input/circle-search-input.component';
 import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
 import { DropdownWithSearcherComponent } from '../dropdown-with-searcher/dropdown-with-searcher.component';
+import { PlusIconComponent } from "../icons/plus-icon/plus-icon.component";
 
 @Component({
   selector: 'app-actions-bar',
   standalone: true,
-  imports: [ CircleSearchInputComponent, DropdownWithSearcherComponent ],
+  imports: [ CircleSearchInputComponent, DropdownWithSearcherComponent, PlusIconComponent ],
   templateUrl: './actions-bar.component.html',
   styleUrl: './actions-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

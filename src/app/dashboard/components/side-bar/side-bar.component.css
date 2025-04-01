@@ -1,5 +1,3 @@
-
-
 :host {
   display: block;
   position: fixed;
@@ -35,11 +33,12 @@
 .sidebar__navbar__link {
   text-decoration: none;
   color: var(--primary-text-color);
-  height: 3em;
-  width: 3em;
+  height: 2.5em;
+  width: 2.5em;
   border-radius: 50%;
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
   margin: 0 auto;
   padding: 0.2em;

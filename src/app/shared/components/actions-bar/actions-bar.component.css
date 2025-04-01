@@ -15,7 +15,19 @@
 }
 
 .create-new__btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   cursor: pointer;
+  width: 8em;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-success-color);
+  color: #eee;
+}
+
+.create-new__btn--hover:hover {
+  background-color: var(--primary-success-color-hover);
 }
 
 @media (min-width: 360px) and (max-width: 830px) {
