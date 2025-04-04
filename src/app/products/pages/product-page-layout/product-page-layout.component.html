@@ -81,6 +81,23 @@
       </tr>
       }
     </tbody>
+    <tfoot>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row"></td>
+      <td class="footer__row">
+        <p>Cantidad de paginas: </p>
+        <span class="pages-count">20</span>
+      </td>
+      <td class="footer__row">
+        <label for="page__input">Pagina: </label>
+        <input id="page__input" type="number" min="1" contenteditable="false" max="100">
+      </td>
+    </tfoot>
   </table>
 }@else {
   <app-table-skeleton [tableDataList]="[1,2,3,4,5,6,7,8,9]"/>

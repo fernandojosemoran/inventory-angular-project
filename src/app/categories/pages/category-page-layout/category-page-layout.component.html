@@ -1,3 +1,15 @@
 <app-actions-bar title="Categorias" />
 
-<main></main>
+<main>
+  @if (categoriesList().length !== 0) {
+    @for (category of categoriesList(); track $index) {
+      <app-horizontal-card
+        cardTitle="{{ category.name }}"
+        cardDescription="{{ category.description }}"
+        cardUrlImage="https://imgs.search.brave.com/_seRCAn5G8vbTPZ7uC2jGAc9AV3_UK1kL7kCLWP_w3k/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS81/ZWUwYTAxYjA5Mzg5/ZWViZjRjMDliNDUv/NjY3YzJkZGUyMjNj/OWM2MDAzZjUyY2E0/XzAtQWZ0ZXItRGVz/a3RvcC53ZWJw"
+      />
+    }
+  }
+</main>
+
+<span class="spacer"></span>

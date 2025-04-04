@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.horizontal__card {
+  display: flex;
+  width: 100%;
+  gap: 1em;
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+}
+
+.horizontal-card__image {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+
+.horizontal-card__picture {
+  width: 8em;
+}

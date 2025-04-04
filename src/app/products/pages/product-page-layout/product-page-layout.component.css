@@ -31,6 +31,24 @@ td {
   border-radius: 5px;
 }
 
+#page__input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-left: 0.4em;
+  color: var(--secondary-business-color);
+  border-bottom: 1px solid var(--primary-business-color);
+}
+
+.pages-count {
+  margin-left: 0.4em;
+  color: var(--secondary-business-color);
+}
+
+.footer__row {
+  padding: 0.4em;
+}
+
 /* tbody > tr {
   cursor: pointer;
 
