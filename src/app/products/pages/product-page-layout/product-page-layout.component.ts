@@ -12,6 +12,7 @@ import { ProductService } from '../../services/product.service';
 import { CategoryProvider } from '@/app/shared/provider/categories.provider.service';
 import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interface';
 import { AddProductDialogComponent } from "../../components/add-product-dialog/add-product-dialog.component";
+import { Pagination } from '@/app/shared/interfaces/product.provider.interface';
 
 @Component({
   selector: 'app-product-page-layout',
@@ -35,8 +36,11 @@ export class ProductPageLayoutComponent implements OnInit{
   private readonly productProvider: ProductProviderService = inject(ProductProviderService);
   private readonly productService: ProductService = inject(ProductService);
 
+  public pagination: WritableSignal<Pagination> = signal<Pagination>(this.productProvider.pagination());
+
   public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
+
   public productTermSearch: WritableSignal<string> = signal<string>("");
   public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
   public deleteProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
@@ -46,12 +50,25 @@ export class ProductPageLayoutComponent implements OnInit{
   public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
-    const allProducts: Product[] = this.productProvider.getProducts();
+    const productList: Product[] = this.productProvider.getProductByPage();
+
+    const allProducts: Product[] = productList;
+
     if (allProducts.length > 0) {
       this.skeletonLoaderFlag.set(false);
       this.productList.set(allProducts);
+      this.productList.set(productList);
     }
   }
+
+  public ChangePage(event: Event): void {
+    const numberInput: HTMLInputElement = (event.target) as HTMLInputElement;
+
+    const productList: Product[] = this.productProvider.getProductByPage(+numberInput.value);
+
+    this.productList.set(productList);
+  }
+
   public getCategories: Signal<string[]> = computed(() => {
     const categories: string[] = this.categoryService.getCategories().map(opt => opt.name);
     categories.unshift("Ninguno");
@@ -59,7 +76,7 @@ export class ProductPageLayoutComponent implements OnInit{
   });
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {
-    if (opt.name === "Ninguno") return this.productList.set(this.productProvider.getProducts());
+    // if (opt.name === "Ninguno") return this.productList.set(this.productProvider.getProducts());
 
     this.productList.set(this.productProvider.getProductByCategory(opt.name));
   }
@@ -110,16 +127,17 @@ export class ProductPageLayoutComponent implements OnInit{
     // TODO: replace console.error() with custom errors
     if (!products) return console.error("delete product not work");
 
-    this.productList.set(products);
+    this.productList.set(products[this.productProvider.pagination().currentPage]);
 
     this.productService.deleteProduct(this.deleteProductSelected().id).subscribe(res => console.log(res));
   }
 
   public searchProduct(term: string): void {
-    if (term.length === 0) return this.productList.set(this.productProvider.getProducts());
+
+    if (term.length === 0) return this.productList.set(this.productProvider.getProducts[this.pagination().currentPage]);
 
     this.productService.searchProduct(term)
-    .subscribe(response => this.productList.set(response));
+    .subscribe((response: Product[]) => this.productList.set(response));
 
   }
 }

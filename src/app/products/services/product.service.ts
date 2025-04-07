@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { catchError, map, Observable, of } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
-import { Product, ProductResponse, ProductListResponse } from "../interfaces/product.interface";
+import { Product, ProductResponse } from "../interfaces/product.interface";
 import { IProductService } from "../interfaces/product.service.interface";
 import { environments } from "@/environments/environments";
 
@@ -13,34 +13,69 @@ const BACKEND_API: string = environments.backendApi;
 export class ProductService implements IProductService {
   private readonly _http: HttpClient = inject(HttpClient);
 
-  public getAllProducts(): Observable<Product[]> {
-    return this._http.get<ProductListResponse>(`${BACKEND_API}/products`).pipe(map(response => response.response));
+  public getProductByPage(page= 0, size = 10): Observable<ProductResponse> {
+    return this._http.get<ProductResponse>(`${BACKEND_API}/products/page?page=${page}&size=${size}`)
+    .pipe(
+      catchError((error) => {
+        console.error(error as HttpErrorResponse);
+        return of();
+      })
+    );
   }
 
   public getProduct(id: number): Observable<Product> {
-    return this._http.get<ProductResponse>(`${BACKEND_API}/products/${id}`).pipe(map(response => response.response));
+    return this._http.get<ProductResponse>(`${BACKEND_API}/products/${id}`)
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          return of();
+        }),
+        map(response => response.response.content as Product)
+      );
   }
 
   public createProduct(product: Product): Observable<Product> {
-    return this._http.post<ProductResponse>(`${BACKEND_API}/products`, product).pipe(map(response => response.response));
+    return this._http.post<ProductResponse>(`${BACKEND_API}/products`, product)
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          return of();
+        }),
+        map(response => response.response.content as Product)
+      );
   }
 
   public updateProduct(product: Product): Observable<Product> {
-    return this._http.put<ProductResponse>(`${BACKEND_API}/products/${product.id}`, product).pipe(map(response => response.response));
+    return this._http.put<ProductResponse>(`${BACKEND_API}/products/${product.id}`, product)
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          return of();
+        }),
+        map(response => response.response.content as Product)
+      );
   }
 
   public deleteProduct(id: number): Observable<boolean | undefined> {
     return this._http.delete(`${BACKEND_API}/products/${id}`, { observe: "response" })
-    .pipe(
-      catchError(({ error }) => {
-        console.error({ error: error });
-        return of(undefined);
-      }),
-      map(response => response!.ok)
-    );
+      .pipe(
+        catchError(({ error }) => {
+          console.error({ error: error });
+          return of();
+        }),
+        map(response => response!.ok)
+      );
   }
 
   public searchProduct(name: string): Observable<Product[]> {
-    return this._http.get<ProductListResponse>(`${BACKEND_API}/products/search?keyword=${name}`).pipe(map(response => response.response));
+    return this._http.get<{ status: string, response: Product[] }>(`${BACKEND_API}/products/search?keyword=${name}`)
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          return of();
+      }),
+      // TODO: change this http request
+      map(response => response.response as Product[])
+    );
   }
 }

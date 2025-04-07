@@ -90,12 +90,20 @@
       <td class="footer__row"></td>
       <td class="footer__row"></td>
       <td class="footer__row">
-        <p>Cantidad de paginas: </p>
-        <span class="pages-count">20</span>
+        <p>Paginas en total: </p>
+        <span class="pages-count">{{ pagination().totalPages }}</span>
       </td>
       <td class="footer__row">
         <label for="page__input">Pagina: </label>
-        <input id="page__input" type="number" min="1" contenteditable="false" max="100">
+        <input
+          id="page__input"
+          type="number"
+          min="1"
+          contenteditable="false"
+          max="{{ pagination().totalPages }}"
+          value="{{ pagination().currentPage }}"
+          (input)="ChangePage($event)"
+        >
       </td>
     </tfoot>
   </table>

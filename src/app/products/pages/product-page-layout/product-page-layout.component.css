@@ -49,6 +49,12 @@ td {
   padding: 0.4em;
 }
 
+.footer__row>* {
+  display: inline;
+}
+
+
+
 /* tbody > tr {
   cursor: pointer;
 

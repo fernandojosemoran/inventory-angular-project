@@ -1,13 +1,13 @@
-interface ProductSkeleton {
-  message: string;
+export interface ProductResponse {
+  response: ProductResponseSkeleton,
+  status: string;
 }
 
-export interface ProductListResponse extends ProductSkeleton {
-  response: Product[]
-}
-
-export interface ProductResponse extends ProductSkeleton {
-  response: Product
+export interface ProductResponseSkeleton {
+  content:     Product[] | Product;
+  currentPage: number;
+  totalPages:  number;
+  pageSize:    number;
 }
 
 export interface Product {
@@ -18,8 +18,12 @@ export interface Product {
   stock:        number;
   cost:         number;
   price:        number;
-  categoryName: string;
+  categoryName: CategoryName;
   available:    boolean;
   createdAt:    Date;
   updatedAt:    Date;
+}
+
+export enum CategoryName {
+  RepuestosDeMotor = "Repuestos de Motor",
 }

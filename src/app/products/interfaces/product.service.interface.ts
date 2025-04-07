@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
-import { Product } from "./product.interface";
+import { Product, ProductResponse } from "./product.interface";
 
 export interface IProductService {
-  getAllProducts(): Observable<Product[]>;
+  getProductByPage(page: number, size?: number): Observable<ProductResponse>;
   getProduct(id: number): Observable<Product>;
   createProduct(product: Product): Observable<Product>;
   updateProduct(product: Product): Observable<Product>;
