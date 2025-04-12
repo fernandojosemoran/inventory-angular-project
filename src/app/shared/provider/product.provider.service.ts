@@ -24,11 +24,13 @@ export class ProductProviderService implements IProductProvider {
     });
   }
 
-  public getProductByPage(page = 0): Product[] {
+
+  public getProductByPage(page = 1): Product[] {
     this.productService.getProductByPage(page)
     .subscribe(response => this.products.update( oldProducts => [ ...oldProducts, response.response.content as Product[] ]));
 
-    return this.products()[page];
+    // TODO: Delete this page -1
+    return this.products()[page - 1];
   };
 
   public get getProducts(): Product[][] {
@@ -118,3 +120,19 @@ export class ProductProviderService implements IProductProvider {
     return this.products();
   }
 }
+
+
+/*
+
+let flag = 0;
+const newList = [];
+
+for (let index = 1; index <= Math.round(products.length / 10); index++) {
+    const newProductList = products.slice(flag, flag + 10);
+    newList.unshift(newProductList);
+    flag += 10;
+}
+
+console.log({ newList });
+
+*/
