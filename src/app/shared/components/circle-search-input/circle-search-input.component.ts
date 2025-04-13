@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, output, OutputEmitterRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal, OnDestroy, OnInit, output, OutputEmitterRef } from '@angular/core';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 
 @Component({
@@ -7,6 +7,7 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
   imports: [],
   template: `
     <input
+      title="{{ toolTip() }}"
       id="search__input__generic"
       type="search"
       required
@@ -40,6 +41,7 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CircleSearchInputComponent implements OnInit, OnDestroy{
+  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
   private _debounce: Subject<string> = new Subject<string>();
   private _debounceSubscription?: Subscription;
 

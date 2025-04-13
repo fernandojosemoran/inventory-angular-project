@@ -7,30 +7,36 @@ import { CategoryService } from '@/app/categories/services/categories.service';
 export class CategoryProvider implements ICategoryProvider {
   private readonly categoriesService: CategoryService = inject(CategoryService);
 
-  public categories: WritableSignal<Category[]> = signal<Category[]>([]);
+  public readonly categories: WritableSignal<Category[]> = signal<Category[]>([]);
 
   public constructor() {
     this.categoriesService.getAllCategories()
     .subscribe(response => this.categories.set(response));
   }
 
-  public getCategories(): Category[] {
+  public addCategory(category: Category): Category[] {
+    this.categories.update(oldCategories => [ ...oldCategories, category ]);
     return this.categories();
   }
 
-  public createCategory(category: Category): Category {
-    throw new Error('Method not implemented.');
-  }
+  public updateCategory(category: Category): Category[] {
+    this.categories().map(ctg => {
+      if (ctg.id === category.id) return category;
+      return ctg;
+    });
 
-  public updateCategory(category: Category): Category {
-    throw new Error('Method not implemented.');
+    return this.categories();
   }
 
   public deleteCategory(id: number): boolean {
-    throw new Error('Method not implemented.');
+    this.categories().map(ctg => {
+      if (ctg.id === id) return;
+      return ctg;
+    });
+    return true;
   }
 
   public searchCategory(name: string): Category[] {
-    throw new Error('Method not implemented.');
+    return this.categories().filter(ctg => ctg.name.trim().toLowerCase().startsWith(name));
   }
 }

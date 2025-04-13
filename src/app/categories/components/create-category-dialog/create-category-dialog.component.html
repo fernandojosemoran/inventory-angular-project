@@ -1,0 +1,49 @@
+<dialog
+  title="Create category dialog"
+  class="add-product-dialog"
+>
+  <h2 class="add-product-dialog__title">{{ title() }}</h2>
+  <form
+    class="add-product-dialog__form"
+    [formGroup]="formGroup"
+    (submit)="submit($event)"
+  >
+    <app-input-with-label
+      formControlName="name"
+      for="category-name-input"
+      placeholder="Nombre"
+      type="text"
+    />
+
+    <app-input-with-label
+      formControlName="description"
+      for="category-description-input"
+      placeholder="Descripcion"
+      type="text"
+    />
+
+    <app-input-with-label
+      formControlName="image"
+      for="category-image-input"
+      placeholder="Imagen"
+      type="file"
+    />
+
+    <div class="add-product-dialog__btn-container">
+      <button
+        type="submit"
+        (click)="cancel()"
+        class="add-product-dialog__btn add-product-dialog__btn--cancel"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        (submit)="submit($event)"
+        class="add-product-dialog__btn add-product-dialog__btn--accept"
+      >
+        Crear
+      </button>
+    </div>
+  </form>
+</dialog>

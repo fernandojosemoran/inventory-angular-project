@@ -1,4 +1,17 @@
-<app-actions-bar title="Categorias" />
+<app-actions-bar
+  title="Categorias"
+  [showDropdownOption]="false"
+  (evtCreateNewBtnClicked)="openDialog()"
+  (searchTerm)="searchCategory($event)"
+/>
+
+<ng-container *ngIf="createCategoryModalFlag()">
+  <app-create-category-dialog
+    title="Crear nuevo producto"
+    (cancelOperation)="closeDialog($event)"
+    (confirmOperation)="createNewCategory($event)"
+  />
+</ng-container>
 
 <main>
   @if (categoriesList().length !== 0) {

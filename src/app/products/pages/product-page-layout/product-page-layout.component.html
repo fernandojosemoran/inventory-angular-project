@@ -1,7 +1,7 @@
 <app-actions-bar
   title="Productos"
   dropdownTitle="Selecciona una categoria"
-  (productTermSearch)="searchProduct($event)"
+  (searchTerm)="searchProduct($event)"
   (evtDropdownOptionSelected)="dropdownOptionSelected($event)"
   (evtCreateNewBtnClicked)="openCreateNewProductDialog($event)"
   [dropdownOptionList]="getCategories()"

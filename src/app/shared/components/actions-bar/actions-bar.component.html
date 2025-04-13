@@ -3,6 +3,8 @@
 
   <section class="actions__sections">
     <button
+      *ngIf="showCreateBtn()"
+      title="Boton de crear {{ title() | lowercase }}"
       aria-label="Agregar producto"
       aria-describedby="Agregar nuevo producto"
       class="create-new__btn create-new__btn--hover"
@@ -12,12 +14,14 @@
     </button>
 
     <app-dropdown-with-searcher
+      *ngIf="showDropdownOption()"
+      toolTip="Selector de {{ title() | lowercase }}"
       class="category__dropdown"
       (optionSelected)="dropdownOptionSelected($event)"
       (evtSearch)="dropdownSearch($event)"
       [optionsList]="dropdownOptions()"
       title="{{ dropdownTitle() }}"
     />
-    <app-circle-search-input (productTermSearch)="onChangeGenericSearch($event)" />
+    <app-circle-search-input toolTip="Buscador de {{ title() | lowercase }}" *ngIf="showSearchBtn()" (productTermSearch)="onChangeGenericSearch($event)" />
   </section>
 </div>

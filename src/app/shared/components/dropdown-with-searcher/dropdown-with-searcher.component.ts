@@ -11,6 +11,7 @@ import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
   template: `
     <div class="searchable-dropdown">
       <button
+        title="{{ toolTip() }}"
         class="searchable-dropdown-btn searchable-dropdown-btn--hover"
         (click)="openDropdown()"
         aria-label="Open dropdown list"
@@ -64,6 +65,7 @@ export class DropdownWithSearcherComponent {
   public readonly optionsList: InputSignal<string[]> = input<string[]>([]);
   public readonly title: InputSignal<string> = input<string>("Select an option");
   public readonly placeholder: InputSignal<string> = input<string>("Search...");
+  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
 
   public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
   public openDropdownFlag: WritableSignal<boolean> = signal<boolean>(false);

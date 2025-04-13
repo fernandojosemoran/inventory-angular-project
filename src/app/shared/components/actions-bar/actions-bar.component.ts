@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, input, InputSignal, OnInit, output,
 import { CircleSearchInputComponent } from '../circle-search-input/circle-search-input.component';
 import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
 import { DropdownWithSearcherComponent } from '../dropdown-with-searcher/dropdown-with-searcher.component';
-import { PlusIconComponent } from "../icons/plus-icon/plus-icon.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-actions-bar',
   standalone: true,
-  imports: [ CircleSearchInputComponent, DropdownWithSearcherComponent, PlusIconComponent ],
+  imports: [ CircleSearchInputComponent, DropdownWithSearcherComponent, CommonModule ],
   templateUrl: './actions-bar.component.html',
   styleUrl: './actions-bar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,19 +16,22 @@ export class ActionsBarComponent implements OnInit{
   public title: InputSignal<string> = input("Title not went assigned");
   public dropdownTitle: InputSignal<string> = input("Select an option");
   public dropdownOptionList: InputSignal<string[]> = input<string[]>([]);
+  public showDropdownOption: InputSignal<boolean> = input<boolean>(true);
+  public showSearchBtn: InputSignal<boolean> = input<boolean>(true);
+  public showCreateBtn: InputSignal<boolean> = input<boolean>(true);
   public dropdownOptions: WritableSignal<string[]> = signal<string[]>([]);
 
   public evtCreateNewBtnClicked: OutputEmitterRef<boolean> = output<boolean>();
 
   public ngOnInit(): void {
-      this.dropdownOptions.set(this.dropdownOptionList());
+    this.dropdownOptions.set(this.dropdownOptionList());
   }
 
-  public productTermSearch: OutputEmitterRef<string> = output<string>();
+  public searchTerm: OutputEmitterRef<string> = output<string>();
   public evtDropdownOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
 
   public onChangeGenericSearch(term: string) {
-    this.productTermSearch.emit(term);
+    this.searchTerm.emit(term);
   }
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {

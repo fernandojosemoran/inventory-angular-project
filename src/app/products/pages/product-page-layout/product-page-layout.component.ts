@@ -51,12 +51,8 @@ export class ProductPageLayoutComponent implements OnInit{
 
   public ngOnInit(): void {
     const productList: Product[] = this.productProvider.getProductByPage();
-
-    const allProducts: Product[] = productList;
-
-    if (allProducts.length > 0) {
+    if (productList.length > 0) {
       this.skeletonLoaderFlag.set(false);
-      this.productList.set(allProducts);
       this.productList.set(productList);
     }
   }
@@ -70,7 +66,7 @@ export class ProductPageLayoutComponent implements OnInit{
   }
 
   public getCategories: Signal<string[]> = computed(() => {
-    const categories: string[] = this.categoryService.getCategories().map(opt => opt.name);
+    const categories: string[] = this.categoryService.categories().map(opt => opt.name);
     categories.unshift("Ninguno");
     return categories;
   });

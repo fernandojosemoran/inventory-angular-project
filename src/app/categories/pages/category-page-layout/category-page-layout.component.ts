@@ -4,11 +4,13 @@ import { HorizontalCardComponent } from "../../../shared/components/horizontal-c
 import { CategoryService } from '../../services/categories.service';
 import { CategoryProvider } from '@/app/shared/provider/categories.provider.service';
 import { Category } from '../../interfaces/category.interface';
+import { CommonModule } from '@angular/common';
+import { CreateCategoryDialogComponent } from "../../components/create-category-dialog/create-category-dialog.component";
 
 @Component({
   selector: 'app-category-page-layout',
   standalone: true,
-  imports: [ ActionsBarComponent, HorizontalCardComponent ],
+  imports: [ ActionsBarComponent, HorizontalCardComponent, CommonModule, CreateCategoryDialogComponent ],
   templateUrl: './category-page-layout.component.html',
   styleUrl: './category-page-layout.component.css'
 })
@@ -19,12 +21,32 @@ export class CategoryPageLayoutComponent implements OnInit{
   public categoriesList: WritableSignal<Category[]> = signal<Category[]>([]);
 
   public categoryLoaderFlag: WritableSignal<boolean> = signal<boolean>(false);
+  public createCategoryModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
-      const categories: Category[] = this.categoryProvider.getCategories();
+      const categories: Category[] = this.categoryProvider.categories();
 
       if (!categories) return;
 
       this.categoriesList.set(categories);
+  }
+
+  public openDialog() {
+    this.createCategoryModalFlag.set(true);
+  }
+
+  public createNewCategory(category: Category) {
+    this.categoryService.createCategory(category).subscribe(response => this.categoriesList.set(this.categoryProvider.addCategory(response)));
+    this.createCategoryModalFlag.set(false);
+  }
+
+  public closeDialog(isClose: boolean) {
+    this.createCategoryModalFlag.set(isClose);
+  }
+
+  public searchCategory(term: string) {
+    if (!term) return this.categoriesList.set(this.categoryProvider.categories());
+
+    this.categoriesList.set(this.categoryProvider.searchCategory(term));
   }
 }

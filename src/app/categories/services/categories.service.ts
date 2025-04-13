@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { ICategoryService } from "../interfaces/category.service.interface";
 
@@ -20,7 +20,14 @@ export class CategoryService implements ICategoryService {
   }
 
   public createCategory(category: Category): Observable<Category> {
-    return this._http.post<CategoryResponse>(`${BACKEND_API}/categories`, category).pipe(map(response => response.response));
+    return this._http.post<CategoryResponse>(`${BACKEND_API}/categories`, category)
+    .pipe(
+      catchError((error) => {
+        console.error(error);
+        return of();
+      }),
+      map(response => response.response)
+    );
   }
 
   public getCategory(id: string): Observable<Category> {
