@@ -17,6 +17,16 @@
   align-items: center;
 }
 
+.edit-product-dialog__input:-webkit-autofill,
+.edit-product-dialog__input:-webkit-autofill:hover,
+.edit-product-dialog__input:-webkit-autofill:focus,
+.edit-product-dialog__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: transparent;
+}
+
 .edit-product-dialog__label {
   position: absolute;
   bottom: 10px;

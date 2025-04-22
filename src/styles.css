@@ -126,11 +126,12 @@
   --secondary-business-color: #9ecbff;
   --third-business-color: #1b85fe1f;
   --primary-text-color: #6f707f;
-  --secondary-text-color: #42444e;
+  --secondary-text-color: #4e4f58;
+  --third-text-color: #42444e8c;
   --primary-success-color: #238636;
   --primary-success-color-hover: #3fa553;
   --primary-unsuccess-color: #F51720;
-  --secondary_success-color: rgb(169, 255, 221);
+  --secondary_success-color: #a9ffdd;
   --secondary_unsuccess-color: #ffb2b4;
   --third-success-color: #00a2612f;
   --third-unsuccess-color: #f5171e2c;

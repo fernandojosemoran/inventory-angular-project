@@ -1,1 +1,59 @@
+<form
+  [formGroup]="registerForm"
+  class="register__form"
+  (submit)="submit()"
+>
+  <app-input-with-label
+    placeholder="Username"
+    type="text"
+    for="username-field"
+    formControlName="username"
+  />
 
+  <app-input-with-label
+    placeholder="Last Name"
+    type="text"
+    for="lastName-field"
+    formControlName="lastName"
+  />
+
+  <app-input-with-label
+    placeholder="Email"
+    type="email"
+    for="email-field"
+    formControlName="email"
+  />
+
+  <app-input-with-label
+    placeholder="Password"
+    type="password"
+    for="password-field"
+    formControlName="password"
+  />
+
+  <app-input-with-label
+    placeholder="Confirm Password"
+    type="password"
+    for="confirm-password-field"
+    formControlName="confirmPassword"
+  />
+
+  <button
+    type="submit"
+    [disabled]="!registerForm.valid"
+    [ngClass]="{'register-submit__btn--active': registerForm.valid}"
+    class="register-submit__btn"
+    (submit)="submit()"
+  >
+    Register
+  </button>
+
+  <div class="register-form-link__container">
+    <a
+      routerLink="/auth/login"
+      class="register-form__link"
+    >
+      Ya tengo una cuenta
+    </a>
+  </div>
+</form>

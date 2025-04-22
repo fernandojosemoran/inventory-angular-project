@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register__form {
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: var(--secondary-color);
+  padding: 4em 2em;
+}
+
+.register-submit__btn {
+  border: none;
+  outline: none;
+  color: var(--secondary-text-color);
+  background-color: var(--third-text-color);
+  padding: 0.2em 0.4em;
+}
+
+.register-submit__btn--active {
+  cursor: pointer;
+  color: white;
+  background-color: var(--primary-business-color);
+}
+
+.register-form__link {
+  color: var(--primary-text-color);
+}
+
+.register-form__link {
+  color: var(--secondary-text-color);
+
+  &:hover {
+    color: var(--primary-text-color);
+  }
+}
+
+.register-form-link__container {
+  display: flex;
+  justify-content: end;
+  background-color: var();
+  gap: 1em;
+}

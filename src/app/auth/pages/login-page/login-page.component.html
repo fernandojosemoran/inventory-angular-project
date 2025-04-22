@@ -1,0 +1,42 @@
+<form
+  [formGroup]="loginForm"
+  class="login__form"
+  (submit)="submit()"
+>
+  <app-input-with-label
+    placeholder="Username"
+    type="text"
+    for="username-field"
+    formControlName="username"
+  />
+
+  <app-input-with-label
+    placeholder="Email"
+    type="email"
+    for="email-field"
+    formControlName="email"
+  />
+
+  <app-input-with-label
+    placeholder="Password"
+    type="password"
+    for="password-field"
+    formControlName="password"
+  />
+
+  <button
+    type="submit"
+    [disabled]="!loginForm.valid"
+    [ngClass]="{'login-submit__btn--active': loginForm.valid}"
+    class="login-submit__btn"
+    (submit)="submit()"
+  >
+    Login
+  </button>
+
+  <div class="login-form-link__container">
+    <a routerLink="/auth/register" class="login-form__link">No tengo una cuenta.</a>
+    <a routerLink="/auth/recover-password" class="login-form__link">Olvide mi contraseña</a>
+  </div>
+</form>
+

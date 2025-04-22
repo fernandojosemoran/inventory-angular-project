@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, forwardRef, input, InputSignal, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-type InputTypes = "text" | "file" ;
+type InputTypes = "text" | "file" | "email" | "password" ;
 
 @Component({
   selector: 'app-input-with-label',
