@@ -1,10 +1,10 @@
 import { Pipe, type PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'shortTextPipe',
+  name: 'shortText',
   standalone: true,
 })
-export class ShortTextPipePipe implements PipeTransform {
+export class ShortTextPipe implements PipeTransform {
   public transform(text: string, short = true, maxLength = 15): string {
     if (!text) return "";
 

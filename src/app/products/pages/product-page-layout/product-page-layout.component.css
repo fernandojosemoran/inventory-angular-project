@@ -104,7 +104,6 @@ td {
 @media (max-width: 768px) {
   #product__table__container {
     width: 100%;
-    /* border-spacing: 10px; */
   }
 
   th,
