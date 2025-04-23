@@ -9,7 +9,7 @@
   width: 30em;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
   background-color: var(--secondary-color);
   padding: 4em 2em;
 }
@@ -41,5 +41,18 @@
 
   &:hover {
     color: var(--primary-text-color);
+  }
+}
+
+@media (min-width: 360px) and (max-width: 820px) {
+  .login__form {
+    width: 80%;
+    background-color: var(--secondary-color);
+    height: 50%;
+  }
+
+  .login-form-link__container {
+    justify-content: space-between;
+    background-color: var();
   }
 }

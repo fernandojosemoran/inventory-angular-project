@@ -9,7 +9,7 @@
   width: 30em;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
   background-color: var(--secondary-color);
   padding: 4em 2em;
 }
@@ -45,4 +45,18 @@
   justify-content: end;
   background-color: var();
   gap: 1em;
+}
+
+
+@media (min-width: 360px) and (max-width: 820px) {
+  .register__form {
+    width: 80%;
+    background-color: var(--secondary-color);
+    height: 60%;
+  }
+
+  .register-form-link__container {
+    justify-content: space-between;
+    background-color: var();
+  }
 }

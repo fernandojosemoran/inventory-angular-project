@@ -11,11 +11,43 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
       </div>
       <figcaption class="horizontal-card__description">
         <h2 class="horizontal-card__title">{{ cardTitle() }}</h2>
-        {{ cardDescription() }}.
+        <p class="horizontal-card-description__paragraph">{{ cardDescription() }}.</p>
       </figcaption>
     </figure>
   `,
-  styleUrl: "./horizontal-card.component.css",
+  styles: `
+    :host {
+      display: block;
+    }
+
+    .horizontal__card {
+      display: flex;
+      width: 100%;
+      gap: 1em;
+      background-color: var(--secondary-color);
+      border-radius: 5px;
+    }
+
+    .horizontal-card__image {
+      width: 100%;
+      display: block;
+      border-radius: 5px;
+    }
+
+    .horizontal-card__picture {
+      width: 8em;
+    }
+
+    .horizontal-card-description__paragraph {
+      padding: 0.5em;
+    }
+
+    @media (min-width: 360px) and (max-width: 820px) {
+      .horizontal-card__title {
+        font-size: 1em;
+      }
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HorizontalCardComponent {
