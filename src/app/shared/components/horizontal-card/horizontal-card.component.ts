@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
+import { ShortTextPipePipe } from '../../pipes/short-text-pipe.pipe';
 
 @Component({
   selector: 'app-horizontal-card',
   standalone: true,
-  imports: [],
+  imports: [ ShortTextPipePipe ],
   template: `
     <figure title="{{ cardTitle() }}" class="horizontal__card">
       <div class="horizontal-card__picture">
@@ -11,7 +12,7 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
       </div>
       <figcaption class="horizontal-card__description">
         <h2 class="horizontal-card__title">{{ cardTitle() }}</h2>
-        <p class="horizontal-card-description__paragraph">{{ cardDescription() }}.</p>
+        <p class="horizontal-card-description__paragraph">{{ cardDescription() | shortTextPipe:isShortText():48 }}.</p>
       </figcaption>
     </figure>
   `,
@@ -24,6 +25,8 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
       display: flex;
       width: 100%;
       gap: 1em;
+      margin: 2em 0;
+      max-height: 15em;
       background-color: var(--secondary-color);
       border-radius: 5px;
     }
@@ -35,23 +38,52 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
     }
 
     .horizontal-card__picture {
-      width: 8em;
+      max-width: 8em;
+      height: 100%;
     }
 
     .horizontal-card-description__paragraph {
-      padding: 0.5em;
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+    }
+
+    .horizontal-card__title{
+      padding-left: 0.4em;
+      padding-right: 0.4em;
     }
 
     @media (min-width: 360px) and (max-width: 820px) {
       .horizontal-card__title {
         font-size: 1em;
       }
+
+      .horizontal-card__picture {
+        max-width: 7em;
+        height: 7em;
+      }
+
+      .horizontal-card__image {
+        height: 100%;
+        width: 7em;
+      }
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HorizontalCardComponent {
+export class HorizontalCardComponent implements OnInit {
   public cardTitle: InputSignal<string> = input<string>("Title Unknown");
   public cardDescription: InputSignal<string> = input<string>("Description Unknown");
   public cardUrlImage: InputSignal<string> = input<string>("Image Unknown");
+
+  public isShortText: WritableSignal<boolean> = signal<boolean>(true);
+
+  public ngOnInit(): void {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 820) {
+        return this.isShortText.set(true);
+      } else {
+        return this.isShortText.set(false);
+      }
+    });
+  }
 }

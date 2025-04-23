@@ -5,12 +5,15 @@ import { Pipe, type PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class ShortTextPipePipe implements PipeTransform {
-  public transform(short = true, maxLength = 15, text: string): string {
+  public transform(text: string, short = true, maxLength = 15): string {
     if (!text) return "";
 
-    if (!short) return text;
+    if (!short || text.trim().length < maxLength) return text;
 
-    return text.slice(0, maxLength).concat("...");
+    const textShorted: string = text.trim().slice(0, maxLength);
+
+    return textShorted.endsWith(".")
+           ?  textShorted.concat("..")
+           : textShorted.concat("...");
   }
-
 }
