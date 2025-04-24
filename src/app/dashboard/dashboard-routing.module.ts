@@ -45,7 +45,7 @@ const routes: Routes = [
       },
       {
         path: "shopping-cart",
-        loadChildren: () => import("../shopping-cart/shopping-cart.module").then(m => m.ShoppingCartModule),
+        loadChildren: () => import("../cart/cart.module").then(m => m.CartModule),
         title: "SIM | Shopping Cart"
       },
       {

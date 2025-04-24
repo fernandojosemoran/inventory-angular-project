@@ -51,6 +51,8 @@ export class ProductPageLayoutComponent implements OnInit{
 
   public ngOnInit(): void {
     const productList: Product[] = this.productProvider.getProductByPage();
+
+    console.warn({ productList });
     if (productList && productList.length > 0) {
       this.skeletonLoaderFlag.set(false);
       this.productList.set(productList);

@@ -33,6 +33,7 @@ export default tseslint.config(
           style: "camelCase",
         },
       ],
+      "@typescript-eslint/consistent-type-definitions": "off",
       "@angular-eslint/component-selector": [
         "error",
         {
