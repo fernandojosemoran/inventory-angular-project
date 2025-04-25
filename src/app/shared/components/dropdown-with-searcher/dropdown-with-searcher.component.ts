@@ -71,7 +71,7 @@ export class DropdownWithSearcherComponent {
   public openDropdownFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public evtSearch: OutputEmitterRef<string> = output<string>();
-  public optionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
+  public evtOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
 
   public openDropdown(): void {
     this.openDropdownFlag.update(value => !value);
@@ -88,6 +88,6 @@ export class DropdownWithSearcherComponent {
 
     this.dropdownOptionSelected.set(option);
     this.openDropdownFlag.update(value => !value);
-    this.optionSelected.emit(option);
+    this.evtOptionSelected.emit(option);
   }
 }

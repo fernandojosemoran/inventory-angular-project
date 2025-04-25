@@ -1,2 +1,14 @@
-<app-actions-bar title="Carrito" />
+<app-actions-bar
+  title="Carrito"
+  (evtCreateNewBtnClicked)="openCreateNewCartDialog()"
+  [showDropdownOption]="false"
+/>
 
+<ng-container *ngIf="isOpenCreateNewCartDialog()">
+  <app-create-new-cart-dialog
+    dialogTitle="Nuevo carrito"
+    (evtCloseCreateNew)="closeCreateNewCartDialog($event)"
+    (evtCreateNewCart)="createNewCart($event)"
+    [products]="productNames()"
+  />
+</ng-container>

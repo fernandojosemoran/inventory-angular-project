@@ -17,7 +17,7 @@
       *ngIf="showDropdownOption()"
       toolTip="Selector de {{ title() | lowercase }}"
       class="category__dropdown"
-      (optionSelected)="dropdownOptionSelected($event)"
+      (evtOptionSelected)="dropdownOptionSelected($event)"
       (evtSearch)="dropdownSearch($event)"
       [optionsList]="dropdownOptions()"
       title="{{ dropdownTitle() }}"
