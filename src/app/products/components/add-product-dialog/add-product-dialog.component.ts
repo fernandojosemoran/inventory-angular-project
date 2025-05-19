@@ -12,7 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddProductDialogComponent {
-  public readonly dialogTitle: InputSignal<string> = input<string>("");
+  public readonly dialogTitle: InputSignal<string> = input.required<string>();
   public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
 
   public readonly formNameFieldValidators: ValidatorFn[] = [

@@ -2,6 +2,7 @@ import { Product, ProductResponseSkeleton } from '@/app/products/interfaces/prod
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { IProductProvider, Pagination } from '../interfaces/product.provider.interface';
 import { ProductService } from '@/app/products/services/product.service';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductProviderService implements IProductProvider {
@@ -24,13 +25,11 @@ export class ProductProviderService implements IProductProvider {
     });
   }
 
-
-  public getProductByPage(page = 1): Product[] {
-    this.productService.getProductByPage(page)
-    .subscribe(response => this.products.update( oldProducts => [ ...oldProducts, response.response.content as Product[] ]));
-
-    // TODO: Delete this page -1
-    return this.products()[page - 1];
+  public getProductByPage(page = 1): Observable<Product[]> {
+    return this.productService.getProductByPage(page).pipe(map((response) => {
+      this.products.update( oldProducts => [ ...oldProducts, response.response.content as Product[] ]);
+      return this.products()[page - 1];
+    }));
   };
 
   public get getProducts(): Product[][] {

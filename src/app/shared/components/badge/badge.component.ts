@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeComponent {
-  public content: InputSignal<string | number | boolean> = input<string | number | boolean>("Budget Unknown");
+  public content: InputSignal<string | number | boolean> = input.required<string | number | boolean>();
 }

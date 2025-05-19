@@ -2,6 +2,8 @@
   title="Carrito"
   (evtCreateNewBtnClicked)="openCreateNewCartDialog()"
   [showDropdownOption]="false"
+  [dropdownOptionList]="[]"
+  dropdownTitle=""
 />
 
 <ng-container *ngIf="isOpenCreateNewCartDialog()">

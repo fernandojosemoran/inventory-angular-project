@@ -21,6 +21,7 @@
       (evtSearch)="dropdownSearch($event)"
       [optionsList]="dropdownOptions()"
       title="{{ dropdownTitle() }}"
+      [placeholder]="dropdownTitle()"
     />
     <app-circle-search-input toolTip="Buscador de {{ title() | lowercase }}" *ngIf="showSearchBtn()" (productTermSearch)="onChangeGenericSearch($event)" />
   </section>
