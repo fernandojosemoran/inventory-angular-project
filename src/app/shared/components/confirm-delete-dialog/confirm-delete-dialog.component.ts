@@ -14,8 +14,8 @@ import { BadgeComponent } from '../badge/badge.component';
 export class ConfirmDeleteDialogComponent {
 
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
-  public title: InputSignal<string> = input<string>("Title Unknown");
-  public product: InputSignal<Product> = input<Product>({} as Product);
+  public title: InputSignal<string> = input.required<string>();
+  public product: InputSignal<Product> = input.required<Product>();
 
   public cancel(): void {
     this.isConfirm.emit(false);

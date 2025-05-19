@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsBarComponent implements OnInit{
-  public title: InputSignal<string> = input("Title not went assigned");
-  public dropdownTitle: InputSignal<string> = input("Select an option");
-  public dropdownOptionList: InputSignal<string[]> = input<string[]>([]);
+  public title: InputSignal<string> = input.required();
+  public dropdownTitle: InputSignal<string> = input.required();
+  public dropdownOptionList: InputSignal<string[]> = input.required<string[]>();
   public showDropdownOption: InputSignal<boolean> = input<boolean>(true);
   public showSearchBtn: InputSignal<boolean> = input<boolean>(true);
   public showCreateBtn: InputSignal<boolean> = input<boolean>(true);

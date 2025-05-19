@@ -19,7 +19,7 @@ export class EditProductDialogComponent implements OnInit {
   private readonly _productStateService: ProductProviderService = inject(ProductProviderService);
 
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
-  public product: InputSignal<Product | undefined> = input<Product>();
+  public product: InputSignal<Product> = input.required<Product>();
 
   private nameFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required ] };
   private imageFieldValidator: { validators: ValidatorFn[]} = { validators: [ Validators.required,imageValidator ] };

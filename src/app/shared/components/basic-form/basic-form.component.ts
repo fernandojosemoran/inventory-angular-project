@@ -15,9 +15,9 @@ export class BasicFormComponent implements OnInit {
       if (this.headers.length !== this.rows.length) console.error("Headers length is different to rows length");
   }
 
-  public headers: InputSignal<HeadersBasicFormValue> = input<HeadersBasicFormValue>({} as HeadersBasicFormValue);
+  public headers: InputSignal<HeadersBasicFormValue> = input.required<HeadersBasicFormValue>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public rows: InputSignal<RowsBasicFormValues<any>> = input<RowsBasicFormValues<any>>({} as RowsBasicFormValues<any>);
+  public rows: InputSignal<RowsBasicFormValues<any>> = input.required<RowsBasicFormValues<any>>();
 
   public evtClick: OutputEmitterRef<void> = output();
 

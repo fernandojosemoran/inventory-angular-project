@@ -50,21 +50,22 @@ export class ProductPageLayoutComponent implements OnInit{
   public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
-    const productList: Product[] = this.productProvider.getProductByPage();
+    this.productProvider.getProductByPage().subscribe(
+      (productList) => {
+        console.warn({ productList });
+        if (productList.length > 0) {
+          this.skeletonLoaderFlag.set(false);
+          this.productList.set(productList);
+        }
+      }
+    );
 
-    console.warn({ productList });
-    if (productList && productList.length > 0) {
-      this.skeletonLoaderFlag.set(false);
-      this.productList.set(productList);
-    }
   }
 
   public ChangePage(event: Event): void {
     const numberInput: HTMLInputElement = (event.target) as HTMLInputElement;
 
-    const productList: Product[] = this.productProvider.getProductByPage(+numberInput.value);
-
-    this.productList.set(productList);
+    this.productProvider.getProductByPage(+numberInput.value).subscribe(productList => this.productList.set(productList));
   }
 
   public getCategories: Signal<string[]> = computed(() => {

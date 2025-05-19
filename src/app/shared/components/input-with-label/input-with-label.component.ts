@@ -22,10 +22,10 @@ type InputTypes = "text" | "file" | "email" | "password" ;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
-  public placeholder: InputSignal<string> = input<string>("Placeholder Unknown");
+  public placeholder: InputSignal<string> = input.required<string>();
   public defaultValue: InputSignal<string | number | boolean> = input<string | number | boolean>("Value Unknown");
   public type: InputSignal<InputTypes> = input<InputTypes>("text");
-  public for: InputSignal<string> = input<string>("For Unknown");
+  public for: InputSignal<string> = input.required<string>();
 
   public ngOnInit(): void {
     this.value = this.defaultValue();

@@ -12,7 +12,7 @@ import { Category } from '../../interfaces/category.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateCategoryDialogComponent {
-  public title: InputSignal<string> = input<string>("Title Unknown");
+  public title: InputSignal<string> = input.required<string>();
   public cancelOperation: OutputEmitterRef<boolean> = output<boolean>();
   public confirmOperation: OutputEmitterRef<Category> = output<Category>();
 

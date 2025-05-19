@@ -73,14 +73,14 @@ import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interfa
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateNewCartDialogComponent implements OnInit {
-    public readonly dialogTitle: InputSignal<string> = input<string>("");
+    public readonly dialogTitle: InputSignal<string> = input.required<string>();
     public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
     public readonly evtCreateNewCart: OutputEmitterRef<Cart> = output<Cart>();
 
     public optionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
     public ProductProvider: ProductProviderService = inject(ProductProviderService);
 
-    public products: InputSignal<string[]> = input<string[]>([]);
+    public products: InputSignal<string[]> = input.required<string[]>();
     public productFiltered: WritableSignal<string[]> = signal<string[]>([]);
 
     public ngOnInit(): void {

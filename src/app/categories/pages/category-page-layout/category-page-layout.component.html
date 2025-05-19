@@ -1,8 +1,10 @@
 <app-actions-bar
   title="Categorias"
   [showDropdownOption]="false"
+  [dropdownOptionList]="[]"
   (evtCreateNewBtnClicked)="openDialog()"
   (searchTerm)="searchCategory($event)"
+  dropdownTitle=""
 />
 
 <ng-container *ngIf="createCategoryModalFlag()">

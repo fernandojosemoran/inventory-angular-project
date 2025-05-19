@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableSkeletonComponent {
-  public tableDataList: InputSignal<unknown[]> = input<unknown[]>([]);
+  public tableDataList: InputSignal<unknown[]> = input.required<unknown[]>();
 }

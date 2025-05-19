@@ -88,7 +88,7 @@ type BehaviorType = "submit" | "button" | "reset";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReverseFillButtonComponent {
-  public text: InputSignal<string> = input<string>("Input Text Unknown");
+  public text: InputSignal<string> = input.required<string>();
   public buttonType: InputSignal<ButtonType> = input<ButtonType>("plane");
   public color: InputSignal<ColorType> = input<ColorType>("success");
   public behavior: InputSignal<BehaviorType> = input<BehaviorType>("button");

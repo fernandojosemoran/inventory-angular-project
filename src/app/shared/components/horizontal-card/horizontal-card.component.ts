@@ -71,8 +71,8 @@ import { ShortTextPipe } from '../../pipes/short-text-pipe.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HorizontalCardComponent implements OnInit {
-  public cardTitle: InputSignal<string> = input<string>("Title Unknown");
-  public cardDescription: InputSignal<string> = input<string>("Description Unknown");
+  public cardTitle: InputSignal<string> = input.required<string>();
+  public cardDescription: InputSignal<string> = input.required<string>();
   public cardUrlImage: InputSignal<string> = input<string>("Image Unknown");
 
   public isShortText: WritableSignal<boolean> = signal<boolean>(window.innerWidth < 820);

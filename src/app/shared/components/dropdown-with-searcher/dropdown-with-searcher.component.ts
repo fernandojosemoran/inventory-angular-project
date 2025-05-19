@@ -38,6 +38,7 @@ import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
             [placeholder]="placeholder()"
             (input)="search($event)"
             defaultValue=""
+            for="{{ placeholder() }}-id"
           />
         </div>
         <div class="searchable-dropdown-items" role="listbox">
@@ -62,9 +63,9 @@ import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownWithSearcherComponent {
-  public readonly optionsList: InputSignal<string[]> = input<string[]>([]);
-  public readonly title: InputSignal<string> = input<string>("Select an option");
-  public readonly placeholder: InputSignal<string> = input<string>("Search...");
+  public readonly optionsList: InputSignal<string[]> = input.required<string[]>();
+  public readonly title: InputSignal<string> = input.required<string>();
+  public readonly placeholder: InputSignal<string> = input.required<string>();
   public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
 
   public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
