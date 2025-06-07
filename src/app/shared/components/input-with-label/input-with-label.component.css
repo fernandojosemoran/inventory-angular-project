@@ -1,15 +1,19 @@
-.edit-product-dialog__input {
+/* input normal */
+
+
+.input-with_label__input {
   padding: 0.4em 0.8em;
   background-color: transparent;
   outline: none;
   font-size: 1em;
   color: var(--primary-text-color);
+  caret-color: var(--primary-text-color, var(--primary-business-color));
   border: none;
   width: 100%;
   border-bottom: 1px solid var(--secondary-business-color);
 }
 
-.edit-product-dialog__input__container {
+.input-with_label__input__container {
   position: relative;
   height: 2em;
   margin-top: 0.4em;
@@ -17,17 +21,17 @@
   align-items: center;
 }
 
-.edit-product-dialog__input:-webkit-autofill,
-.edit-product-dialog__input:-webkit-autofill:hover,
-.edit-product-dialog__input:-webkit-autofill:focus,
-.edit-product-dialog__input:-webkit-autofill:active {
+.input-with_label__input:-webkit-autofill,
+.input-with_label__input:-webkit-autofill:hover,
+.input-with_label__input:-webkit-autofill:focus,
+.input-with_label__input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   -webkit-text-fill-color: white;
   transition: background-color 5000s ease-in-out 0s;
   caret-color: transparent;
 }
 
-.edit-product-dialog__label {
+.input-with_label__label {
   position: absolute;
   bottom: 10px;
   left: 13px;
@@ -35,17 +39,56 @@
   color: var(--primary-text-color);
 }
 
-/* .edit-product-dialog__input__container:focus-within .edit-product-dialog__label,
-.edit-product-dialog__input:valid ~ .edit-product-dialog__label {
+/* .input-with_label__input__container:focus-within .input-with_label__label,
+.input-with_label__input:valid ~ .input-with_label__label {
   top: 0;
   transform: translateY(-10px);
   font-size: 0.8em;
   color: var(--secondary-business-color);
 } */
 
-.edit-product-dialog__label--active {
+.input-with_label__label--active {
   top: 0;
   transform: translateY(-10px);
   font-size: 0.8em;
   color: var(--secondary-business-color);
+}
+
+/* input circle */
+
+.input-with_label-circle__input {
+  padding: 0.8em 0.8em;
+  background-color: transparent;
+  outline: none;
+  font-size: 0.8em;
+  color: var(--primary-text-color);
+  width: 100%;
+  border: 1px solid var(--secondary-business-color);
+  border-radius: 10px;
+}
+
+.input-with_label-circle__label {
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.8em;
+  left: 13px;
+  transition-duration: 300ms;
+  color: var(--primary-text-color);
+}
+
+.input-with_label-circle__label--active {
+  top: 0;
+  transform: translateY(-18px);
+  font-size: 0.7em;
+  color: var(--secondary-business-color);
+}
+
+.input-with_label-circle__input:-webkit-autofill,
+.input-with_label-circle__input:-webkit-autofill:hover,
+.input-with_label-circle__input:-webkit-autofill:focus,
+.input-with_label-circle__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: transparent;
 }
