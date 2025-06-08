@@ -1,7 +1,7 @@
-import { Pipe, type PipeTransform } from '@angular/core';
+import { Pipe, type PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'shortText',
+  name: "shortText",
   standalone: true,
 })
 export class ShortTextPipe implements PipeTransform {
@@ -13,7 +13,7 @@ export class ShortTextPipe implements PipeTransform {
     const textShorted: string = text.trim().slice(0, maxLength);
 
     return textShorted.endsWith(".")
-           ?  textShorted.concat("..")
-           : textShorted.concat("...");
+      ? textShorted.concat("..")
+      : textShorted.concat("...");
   }
 }

@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  input,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-book-icon',
+  selector: "app-book-icon",
   imports: [],
   templateUrl: "./book-icon.component.svg",
   standalone: true,

@@ -1,13 +1,22 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, InputSignal, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
-import { InputWithLabelComponent } from "../input-with-label/input-with-label.component";
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  OutputEmitterRef,
+  WritableSignal,
+  input,
+  output,
+  signal,
+} from "@angular/core";
+import { DropDownSelectedOption } from "../../interfaces/dropdown.interface";
 import { DownArrowIconComponent } from "../icons/down-arrow-icon/down-arrow-icon.component";
-import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
+import { InputWithLabelComponent } from "../input-with-label/input-with-label.component";
 
 @Component({
-  selector: 'app-dropdown-with-searcher',
+  selector: "app-dropdown-with-searcher",
   standalone: true,
-  imports: [ CommonModule, InputWithLabelComponent, DownArrowIconComponent ],
+  imports: [CommonModule, InputWithLabelComponent, DownArrowIconComponent],
   template: `
     <div class="searchable-dropdown">
       <button
@@ -59,23 +68,27 @@ import { DropDownSelectedOption } from '../../interfaces/dropdown.interface';
       </div>
     </div>
   `,
-  styleUrl: './dropdown-with-searcher.component.css',
+  styleUrl: "./dropdown-with-searcher.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownWithSearcherComponent {
-  public readonly optionsList: InputSignal<string[]> = input.required<string[]>();
+  public readonly optionsList: InputSignal<string[]> =
+    input.required<string[]>();
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly placeholder: InputSignal<string> = input.required<string>();
-  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
+  public readonly toolTip: InputSignal<string> =
+    input<string>("Tooltip Unknown");
 
-  public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
+  public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> =
+    signal<DropDownSelectedOption>({} as DropDownSelectedOption);
   public openDropdownFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public evtSearch: OutputEmitterRef<string> = output<string>();
-  public evtOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
+  public evtOptionSelected: OutputEmitterRef<DropDownSelectedOption> =
+    output<DropDownSelectedOption>();
 
   public openDropdown(): void {
-    this.openDropdownFlag.update(value => !value);
+    this.openDropdownFlag.update((value) => !value);
   }
 
   public search(event: Event): void {
@@ -88,7 +101,7 @@ export class DropdownWithSearcherComponent {
     const option: DropDownSelectedOption = { index, name: value.trim() };
 
     this.dropdownOptionSelected.set(option);
-    this.openDropdownFlag.update(value => !value);
+    this.openDropdownFlag.update((value) => !value);
     this.evtOptionSelected.emit(option);
   }
 }

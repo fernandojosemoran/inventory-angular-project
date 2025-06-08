@@ -1,26 +1,29 @@
-import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { ICategoryProvider } from '../interfaces/category.provider.interface';
-import { Category } from '@/app/categories/interfaces/category.interface';
-import { CategoryService } from '@/app/categories/services/categories.service';
+import { Category } from "@/app/categories/interfaces/category.interface";
+import { CategoryService } from "@/app/categories/services/categories.service";
+import { Injectable, WritableSignal, inject, signal } from "@angular/core";
+import { ICategoryProvider } from "../interfaces/category.provider.interface";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class CategoryProvider implements ICategoryProvider {
   private readonly categoriesService: CategoryService = inject(CategoryService);
 
-  public readonly categories: WritableSignal<Category[]> = signal<Category[]>([]);
+  public readonly categories: WritableSignal<Category[]> = signal<Category[]>(
+    [],
+  );
 
   public constructor() {
-    this.categoriesService.getAllCategories()
-    .subscribe(response => this.categories.set(response));
+    this.categoriesService
+      .getAllCategories()
+      .subscribe((response) => this.categories.set(response));
   }
 
   public addCategory(category: Category): Category[] {
-    this.categories.update(oldCategories => [ ...oldCategories, category ]);
+    this.categories.update((oldCategories) => [...oldCategories, category]);
     return this.categories();
   }
 
   public updateCategory(category: Category): Category[] {
-    this.categories().map(ctg => {
+    this.categories().map((ctg) => {
       if (ctg.id === category.id) return category;
       return ctg;
     });
@@ -29,7 +32,7 @@ export class CategoryProvider implements ICategoryProvider {
   }
 
   public deleteCategory(id: number): boolean {
-    this.categories().map(ctg => {
+    this.categories().map((ctg) => {
       if (ctg.id === id) return;
       return ctg;
     });
@@ -37,6 +40,8 @@ export class CategoryProvider implements ICategoryProvider {
   }
 
   public searchCategory(name: string): Category[] {
-    return this.categories().filter(ctg => ctg.name.trim().toLowerCase().startsWith(name));
+    return this.categories().filter((ctg) =>
+      ctg.name.trim().toLowerCase().startsWith(name),
+    );
   }
 }

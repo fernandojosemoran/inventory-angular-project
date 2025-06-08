@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  input,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-down-arrow-icon',
+  selector: "app-down-arrow-icon",
   standalone: true,
   imports: [],
   templateUrl: "./down-arrow-icon.component.svg",

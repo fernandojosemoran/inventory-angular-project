@@ -72,7 +72,6 @@
   cursor: pointer;
   border-bottom: 1px solid var(--third-business-color);
   transition: background-color 0.8s;
-
 }
 
 .searchable-dropdown-item:hover {

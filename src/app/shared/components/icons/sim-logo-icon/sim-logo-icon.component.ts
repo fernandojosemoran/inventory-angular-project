@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  input,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-sim-logo-icon',
+  selector: "app-sim-logo-icon",
   standalone: true,
   imports: [],
   templateUrl: "./sim-logo-icon.component.svg",

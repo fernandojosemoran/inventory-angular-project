@@ -1,5 +1,3 @@
-
-
 import { Observable } from "rxjs";
 import { Category } from "./category.interface";
 
@@ -10,4 +8,3 @@ export interface ICategoryService {
   createCategory(category: Category): Observable<Category>;
   updateCategory(category: Category): Observable<Category>;
 }
-

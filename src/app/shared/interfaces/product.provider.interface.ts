@@ -9,6 +9,6 @@ export interface IProductProvider {
 
 export interface Pagination {
   currentPage: number;
-  totalPages:  number;
-  pageSize:    number;
+  totalPages: number;
+  pageSize: number;
 }

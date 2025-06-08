@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  input,
+} from "@angular/core";
 
 @Component({
   selector: "app-handshake-icon",
   templateUrl: "./handshake-icon.component.svg",
   imports: [],
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HandshakeIconComponent {
   public width: InputSignal<string> = input<string>("30");

@@ -1,18 +1,18 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { SalePageLayoutComponent } from './pages/sale-page-layout/sale-page-layout.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { SalePageLayoutComponent } from "./pages/sale-page-layout/sale-page-layout.component";
 
 export const routes: Routes = [
   {
     path: "",
     component: SalePageLayoutComponent,
     title: "SIM | Sales",
-    children: []
-  }
+    children: [],
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class SalesRoutingModule { }
+export class SalesRoutingModule {}

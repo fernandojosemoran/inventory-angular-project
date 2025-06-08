@@ -1,18 +1,18 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { ReportPageLayoutComponent } from './pages/report-page-layout/report-page-layout.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { ReportPageLayoutComponent } from "./pages/report-page-layout/report-page-layout.component";
 
 export const routes: Routes = [
   {
     path: "",
     component: ReportPageLayoutComponent,
     title: "SIM | Reports",
-    children: []
-  }
+    children: [],
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class ReportsRoutingModule { }
+export class ReportsRoutingModule {}
