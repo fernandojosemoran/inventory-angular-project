@@ -1,13 +1,7 @@
 import { InputWithLabelComponent } from "@/app/shared/components/input-with-label/input-with-label.component";
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 
 interface RegisterFormValidators {
@@ -21,12 +15,7 @@ interface RegisterFormValidators {
 @Component({
   selector: "app-register",
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    InputWithLabelComponent,
-    RouterLink,
-    CommonModule,
-  ],
+  imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.css",
 })

@@ -1,10 +1,5 @@
 import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Signal,
-  computed,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, Signal, computed } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { BookIconComponent } from "@/app/shared/components/icons/book-icon/book-icon.component";

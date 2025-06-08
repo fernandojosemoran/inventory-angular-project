@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  input,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular/core";
 
 @Component({
   selector: "app-badge",
@@ -14,7 +9,5 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeComponent {
-  public content: InputSignal<string | number | boolean> = input.required<
-    string | number | boolean
-  >();
+  public content: InputSignal<string | number | boolean> = input.required<string | number | boolean>();
 }

@@ -1,17 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  OutputEmitterRef,
-  input,
-  output,
-} from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
+import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, input, output } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
 import { Category } from "../../interfaces/category.interface";
 

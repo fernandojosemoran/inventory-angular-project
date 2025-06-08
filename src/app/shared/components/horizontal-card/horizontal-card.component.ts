@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  OnInit,
-  WritableSignal,
-  input,
-  signal,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, OnInit, WritableSignal, input, signal } from "@angular/core";
 import { ShortTextPipe } from "../../pipes/short-text-pipe.pipe";
 
 @Component({
@@ -83,9 +75,7 @@ export class HorizontalCardComponent implements OnInit {
   public cardDescription: InputSignal<string> = input.required<string>();
   public cardUrlImage: InputSignal<string> = input<string>("Image Unknown");
 
-  public isShortText: WritableSignal<boolean> = signal<boolean>(
-    window.innerWidth < 820,
-  );
+  public isShortText: WritableSignal<boolean> = signal<boolean>(window.innerWidth < 820);
 
   public ngOnInit(): void {
     window.addEventListener("resize", () => {

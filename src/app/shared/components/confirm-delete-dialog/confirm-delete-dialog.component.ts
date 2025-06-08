@@ -1,13 +1,6 @@
 import { Product } from "@/app/products/interfaces/product.interface";
 import { AvailablePipe } from "@/app/products/pipes/available.pipe";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  OutputEmitterRef,
-  input,
-  output,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, input, output } from "@angular/core";
 import { BadgeComponent } from "../badge/badge.component";
 
 @Component({

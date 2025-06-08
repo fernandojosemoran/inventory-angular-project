@@ -3,18 +3,19 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["**/*.test.ts", "**/*.spec.ts"]
+    "ignore": ["**/*.test.ts", "**/*.spec.ts", "node_modules", ".angular", "coverage"]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 80,
+    "lineWidth": 130,
     "indentWidth": 2
   },
   "organizeImports": { "enabled": true },
   "linter": { "enabled": true, "rules": { "recommended": false } },
   "javascript": {
     "formatter": {
+      "arrowParentheses": "always",
       "quoteStyle": "double",
       "trailingCommas": "all",
       "semicolons": "always",
@@ -27,6 +28,7 @@
       "include": ["**/*.ts", "**/*.js"],
       "linter": {
         "rules": {
+          "recommended": false,
           "complexity": {
             "noExtraBooleanCast": "error",
             "noMultipleSpacesInRegularExpressionLiterals": "error",

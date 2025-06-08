@@ -84,6 +84,90 @@ In this example, we will use Node.js.
 
 ## Running in Production Mode
 
+1. **Run the backend application**
+  You need to download the [backend application](https://github.com/fernandojosemoran/worksho-server).
+
+  If you don't run the backend, the Angular project will throw an error when it builds the application because the application verifies if the components are behaving correctly."
+
+  ```bash
+  ./mvnw spring-boot:run
+
+  [INFO] Scanning for projects...
+  [INFO]
+  [INFO] ---------------------< org.gdzdev:workshop-server >---------------------
+  [INFO] Building workshop-server 0.0.1-SNAPSHOT
+  [INFO]   from pom.xml
+  [INFO] --------------------------------[ jar ]---------------------------------
+  [INFO]
+  [INFO] >>> spring-boot:3.4.3:run (default-cli) > test-compile @ workshop-server >>>
+  [INFO]
+  [INFO] --- resources:3.3.1:resources (default-resources) @ workshop-server ---
+  [INFO] Copying 2 resources from src\main\resources to target\classes
+  [INFO] Copying 3 resources from src\main\resources to target\classes
+  [INFO]
+  [INFO] --- compiler:3.11.0:compile (default-compile) @ workshop-server ---
+  [INFO] Nothing to compile - all classes are up to date
+  [INFO]
+  [INFO] --- resources:3.3.1:testResources (default-testResources) @ workshop-server ---
+  [INFO] Copying 1 resource from src\test\resources to target\test-classes
+  [INFO]
+  [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ workshop-server ---
+  [INFO] Nothing to compile - all classes are up to date
+  [INFO]
+  [INFO] <<< spring-boot:3.4.3:run (default-cli) < test-compile @ workshop-server <<<
+  [INFO]
+  [INFO]
+  [INFO] --- spring-boot:3.4.3:run (default-cli) @ workshop-server ---
+  [INFO] Attaching agents: []
+
+    .   ____          _            __ _ _
+  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+  ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+    '  |____| .__|_| |_|_| |_\__, | / / / /
+  =========|_|==============|___/=/_/_/_/
+
+  :: Spring Boot ::                (v3.4.3)
+
+  2025-06-08 13:53:17 - o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+  2025-06-08 13:53:17 - o.g.w.b.WorkshopServerApplication - Starting WorkshopServerApplication using Java 17.0.12 with PID 4368 (C:\Users\ferna\Documents\develoment-web\spring-boot\workshop-server\target\classes started by ferna in C:\Users\ferna\Documents\develoment-web\spring-boot\workshop-server)
+  2025-06-08 13:53:17 - o.g.w.b.WorkshopServerApplication - No active profile set, falling back to 1 default profile: "default"
+  2025-06-08 13:53:18 - o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+  2025-06-08 13:53:18 - o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+  2025-06-08 13:53:19 - o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+  2025-06-08 13:53:20 - o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 140 ms. Found 5 JPA repository interfaces.
+  2025-06-08 13:53:20 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 3000 (http)
+  2025-06-08 13:53:20 - o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-3000"]
+  2025-06-08 13:53:20 - o.a.catalina.core.StandardService - Starting service [Tomcat]
+  2025-06-08 13:53:20 - o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+  2025-06-08 13:53:21 - o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+  2025-06-08 13:53:21 - o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3011 ms
+  2025-06-08 13:53:21 - o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+  2025-06-08 13:53:21 - org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.8.Final
+  2025-06-08 13:53:21 - o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+  2025-06-08 13:53:22 - o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+  2025-06-08 13:53:22 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+  2025-06-08 13:53:22 - com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d6d6d8b
+  2025-06-08 13:53:22 - com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+  2025-06-08 13:53:22 - org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+  2025-06-08 13:53:23 - o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+          Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+          Database driver: undefined/unknown
+          Database version: 8.0.38
+          Autocommit mode: undefined/unknown
+          Isolation level: undefined/unknown
+          Minimum pool size: undefined/unknown
+          Maximum pool size: undefined/unknown
+  2025-06-08 13:53:24 - o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+  2025-06-08 13:53:25 - o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+  ? Active Spring Profiles:
+  2025-06-08 13:53:25 - o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+  2025-06-08 13:53:26 - o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+  2025-06-08 13:53:26 - o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-3000"]
+  2025-06-08 13:53:26 - o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 3000 (http) with context path '/'
+  2025-06-08 13:53:26 - o.g.w.b.WorkshopServerApplication - Started WorkshopServerApplication in 10.032 seconds (process running for 10.993)
+  ```
+
 1.  **Build the application for production:**
 
     ```bash
@@ -142,16 +226,38 @@ In this example, we will use Node.js.
 ```
 3. Deploying the Production Build
 
-  After building your application for production, the optimized files, including index.html, are placed in the dist/SMI/browser/ directory. To make your application accessible, you need to serve these files. 
+  After building your application for production, the optimized files, including index.html, are placed in the dist/SMI/browser/ directory. To make your application accessible, you need to run you server using the command `npm run serve:ssr:SIM`. 
+
+  ```bash
+  npm run serve:ssr:SIM
   
-  Here are some common methods:
+  $ node dist/SIM/server/server.mjs
+  Node Express server listening on http://localhost:4000
+  ```
+  
+## Linter and Extensions
+  **How to Use the Linter**
+
+  To resolve code formatting errors, you should run the following command:
 
   ```bash
-    cd ./dist/SMI/browser/index.html && python -m http.server 80
+  # This command resolves code formatting issues to maintain code quality.
+  npm run lint:fix
   ```
-  ```bash
-    cd ./dist/SMI/browser/index.html && php -S localhost:80
-  ```
-  For production deployments, it's highly recommended to use robust web servers like Nginx or Apache. These servers provide better performance, security, and scalability.
 
-  Alternatively, you can configure your backend server to serve the index.html file as part of your application's response.
+  **Extensions recommended for vsc with angular**
+
+  ```json
+  // ./vscode/extensions.json
+
+  "recommendations": [
+    "angular.ng-template",
+    "biomejs.biome",
+    "loiane.angular-extension-pack",
+    "formulahendry.auto-complete-tag",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "usernamehw.errorlens",
+  ]
+  ```
+

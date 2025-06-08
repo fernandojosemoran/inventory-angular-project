@@ -7,14 +7,10 @@ import { ICategoryProvider } from "../interfaces/category.provider.interface";
 export class CategoryProvider implements ICategoryProvider {
   private readonly categoriesService: CategoryService = inject(CategoryService);
 
-  public readonly categories: WritableSignal<Category[]> = signal<Category[]>(
-    [],
-  );
+  public readonly categories: WritableSignal<Category[]> = signal<Category[]>([]);
 
   public constructor() {
-    this.categoriesService
-      .getAllCategories()
-      .subscribe((response) => this.categories.set(response));
+    this.categoriesService.getAllCategories().subscribe((response) => this.categories.set(response));
   }
 
   public addCategory(category: Category): Category[] {
@@ -40,8 +36,6 @@ export class CategoryProvider implements ICategoryProvider {
   }
 
   public searchCategory(name: string): Category[] {
-    return this.categories().filter((ctg) =>
-      ctg.name.trim().toLowerCase().startsWith(name),
-    );
+    return this.categories().filter((ctg) => ctg.name.trim().toLowerCase().startsWith(name));
   }
 }

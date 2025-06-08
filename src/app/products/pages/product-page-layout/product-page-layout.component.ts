@@ -6,16 +6,7 @@ import { Pagination } from "@/app/shared/interfaces/product.provider.interface";
 import { CategoryProvider } from "@/app/shared/provider/categories.provider.service";
 import { ProductProviderService } from "@/app/shared/provider/product.provider.service";
 import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  Signal,
-  WritableSignal,
-  computed,
-  inject,
-  signal,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, Signal, WritableSignal, computed, inject, signal } from "@angular/core";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { AddProductDialogComponent } from "../../components/add-product-dialog/add-product-dialog.component";
 import { EditProductDialogComponent } from "../../components/edit-product-dialog/edit-product-dialog.component";
@@ -42,29 +33,20 @@ import { Product } from "./../../interfaces/product.interface";
 })
 export class ProductPageLayoutComponent implements OnInit {
   private readonly categoryService: CategoryProvider = inject(CategoryProvider);
-  private readonly productProvider: ProductProviderService = inject(
-    ProductProviderService,
-  );
+  private readonly productProvider: ProductProviderService = inject(ProductProviderService);
   private readonly productService: ProductService = inject(ProductService);
 
-  public pagination: WritableSignal<Pagination> = signal<Pagination>(
-    this.productProvider.pagination(),
-  );
+  public pagination: WritableSignal<Pagination> = signal<Pagination>(this.productProvider.pagination());
 
   public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
 
   public productTermSearch: WritableSignal<string> = signal<string>("");
-  public editProductSelected: WritableSignal<Product> = signal<Product>(
-    {} as Product,
-  );
-  public deleteProductSelected: WritableSignal<Product> = signal<Product>(
-    {} as Product,
-  );
+  public editProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
+  public deleteProductSelected: WritableSignal<Product> = signal<Product>({} as Product);
 
   public editProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
-  public deleteProductModalFlag: WritableSignal<boolean> =
-    signal<boolean>(false);
+  public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
@@ -80,15 +62,11 @@ export class ProductPageLayoutComponent implements OnInit {
   public ChangePage(event: Event): void {
     const numberInput: HTMLInputElement = event.target as HTMLInputElement;
 
-    this.productProvider
-      .getProductByPage(+numberInput.value)
-      .subscribe((productList) => this.productList.set(productList));
+    this.productProvider.getProductByPage(+numberInput.value).subscribe((productList) => this.productList.set(productList));
   }
 
   public getCategories: Signal<string[]> = computed(() => {
-    const categories: string[] = this.categoryService
-      .categories()
-      .map((opt) => opt.name);
+    const categories: string[] = this.categoryService.categories().map((opt) => opt.name);
     categories.unshift("Ninguno");
     return categories;
   });
@@ -140,30 +118,19 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this.deleteProductModalFlag.set(!isConfirm);
 
-    const products = this.productProvider.deleteOneProduct(
-      this.deleteProductSelected().id,
-    );
+    const products = this.productProvider.deleteOneProduct(this.deleteProductSelected().id);
 
     // TODO: replace console.error() with custom errors
     if (!products) return console.error("delete product not work");
 
-    this.productList.set(
-      products[this.productProvider.pagination().currentPage],
-    );
+    this.productList.set(products[this.productProvider.pagination().currentPage]);
 
-    this.productService
-      .deleteProduct(this.deleteProductSelected().id)
-      .subscribe((res) => console.log(res));
+    this.productService.deleteProduct(this.deleteProductSelected().id).subscribe((res) => console.log(res));
   }
 
   public searchProduct(term: string): void {
-    if (term.length === 0)
-      return this.productList.set(
-        this.productProvider.getProducts[this.pagination().currentPage],
-      );
+    if (term.length === 0) return this.productList.set(this.productProvider.getProducts[this.pagination().currentPage]);
 
-    this.productService
-      .searchProduct(term)
-      .subscribe((response: Product[]) => this.productList.set(response));
+    this.productService.searchProduct(term).subscribe((response: Product[]) => this.productList.set(response));
   }
 }

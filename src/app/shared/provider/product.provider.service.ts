@@ -1,14 +1,8 @@
-import {
-  Product,
-  ProductResponseSkeleton,
-} from "@/app/products/interfaces/product.interface";
+import { Product, ProductResponseSkeleton } from "@/app/products/interfaces/product.interface";
 import { ProductService } from "@/app/products/services/product.service";
 import { Injectable, WritableSignal, inject, signal } from "@angular/core";
 import { Observable, map } from "rxjs";
-import {
-  IProductProvider,
-  Pagination,
-} from "../interfaces/product.provider.interface";
+import { IProductProvider, Pagination } from "../interfaces/product.provider.interface";
 
 @Injectable({ providedIn: "root" })
 export class ProductProviderService implements IProductProvider {
@@ -20,9 +14,7 @@ export class ProductProviderService implements IProductProvider {
     totalPages: 0,
   });
 
-  private readonly products: WritableSignal<Product[][]> = signal<Product[][]>(
-    [],
-  );
+  private readonly products: WritableSignal<Product[][]> = signal<Product[][]>([]);
 
   public constructor() {
     this.productService.getProductByPage().subscribe((response) => {
@@ -39,10 +31,7 @@ export class ProductProviderService implements IProductProvider {
   public getProductByPage(page = 1): Observable<Product[]> {
     return this.productService.getProductByPage(page).pipe(
       map((response) => {
-        this.products.update((oldProducts) => [
-          ...oldProducts,
-          response.response.content as Product[],
-        ]);
+        this.products.update((oldProducts) => [...oldProducts, response.response.content as Product[]]);
         return this.products()[page - 1];
       }),
     );
@@ -61,11 +50,7 @@ export class ProductProviderService implements IProductProvider {
       }
     }
 
-    return products.filter(
-      (product) =>
-        product.categoryName.trim().toLowerCase() ===
-        category.trim().toLowerCase(),
-    );
+    return products.filter((product) => product.categoryName.trim().toLowerCase() === category.trim().toLowerCase());
   }
 
   public getOneProduct(id: number): Product | undefined {
@@ -82,12 +67,7 @@ export class ProductProviderService implements IProductProvider {
     const existProduct: Product | undefined = this.getOneProduct(oldProduct.id);
     let products: Product[] = [];
 
-    this.productService
-      .getProductByPage()
-      .subscribe(
-        (response) =>
-          (products = [...(response.response.content as Product[])]),
-      );
+    this.productService.getProductByPage().subscribe((response) => (products = [...(response.response.content as Product[])]));
 
     if (!existProduct) {
       // TODO: replace console.error() by custom errors
@@ -109,9 +89,7 @@ export class ProductProviderService implements IProductProvider {
       prd.forEach((product) => products.unshift(product));
     }
 
-    return products.filter((product) =>
-      product.name.trim().toLowerCase().startsWith(searchTerm),
-    );
+    return products.filter((product) => product.name.trim().toLowerCase().startsWith(searchTerm));
   }
 
   public addOneProduct(product: Product): Product[][] {

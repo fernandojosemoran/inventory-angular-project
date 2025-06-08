@@ -16,8 +16,5 @@ function renameFileIfNotExist(source, destination) {
   }
 }
 
-renameFileIfNotExist(
-  "environments.production.example.ts",
-  "environments.production.ts",
-);
+renameFileIfNotExist("environments.production.example.ts", "environments.production.ts");
 renameFileIfNotExist("environments.example.ts", "environments.ts");
