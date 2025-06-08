@@ -14,11 +14,8 @@ import { Cart } from "../../types/cart.api";
   styleUrl: "./cart-page-layout.component.css",
 })
 export class CartPageLayoutComponent {
-  public readonly isOpenCreateNewCartDialog: WritableSignal<boolean> =
-    signal<boolean>(false);
-  private readonly productProvider: ProductProviderService = inject(
-    ProductProviderService,
-  );
+  public readonly isOpenCreateNewCartDialog: WritableSignal<boolean> = signal<boolean>(false);
+  private readonly productProvider: ProductProviderService = inject(ProductProviderService);
   private readonly productService: ProductService = inject(ProductService);
   public readonly productNames: WritableSignal<string[]> = signal<string[]>([]);
 

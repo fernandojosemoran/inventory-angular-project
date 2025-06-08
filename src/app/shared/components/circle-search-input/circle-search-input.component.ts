@@ -50,15 +50,12 @@ import { Subject, Subscription, debounceTime } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CircleSearchInputComponent implements OnInit, OnDestroy {
-  public readonly toolTip: InputSignal<string> =
-    input<string>("Tooltip Unknown");
+  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
   private _debounce: Subject<string> = new Subject<string>();
   private _debounceSubscription?: Subscription;
 
   public ngOnInit(): void {
-    this._debounce
-      .pipe(debounceTime(1000))
-      .subscribe((term) => this.productTermSearch.emit(term));
+    this._debounce.pipe(debounceTime(1000)).subscribe((term) => this.productTermSearch.emit(term));
   }
 
   public productTermSearch: OutputEmitterRef<string> = output<string>();

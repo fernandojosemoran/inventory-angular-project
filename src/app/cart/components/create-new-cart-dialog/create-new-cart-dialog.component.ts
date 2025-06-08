@@ -12,13 +12,7 @@ import {
   output,
   signal,
 } from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { DropdownWithSearcherComponent } from "../../../shared/components/dropdown-with-searcher/dropdown-with-searcher.component";
 import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
 import { Cart } from "../../types/cart.api";
@@ -26,11 +20,7 @@ import { Cart } from "../../types/cart.api";
 @Component({
   selector: "app-create-new-cart-dialog",
   standalone: true,
-  imports: [
-    InputWithLabelComponent,
-    ReactiveFormsModule,
-    DropdownWithSearcherComponent,
-  ],
+  imports: [InputWithLabelComponent, ReactiveFormsModule, DropdownWithSearcherComponent],
   template: `
     <dialog class="add-cart-dialog">
       <h2 class="add-cart-dialog__title">{{ dialogTitle() }}</h2>
@@ -95,15 +85,11 @@ import { Cart } from "../../types/cart.api";
 })
 export class CreateNewCartDialogComponent implements OnInit {
   public readonly dialogTitle: InputSignal<string> = input.required<string>();
-  public readonly evtCloseCreateNew: OutputEmitterRef<boolean> =
-    output<boolean>();
+  public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
   public readonly evtCreateNewCart: OutputEmitterRef<Cart> = output<Cart>();
 
-  public optionSelected: WritableSignal<DropDownSelectedOption> =
-    signal<DropDownSelectedOption>({} as DropDownSelectedOption);
-  public ProductProvider: ProductProviderService = inject(
-    ProductProviderService,
-  );
+  public optionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
+  public ProductProvider: ProductProviderService = inject(ProductProviderService);
 
   public products: InputSignal<string[]> = input.required<string[]>();
   public productFiltered: WritableSignal<string[]> = signal<string[]>([]);
@@ -112,17 +98,11 @@ export class CreateNewCartDialogComponent implements OnInit {
     this.productFiltered.set(this.products());
   }
 
-  public readonly formTypeFieldValidators: ValidatorFn[] = [
-    Validators.required,
-  ];
+  public readonly formTypeFieldValidators: ValidatorFn[] = [Validators.required];
 
-  public readonly formQuantityFieldValidators: ValidatorFn[] = [
-    Validators.required,
-  ];
+  public readonly formQuantityFieldValidators: ValidatorFn[] = [Validators.required];
 
-  public readonly formSubtotalFieldValidators: ValidatorFn[] = [
-    Validators.required,
-  ];
+  public readonly formSubtotalFieldValidators: ValidatorFn[] = [Validators.required];
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {
     this.optionSelected.set(opt);
@@ -143,9 +123,7 @@ export class CreateNewCartDialogComponent implements OnInit {
   public dropDownSelectedOption(term: string): void {
     if (!term.trim()) return this.productFiltered.set(this.products());
 
-    const productFiltered: string[] = this.products().filter((prdName) =>
-      prdName.trim().toLowerCase().startsWith(term),
-    );
+    const productFiltered: string[] = this.products().filter((prdName) => prdName.trim().toLowerCase().startsWith(term));
     this.productFiltered.set(productFiltered);
   }
 

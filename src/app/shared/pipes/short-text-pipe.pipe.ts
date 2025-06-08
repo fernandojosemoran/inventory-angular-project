@@ -12,8 +12,6 @@ export class ShortTextPipe implements PipeTransform {
 
     const textShorted: string = text.trim().slice(0, maxLength);
 
-    return textShorted.endsWith(".")
-      ? textShorted.concat("..")
-      : textShorted.concat("...");
+    return textShorted.endsWith(".") ? textShorted.concat("..") : textShorted.concat("...");
   }
 }

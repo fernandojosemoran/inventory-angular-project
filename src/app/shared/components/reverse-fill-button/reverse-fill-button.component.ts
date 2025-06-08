@@ -1,12 +1,5 @@
 import { CommonModule } from "@angular/common";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  OutputEmitterRef,
-  input,
-  output,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, input, output } from "@angular/core";
 
 type ButtonType = "plane" | "rounded";
 type ColorType = "success" | "unsuccess";

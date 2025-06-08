@@ -2,26 +2,22 @@ import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
-  InputSignal,
-  OnInit,
-  OutputEmitterRef,
-  WritableSignal,
+  type InputSignal,
+  type OnInit,
+  type OutputEmitterRef,
+  type WritableSignal,
   input,
   output,
   signal,
 } from "@angular/core";
-import { DropDownSelectedOption } from "../../interfaces/dropdown.interface";
+import type { DropDownSelectedOption } from "../../interfaces/dropdown.interface";
 import { CircleSearchInputComponent } from "../circle-search-input/circle-search-input.component";
 import { DropdownWithSearcherComponent } from "../dropdown-with-searcher/dropdown-with-searcher.component";
 
 @Component({
   selector: "app-actions-bar",
   standalone: true,
-  imports: [
-    CircleSearchInputComponent,
-    DropdownWithSearcherComponent,
-    CommonModule,
-  ],
+  imports: [CircleSearchInputComponent, DropdownWithSearcherComponent, CommonModule],
   templateUrl: "./actions-bar.component.html",
   styleUrl: "./actions-bar.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,8 +38,8 @@ export class ActionsBarComponent implements OnInit {
   }
 
   public searchTerm: OutputEmitterRef<string> = output<string>();
-  public evtDropdownOptionSelected: OutputEmitterRef<DropDownSelectedOption> =
-    output<DropDownSelectedOption>();
+
+  public evtDropdownOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
 
   public onChangeGenericSearch(term: string) {
     this.searchTerm.emit(term);
@@ -59,11 +55,13 @@ export class ActionsBarComponent implements OnInit {
 
   public dropdownSearch(term: string): void {
     const termToSearch: string = term.trim().toLowerCase();
-    if (termToSearch.length === 0)
-      return this.dropdownOptions.set(this.dropdownOptionList());
+
+    if (termToSearch.length === 0) return this.dropdownOptions.set(this.dropdownOptionList());
+
     const filterOptions: string[] = this.dropdownOptions().filter((category) =>
       category.trim().toLowerCase().startsWith(termToSearch),
     );
+
     this.dropdownOptions.set(filterOptions);
   }
 }

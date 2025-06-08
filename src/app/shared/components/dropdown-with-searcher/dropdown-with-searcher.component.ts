@@ -72,20 +72,18 @@ import { InputWithLabelComponent } from "../input-with-label/input-with-label.co
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownWithSearcherComponent {
-  public readonly optionsList: InputSignal<string[]> =
-    input.required<string[]>();
+  public readonly optionsList: InputSignal<string[]> = input.required<string[]>();
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly placeholder: InputSignal<string> = input.required<string>();
-  public readonly toolTip: InputSignal<string> =
-    input<string>("Tooltip Unknown");
+  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
 
-  public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> =
-    signal<DropDownSelectedOption>({} as DropDownSelectedOption);
+  public dropdownOptionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>(
+    {} as DropDownSelectedOption,
+  );
   public openDropdownFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public evtSearch: OutputEmitterRef<string> = output<string>();
-  public evtOptionSelected: OutputEmitterRef<DropDownSelectedOption> =
-    output<DropDownSelectedOption>();
+  public evtOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
 
   public openDropdown(): void {
     this.openDropdownFlag.update((value) => !value);

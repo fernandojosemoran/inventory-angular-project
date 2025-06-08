@@ -13,12 +13,7 @@ interface LoginFormValidators {
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    InputWithLabelComponent,
-    RouterLink,
-    CommonModule,
-  ],
+  imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
   templateUrl: "./login-page.component.html",
   styleUrl: "./login-page.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,

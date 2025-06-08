@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  input,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular/core";
 
 @Component({
   selector: "app-sim-logo-icon",

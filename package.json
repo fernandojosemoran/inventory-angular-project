@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:SIM": "node dist/SIM/server/server.mjs",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
+    "lint": "biome",
+    "lint:fix": "biome check --fix  ",
     "format": "prettier --write .",
     "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js"
   },

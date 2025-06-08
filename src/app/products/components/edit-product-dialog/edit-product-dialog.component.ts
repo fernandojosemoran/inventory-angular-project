@@ -3,23 +3,8 @@
 import { InputWithLabelComponent } from "@/app/shared/components/input-with-label/input-with-label.component";
 import { ProductProviderService } from "@/app/shared/provider/product.provider.service";
 import { imageValidator } from "@/app/shared/validators/validate-image-type.validator";
-import {
-  ChangeDetectionStrategy,
-  Component,
-  InputSignal,
-  OnInit,
-  OutputEmitterRef,
-  inject,
-  input,
-  output,
-} from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from "@angular/forms";
+import { ChangeDetectionStrategy, Component, InputSignal, OnInit, OutputEmitterRef, inject, input, output } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { Product } from "../../interfaces/product.interface";
 
 @Component({
@@ -31,9 +16,7 @@ import { Product } from "../../interfaces/product.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditProductDialogComponent implements OnInit {
-  private readonly _productStateService: ProductProviderService = inject(
-    ProductProviderService,
-  );
+  private readonly _productStateService: ProductProviderService = inject(ProductProviderService);
 
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();
   public product: InputSignal<Product> = input.required<Product>();
