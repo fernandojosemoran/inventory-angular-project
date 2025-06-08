@@ -7,5 +7,5 @@ export interface IProductService {
   createProduct(product: Product): Observable<Product>;
   updateProduct(product: Product): Observable<Product>;
   deleteProduct(id: number): Observable<boolean | undefined>;
-  searchProduct(name: string): Observable<Product[]>
+  searchProduct(name: string): Observable<Product[]>;
 }

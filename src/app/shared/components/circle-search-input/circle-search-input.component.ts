@@ -1,8 +1,17 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal, OnDestroy, OnInit, output, OutputEmitterRef } from '@angular/core';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  OnDestroy,
+  OnInit,
+  OutputEmitterRef,
+  input,
+  output,
+} from "@angular/core";
+import { Subject, Subscription, debounceTime } from "rxjs";
 
 @Component({
-  selector: 'app-circle-search-input',
+  selector: "app-circle-search-input",
   standalone: true,
   imports: [],
   template: `
@@ -40,13 +49,16 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CircleSearchInputComponent implements OnInit, OnDestroy{
-  public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");
+export class CircleSearchInputComponent implements OnInit, OnDestroy {
+  public readonly toolTip: InputSignal<string> =
+    input<string>("Tooltip Unknown");
   private _debounce: Subject<string> = new Subject<string>();
   private _debounceSubscription?: Subscription;
 
   public ngOnInit(): void {
-    this._debounce.pipe(debounceTime(1000)).subscribe(term => this.productTermSearch.emit(term));
+    this._debounce
+      .pipe(debounceTime(1000))
+      .subscribe((term) => this.productTermSearch.emit(term));
   }
 
   public productTermSearch: OutputEmitterRef<string> = output<string>();
@@ -57,6 +69,6 @@ export class CircleSearchInputComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-      this._debounceSubscription?.unsubscribe();
+    this._debounceSubscription?.unsubscribe();
   }
 }

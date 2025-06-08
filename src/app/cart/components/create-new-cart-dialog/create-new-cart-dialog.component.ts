@@ -1,15 +1,36 @@
-import { ChangeDetectionStrategy, Component, inject, input, InputSignal, OnInit, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
-import { Cart } from '../../types/cart.api';
+import { DropDownSelectedOption } from "@/app/shared/interfaces/dropdown.interface";
+import { ProductProviderService } from "@/app/shared/provider/product.provider.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  OnInit,
+  OutputEmitterRef,
+  WritableSignal,
+  inject,
+  input,
+  output,
+  signal,
+} from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from "@angular/forms";
 import { DropdownWithSearcherComponent } from "../../../shared/components/dropdown-with-searcher/dropdown-with-searcher.component";
-import { ProductProviderService } from '@/app/shared/provider/product.provider.service';
-import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interface';
+import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
+import { Cart } from "../../types/cart.api";
 
 @Component({
-  selector: 'app-create-new-cart-dialog',
+  selector: "app-create-new-cart-dialog",
   standalone: true,
-  imports: [ InputWithLabelComponent, ReactiveFormsModule, DropdownWithSearcherComponent ],
+  imports: [
+    InputWithLabelComponent,
+    ReactiveFormsModule,
+    DropdownWithSearcherComponent,
+  ],
   template: `
     <dialog class="add-cart-dialog">
       <h2 class="add-cart-dialog__title">{{ dialogTitle() }}</h2>
@@ -69,65 +90,77 @@ import { DropDownSelectedOption } from '@/app/shared/interfaces/dropdown.interfa
     </dialog>
 
   `,
-  styleUrl: './create-new-cart-dialog.component.css',
+  styleUrl: "./create-new-cart-dialog.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateNewCartDialogComponent implements OnInit {
-    public readonly dialogTitle: InputSignal<string> = input.required<string>();
-    public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
-    public readonly evtCreateNewCart: OutputEmitterRef<Cart> = output<Cart>();
+  public readonly dialogTitle: InputSignal<string> = input.required<string>();
+  public readonly evtCloseCreateNew: OutputEmitterRef<boolean> =
+    output<boolean>();
+  public readonly evtCreateNewCart: OutputEmitterRef<Cart> = output<Cart>();
 
-    public optionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
-    public ProductProvider: ProductProviderService = inject(ProductProviderService);
+  public optionSelected: WritableSignal<DropDownSelectedOption> =
+    signal<DropDownSelectedOption>({} as DropDownSelectedOption);
+  public ProductProvider: ProductProviderService = inject(
+    ProductProviderService,
+  );
 
-    public products: InputSignal<string[]> = input.required<string[]>();
-    public productFiltered: WritableSignal<string[]> = signal<string[]>([]);
+  public products: InputSignal<string[]> = input.required<string[]>();
+  public productFiltered: WritableSignal<string[]> = signal<string[]>([]);
 
-    public ngOnInit(): void {
-      this.productFiltered.set(this.products());
-    }
+  public ngOnInit(): void {
+    this.productFiltered.set(this.products());
+  }
 
-    public readonly formTypeFieldValidators: ValidatorFn[] = [
-      Validators.required
-    ];
+  public readonly formTypeFieldValidators: ValidatorFn[] = [
+    Validators.required,
+  ];
 
-    public readonly formQuantityFieldValidators: ValidatorFn[] = [
-      Validators.required
-    ];
+  public readonly formQuantityFieldValidators: ValidatorFn[] = [
+    Validators.required,
+  ];
 
-    public readonly formSubtotalFieldValidators: ValidatorFn[] = [
-      Validators.required
-    ];
+  public readonly formSubtotalFieldValidators: ValidatorFn[] = [
+    Validators.required,
+  ];
 
-    public dropdownOptionSelected(opt: DropDownSelectedOption): void {
-      this.optionSelected.set(opt);
-    }
+  public dropdownOptionSelected(opt: DropDownSelectedOption): void {
+    this.optionSelected.set(opt);
+  }
 
-    public dialogForm: FormGroup = new FormGroup({
-      quantity: new FormControl<string>("", { validators: this.formQuantityFieldValidators }),
-      type: new FormControl<string>("", { validators: this.formTypeFieldValidators }),
-      subtotal: new FormControl<string>("", { validators: this.formSubtotalFieldValidators }),
-    });
+  public dialogForm: FormGroup = new FormGroup({
+    quantity: new FormControl<string>("", {
+      validators: this.formQuantityFieldValidators,
+    }),
+    type: new FormControl<string>("", {
+      validators: this.formTypeFieldValidators,
+    }),
+    subtotal: new FormControl<string>("", {
+      validators: this.formSubtotalFieldValidators,
+    }),
+  });
 
-    public dropDownSelectedOption(term: string): void {
-      if (!term.trim()) return this.productFiltered.set(this.products());
+  public dropDownSelectedOption(term: string): void {
+    if (!term.trim()) return this.productFiltered.set(this.products());
 
-      const productFiltered: string[] = this.products().filter((prdName) => prdName.trim().toLowerCase().startsWith(term));
-      this.productFiltered.set(productFiltered);
-    }
+    const productFiltered: string[] = this.products().filter((prdName) =>
+      prdName.trim().toLowerCase().startsWith(term),
+    );
+    this.productFiltered.set(productFiltered);
+  }
 
-    public submit(event: Event): void {
-      event.preventDefault();
+  public submit(event: Event): void {
+    event.preventDefault();
 
-      if (this.dialogForm.invalid || !this.optionSelected().name) return;
+    if (this.dialogForm.invalid || !this.optionSelected().name) return;
 
-      this.evtCreateNewCart.emit({
-        ...this.dialogForm.value,
-        product: this.optionSelected().name
-      } as Cart);
-    }
+    this.evtCreateNewCart.emit({
+      ...this.dialogForm.value,
+      product: this.optionSelected().name,
+    } as Cart);
+  }
 
-    public cancel(): void {
-      this.evtCloseCreateNew.emit(true);
-    }
+  public cancel(): void {
+    this.evtCloseCreateNew.emit(true);
+  }
 }

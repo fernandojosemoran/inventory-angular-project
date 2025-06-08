@@ -1,14 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  OutputEmitterRef,
+  input,
+  output,
+} from "@angular/core";
 
 type ButtonType = "plane" | "rounded";
 type ColorType = "success" | "unsuccess";
 type BehaviorType = "submit" | "button" | "reset";
 
 @Component({
-  selector: 'app-reverse-fill-button',
+  selector: "app-reverse-fill-button",
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   template: `
     @switch (buttonType()) {
       @case ('plane') {
@@ -92,7 +99,6 @@ export class ReverseFillButtonComponent {
   public buttonType: InputSignal<ButtonType> = input<ButtonType>("plane");
   public color: InputSignal<ColorType> = input<ColorType>("success");
   public behavior: InputSignal<BehaviorType> = input<BehaviorType>("button");
-
 
   public evtClick: OutputEmitterRef<void> = output();
 

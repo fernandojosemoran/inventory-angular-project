@@ -1,6 +1,5 @@
-
 import { HttpErrorResponse } from "@angular/common/http";
-import { catchError, of, OperatorFunction } from "rxjs";
+import { OperatorFunction, catchError, of } from "rxjs";
 
 export function handlerError<T>(): OperatorFunction<T, T | unknown> {
   return catchError((error: HttpErrorResponse) => {

@@ -1,30 +1,39 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, forwardRef, input, InputSignal, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { CommonModule } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  InputSignal,
+  OnInit,
+  forwardRef,
+  input,
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 type InputTypes = "text" | "file" | "email" | "password";
 type InputShape = "circle" | "normal";
 
 @Component({
-  selector: 'app-input-with-label',
+  selector: "app-input-with-label",
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputWithLabelComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  templateUrl: './input-with-label.component.html',
-  styleUrl: './input-with-label.component.css',
+  templateUrl: "./input-with-label.component.html",
+  styleUrl: "./input-with-label.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
   public placeholder: InputSignal<string> = input.required<string>();
-  public defaultValue: InputSignal<string | number | boolean> = input<string | number | boolean>("Value Unknown");
+  public defaultValue: InputSignal<string | number | boolean> = input<
+    string | number | boolean
+  >("Value Unknown");
   public type: InputSignal<InputTypes> = input<InputTypes>("text");
   public for: InputSignal<string> = input.required<string>();
   public shape: InputSignal<InputShape> = input<InputShape>("normal");
@@ -33,7 +42,7 @@ export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
     this.value = this.defaultValue();
   }
 
-  public value: any = '';
+  public value: any = "";
   public disable: any = false;
   public onChange: any = () => {};
   public onTouched: any = () => {};
@@ -55,8 +64,8 @@ export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
   }
 
   public handlerOnChange(event: Event): void {
-    const evt: HTMLInputElement = (event.target as HTMLInputElement);
+    const evt: HTMLInputElement = event.target as HTMLInputElement;
     this.value = evt.value;
     this.onChange(evt.value);
-  };
+  }
 }

@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ProductPageLayoutComponent } from './product-page-layout.component';
+import { ProductPageLayoutComponent } from "./product-page-layout.component";
 
-describe('ProductPageLayoutComponent', () => {
+describe("ProductPageLayoutComponent", () => {
   let component: ProductPageLayoutComponent;
   let fixture: ComponentFixture<ProductPageLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ ProductPageLayoutComponent ]
-    })
-    .compileComponents();
+      imports: [ProductPageLayoutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductPageLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

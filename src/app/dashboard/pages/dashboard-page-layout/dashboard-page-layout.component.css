@@ -2,7 +2,7 @@
   display: flex;
   height: 100vh;
   color: var(--primary-text-color);
-  font-family: 'Satoshi-Light';
+  font-family: "Satoshi-Light";
   font-weight: 300;
 }
 

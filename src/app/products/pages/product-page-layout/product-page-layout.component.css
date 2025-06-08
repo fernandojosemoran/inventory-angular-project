@@ -49,11 +49,9 @@ td {
   padding: 0.4em;
 }
 
-.footer__row>* {
+.footer__row > * {
   display: inline;
 }
-
-
 
 /* tbody > tr {
   cursor: pointer;
@@ -69,7 +67,7 @@ td {
   gap: 1em;
 }
 
-.product__table__header__actions__row>button {
+.product__table__header__actions__row > button {
   border-radius: 20px;
   outline: none;
   background-color: transparent;

@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: "",
     component: UserPageLayoutComponent,
-    title: "SIM | Users"
-  }
+    title: "SIM | Users",
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class UserRoutingModule {}

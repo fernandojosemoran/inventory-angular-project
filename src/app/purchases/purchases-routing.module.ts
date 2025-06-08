@@ -1,18 +1,18 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { PurchasePageLayoutComponent } from './pages/purchase-page-layout/purchase-page-layout.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { PurchasePageLayoutComponent } from "./pages/purchase-page-layout/purchase-page-layout.component";
 
 export const routes: Routes = [
   {
     path: "",
     component: PurchasePageLayoutComponent,
     title: "SIM | Purchases",
-    children: []
-  }
+    children: [],
+  },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class PurchasesRoutingModule { }
+export class PurchasesRoutingModule {}

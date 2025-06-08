@@ -1,12 +1,12 @@
 export interface RowsBasicFormValues<T> {
-  rows: T[]
+  rows: T[];
 }
 
 export interface HeadersBasicFormValue {
-  headers: Header[] ;
+  headers: Header[];
 }
 
 interface Header {
-  type: "text" | "image" | "button" | "buttonsList",
+  type: "text" | "image" | "button" | "buttonsList";
   name: string;
 }
