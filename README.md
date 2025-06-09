@@ -238,7 +238,7 @@ In this example, we will use Node.js.
 ## Testing
 
 1.  **How run the test**
-    ```bash
+  ```bash
   npm run test
   
   $ jest
@@ -252,7 +252,7 @@ In this example, we will use Node.js.
   Tests:       2 passed, 2 total
   Snapshots:   0 total
   Time:        2.923 s
-    ```
+  ```
   
 ## Linter and Extensions
 1.  **How to Use the Linter**
