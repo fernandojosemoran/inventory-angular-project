@@ -7,7 +7,7 @@
     "build": "npm run changeEnvironmentFileNames && ng build --aot --optimization",
     "watch": "ng build --watch --configuration development",
     "serve:ssr:SIM": "node dist/SIM/server/server.mjs",
-    "lint": "biome",
+    "lint": "biome check",
     "lint:fix": "biome check --fix",
     "format": "prettier --write .",
     "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js",
