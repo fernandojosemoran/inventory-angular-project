@@ -224,7 +224,7 @@ In this example, we will use Node.js.
   Prerendered 12 static routes.
   Application bundle generation complete. [25.520 seconds]
 ```
-3. Deploying the Production Build
+3. **Deploying the Production Build**
 
   After building your application for production, the optimized files, including index.html, are placed in the dist/SMI/browser/ directory. To make your application accessible, you need to run you server using the command `npm run serve:ssr:SIM`. 
 
@@ -234,9 +234,28 @@ In this example, we will use Node.js.
   $ node dist/SIM/server/server.mjs
   Node Express server listening on http://localhost:4000
   ```
+
+## Testing
+
+1.  **How run the test**
+    ```bash
+  npm run test
+  
+  $ jest
+
+  PASS  src/environments/environments.spec.ts
+    ./src/environments/environments.ts
+      √ Should backend url exists (5 ms)
+      √ Should backend urls be strings (1 ms)
+
+  Test Suites: 1 passed, 1 total
+  Tests:       2 passed, 2 total
+  Snapshots:   0 total
+  Time:        2.923 s
+    ```
   
 ## Linter and Extensions
-  **How to Use the Linter**
+1.  **How to Use the Linter**
 
   To resolve code formatting errors, you should run the following command:
 
@@ -245,7 +264,7 @@ In this example, we will use Node.js.
   npm run lint:fix
   ```
 
-  **Extensions recommended for vsc with angular**
+2.  **Extensions recommended for vsc with angular**
 
   ```json
   // ./vscode/extensions.json
