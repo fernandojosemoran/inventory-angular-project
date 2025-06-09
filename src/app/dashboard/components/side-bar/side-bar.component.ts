@@ -24,11 +24,11 @@ interface ListPath {
 }
 
 @Component({
-    selector: "app-dashboard-side-bar",
-    imports: [CommonModule, SimLogoIconComponent, RouterLink, RouterLinkActive],
-    templateUrl: "./side-bar.component.html",
-    styleUrl: "./side-bar.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-dashboard-side-bar",
+  imports: [CommonModule, SimLogoIconComponent, RouterLink, RouterLinkActive],
+  templateUrl: "./side-bar.component.html",
+  styleUrl: "./side-bar.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideBarComponent {
   public listPath: Signal<ListPath[]> = computed<ListPath[]>(() => [

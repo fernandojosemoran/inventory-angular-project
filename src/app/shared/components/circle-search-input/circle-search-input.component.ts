@@ -11,9 +11,9 @@ import {
 import { Subject, Subscription, debounceTime } from "rxjs";
 
 @Component({
-    selector: "app-circle-search-input",
-    imports: [],
-    template: `
+  selector: "app-circle-search-input",
+  imports: [],
+  template: `
     <input
       title="{{ toolTip() }}"
       id="search__input__generic"
@@ -23,7 +23,7 @@ import { Subject, Subscription, debounceTime } from "rxjs";
       (input)="evtSearch($event)"
     />
   `,
-    styles: `
+  styles: `
     #search__input__generic {
       outline: none;
       border: none;
@@ -46,7 +46,7 @@ import { Subject, Subscription, debounceTime } from "rxjs";
       }
     }
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CircleSearchInputComponent implements OnInit, OnDestroy {
   public readonly toolTip: InputSignal<string> = input<string>("Tooltip Unknown");

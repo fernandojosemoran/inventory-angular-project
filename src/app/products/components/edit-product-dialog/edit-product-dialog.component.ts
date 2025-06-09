@@ -8,11 +8,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } 
 import { Product } from "../../interfaces/product.interface";
 
 @Component({
-    selector: "app-edit-product-dialog",
-    imports: [ReactiveFormsModule, InputWithLabelComponent],
-    templateUrl: "./edit-product-dialog.component.html",
-    styleUrl: "./edit-product-dialog.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-edit-product-dialog",
+  imports: [ReactiveFormsModule, InputWithLabelComponent],
+  templateUrl: "./edit-product-dialog.component.html",
+  styleUrl: "./edit-product-dialog.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditProductDialogComponent implements OnInit {
   private readonly _productStateService: ProductProviderService = inject(ProductProviderService);

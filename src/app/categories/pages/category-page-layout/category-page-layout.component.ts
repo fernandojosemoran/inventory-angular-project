@@ -8,10 +8,10 @@ import { Category } from "../../interfaces/category.interface";
 import { CategoryService } from "../../services/categories.service";
 
 @Component({
-    selector: "app-category-page-layout",
-    imports: [ActionsBarComponent, HorizontalCardComponent, CommonModule, CreateCategoryDialogComponent],
-    templateUrl: "./category-page-layout.component.html",
-    styleUrl: "./category-page-layout.component.css"
+  selector: "app-category-page-layout",
+  imports: [ActionsBarComponent, HorizontalCardComponent, CommonModule, CreateCategoryDialogComponent],
+  templateUrl: "./category-page-layout.component.html",
+  styleUrl: "./category-page-layout.component.css",
 })
 export class CategoryPageLayoutComponent implements OnInit {
   public categoryService: CategoryService = inject(CategoryService);

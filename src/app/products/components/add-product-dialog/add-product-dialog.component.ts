@@ -4,11 +4,11 @@ import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, inpu
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 
 @Component({
-    selector: "app-add-product-dialog",
-    imports: [InputWithLabelComponent, ReactiveFormsModule],
-    templateUrl: "./add-product-dialog.component.html",
-    styleUrl: "./add-product-dialog.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-add-product-dialog",
+  imports: [InputWithLabelComponent, ReactiveFormsModule],
+  templateUrl: "./add-product-dialog.component.html",
+  styleUrl: "./add-product-dialog.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddProductDialogComponent {
   public readonly dialogTitle: InputSignal<string> = input.required<string>();

@@ -4,11 +4,11 @@ import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, inpu
 import { BadgeComponent } from "../badge/badge.component";
 
 @Component({
-    selector: "app-confirm-delete-dialog",
-    imports: [AvailablePipe, BadgeComponent],
-    templateUrl: "./confirm-delete-dialog.component.html",
-    styleUrl: "./confirm-delete-dialog.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-confirm-delete-dialog",
+  imports: [AvailablePipe, BadgeComponent],
+  templateUrl: "./confirm-delete-dialog.component.html",
+  styleUrl: "./confirm-delete-dialog.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmDeleteDialogComponent {
   public isConfirm: OutputEmitterRef<boolean> = output<boolean>();

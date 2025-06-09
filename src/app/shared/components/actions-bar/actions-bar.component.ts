@@ -15,11 +15,11 @@ import { CircleSearchInputComponent } from "../circle-search-input/circle-search
 import { DropdownWithSearcherComponent } from "../dropdown-with-searcher/dropdown-with-searcher.component";
 
 @Component({
-    selector: "app-actions-bar",
-    imports: [CircleSearchInputComponent, DropdownWithSearcherComponent, CommonModule],
-    templateUrl: "./actions-bar.component.html",
-    styleUrl: "./actions-bar.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-actions-bar",
+  imports: [CircleSearchInputComponent, DropdownWithSearcherComponent, CommonModule],
+  templateUrl: "./actions-bar.component.html",
+  styleUrl: "./actions-bar.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsBarComponent implements OnInit {
   public title: InputSignal<string> = input.required();

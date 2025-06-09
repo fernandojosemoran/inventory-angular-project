@@ -7,10 +7,10 @@ import { CreateNewCartDialogComponent } from "../../components/create-new-cart-d
 import { Cart } from "../../types/cart.api";
 
 @Component({
-    selector: "app-cart-layout",
-    imports: [ActionsBarComponent, CreateNewCartDialogComponent, CommonModule],
-    templateUrl: "./cart-page-layout.component.html",
-    styleUrl: "./cart-page-layout.component.css"
+  selector: "app-cart-layout",
+  imports: [ActionsBarComponent, CreateNewCartDialogComponent, CommonModule],
+  templateUrl: "./cart-page-layout.component.html",
+  styleUrl: "./cart-page-layout.component.css",
 })
 export class CartPageLayoutComponent {
   public readonly isOpenCreateNewCartDialog: WritableSignal<boolean> = signal<boolean>(false);

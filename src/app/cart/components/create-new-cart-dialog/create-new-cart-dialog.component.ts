@@ -18,9 +18,9 @@ import { InputWithLabelComponent } from "../../../shared/components/input-with-l
 import { Cart } from "../../types/cart.api";
 
 @Component({
-    selector: "app-create-new-cart-dialog",
-    imports: [InputWithLabelComponent, ReactiveFormsModule, DropdownWithSearcherComponent],
-    template: `
+  selector: "app-create-new-cart-dialog",
+  imports: [InputWithLabelComponent, ReactiveFormsModule, DropdownWithSearcherComponent],
+  template: `
     <dialog class="add-cart-dialog">
       <h2 class="add-cart-dialog__title">{{ dialogTitle() }}</h2>
       <form
@@ -79,8 +79,8 @@ import { Cart } from "../../types/cart.api";
     </dialog>
 
   `,
-    styleUrl: "./create-new-cart-dialog.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: "./create-new-cart-dialog.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateNewCartDialogComponent implements OnInit {
   public readonly dialogTitle: InputSignal<string> = input.required<string>();

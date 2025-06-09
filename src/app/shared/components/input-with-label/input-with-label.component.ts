@@ -6,18 +6,18 @@ type InputTypes = "text" | "file" | "email" | "password";
 type InputShape = "circle" | "normal";
 
 @Component({
-    selector: "app-input-with-label",
-    imports: [CommonModule],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => InputWithLabelComponent),
-            multi: true,
-        },
-    ],
-    templateUrl: "./input-with-label.component.html",
-    styleUrl: "./input-with-label.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-input-with-label",
+  imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputWithLabelComponent),
+      multi: true,
+    },
+  ],
+  templateUrl: "./input-with-label.component.html",
+  styleUrl: "./input-with-label.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
   public placeholder: InputSignal<string> = input.required<string>();
