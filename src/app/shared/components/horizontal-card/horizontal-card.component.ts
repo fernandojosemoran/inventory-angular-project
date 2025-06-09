@@ -2,10 +2,9 @@ import { ChangeDetectionStrategy, Component, InputSignal, OnInit, WritableSignal
 import { ShortTextPipe } from "../../pipes/short-text-pipe.pipe";
 
 @Component({
-  selector: "app-horizontal-card",
-  standalone: true,
-  imports: [ShortTextPipe],
-  template: `
+    selector: "app-horizontal-card",
+    imports: [ShortTextPipe],
+    template: `
     <figure title="{{ cardTitle() }}" class="horizontal__card">
       <div class="horizontal-card__picture">
         <img class="horizontal-card__image" src="{{ cardUrlImage() }}" alt="{{ cardTitle() }}">
@@ -16,7 +15,7 @@ import { ShortTextPipe } from "../../pipes/short-text-pipe.pipe";
       </figcaption>
     </figure>
   `,
-  styles: `
+    styles: `
     :host {
       display: block;
     }
@@ -68,7 +67,7 @@ import { ShortTextPipe } from "../../pipes/short-text-pipe.pipe";
       }
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HorizontalCardComponent implements OnInit {
   public cardTitle: InputSignal<string> = input.required<string>();

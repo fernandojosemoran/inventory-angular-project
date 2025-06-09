@@ -6,10 +6,9 @@ type ColorType = "success" | "unsuccess";
 type BehaviorType = "submit" | "button" | "reset";
 
 @Component({
-  selector: "app-reverse-fill-button",
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: "app-reverse-fill-button",
+    imports: [CommonModule],
+    template: `
     @switch (buttonType()) {
       @case ('plane') {
         <button
@@ -52,7 +51,7 @@ type BehaviorType = "submit" | "button" | "reset";
       }
     }
   `,
-  styles: `
+    styles: `
     :host { display: block; }
 
     .reverse-fill-button {
@@ -85,7 +84,7 @@ type BehaviorType = "submit" | "button" | "reset";
       color: var(--primary-success-color);
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReverseFillButtonComponent {
   public text: InputSignal<string> = input.required<string>();

@@ -15,21 +15,20 @@ import { ProductService } from "../../services/product.service";
 import { Product } from "./../../interfaces/product.interface";
 
 @Component({
-  selector: "app-product-page-layout",
-  standalone: true,
-  imports: [
-    ActionsBarComponent,
-    CommonModule,
-    AvailablePipe,
-    EditProductDialogComponent,
-    ConfirmDeleteDialogComponent,
-    ReverseFillButtonComponent,
-    TableSkeletonComponent,
-    AddProductDialogComponent,
-  ],
-  templateUrl: "./product-page-layout.component.html",
-  styleUrl: "./product-page-layout.component.css",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-product-page-layout",
+    imports: [
+        ActionsBarComponent,
+        CommonModule,
+        AvailablePipe,
+        EditProductDialogComponent,
+        ConfirmDeleteDialogComponent,
+        ReverseFillButtonComponent,
+        TableSkeletonComponent,
+        AddProductDialogComponent,
+    ],
+    templateUrl: "./product-page-layout.component.html",
+    styleUrl: "./product-page-layout.component.css",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductPageLayoutComponent implements OnInit {
   private readonly categoryService: CategoryProvider = inject(CategoryProvider);
