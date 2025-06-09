@@ -25,7 +25,6 @@ interface ListPath {
 
 @Component({
   selector: "app-dashboard-side-bar",
-  standalone: true,
   imports: [CommonModule, SimLogoIconComponent, RouterLink, RouterLinkActive],
   templateUrl: "./side-bar.component.html",
   styleUrl: "./side-bar.component.css",

@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-cart-arrow-down-icon",
   templateUrl: "./cart-arrow-down-icon.component.svg",
   imports: [],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartArrowDownIconComponent {

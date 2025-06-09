@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-layer-group-icon",
   templateUrl: "./layer-group-icon.component.svg",
   imports: [],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LayerGroupIconComponent {

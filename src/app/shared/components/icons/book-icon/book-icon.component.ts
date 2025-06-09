@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-book-icon",
   imports: [],
   templateUrl: "./book-icon.component.svg",
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookIconComponent {

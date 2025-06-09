@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-handshake-icon",
   templateUrl: "./handshake-icon.component.svg",
   imports: [],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HandshakeIconComponent {

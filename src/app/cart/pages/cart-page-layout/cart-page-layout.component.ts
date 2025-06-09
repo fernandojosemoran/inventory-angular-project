@@ -8,7 +8,6 @@ import { Cart } from "../../types/cart.api";
 
 @Component({
   selector: "app-cart-layout",
-  standalone: true,
   imports: [ActionsBarComponent, CreateNewCartDialogComponent, CommonModule],
   templateUrl: "./cart-page-layout.component.html",
   styleUrl: "./cart-page-layout.component.css",

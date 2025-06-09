@@ -3,7 +3,6 @@ import { ActionsBarComponent } from "../../../shared/components/actions-bar/acti
 
 @Component({
   selector: "app-user-layout",
-  standalone: true,
   imports: [ActionsBarComponent],
   templateUrl: "./user-page-layout.component.html",
   styleUrl: "./user-page-layout.component.css",

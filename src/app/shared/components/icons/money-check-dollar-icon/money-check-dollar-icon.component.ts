@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-money-check-dollar-icon",
   templateUrl: "./money-check-dollar-icon.component.svg",
   imports: [],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MoneyCheckDollarIconComponent {

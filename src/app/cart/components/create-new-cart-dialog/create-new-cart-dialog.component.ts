@@ -19,7 +19,6 @@ import { Cart } from "../../types/cart.api";
 
 @Component({
   selector: "app-create-new-cart-dialog",
-  standalone: true,
   imports: [InputWithLabelComponent, ReactiveFormsModule, DropdownWithSearcherComponent],
   template: `
     <dialog class="add-cart-dialog">

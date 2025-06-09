@@ -5,7 +5,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } 
 
 @Component({
   selector: "app-add-product-dialog",
-  standalone: true,
   imports: [InputWithLabelComponent, ReactiveFormsModule],
   templateUrl: "./add-product-dialog.component.html",
   styleUrl: "./add-product-dialog.component.css",

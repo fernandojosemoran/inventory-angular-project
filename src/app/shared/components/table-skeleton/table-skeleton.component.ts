@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
 
 @Component({
   selector: "app-table-skeleton",
-  standalone: true,
   imports: [],
   templateUrl: "./table-skeleton.component.html",
   styleUrl: "./table-skeleton.component.css",

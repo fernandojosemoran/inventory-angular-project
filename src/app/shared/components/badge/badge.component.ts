@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
 
 @Component({
   selector: "app-badge",
-  standalone: true,
   imports: [],
   template: `<span role="budget" class="budget">{{ content() }}</span>`,
   styleUrl: "./badge.component.css",

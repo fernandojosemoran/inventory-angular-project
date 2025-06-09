@@ -5,7 +5,6 @@ import { Category } from "../../interfaces/category.interface";
 
 @Component({
   selector: "app-create-category-dialog",
-  standalone: true,
   imports: [ReactiveFormsModule, InputWithLabelComponent],
   templateUrl: "./create-category-dialog.component.html",
   styleUrl: "./create-category-dialog.component.css",

@@ -9,7 +9,6 @@ import { Product } from "../../interfaces/product.interface";
 
 @Component({
   selector: "app-edit-product-dialog",
-  standalone: true,
   imports: [ReactiveFormsModule, InputWithLabelComponent],
   templateUrl: "./edit-product-dialog.component.html",
   styleUrl: "./edit-product-dialog.component.css",

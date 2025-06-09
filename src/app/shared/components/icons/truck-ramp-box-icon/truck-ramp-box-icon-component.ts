@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
   selector: "app-truck-ramp-box-icon",
   templateUrl: "./truck-ramp-box-icon.component.svg",
   imports: [],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TruckRampBoxIconComponent {

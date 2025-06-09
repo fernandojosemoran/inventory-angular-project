@@ -7,7 +7,6 @@ type InputShape = "circle" | "normal";
 
 @Component({
   selector: "app-input-with-label",
-  standalone: true,
   imports: [CommonModule],
   providers: [
     {

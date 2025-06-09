@@ -15,7 +15,6 @@ import { InputWithLabelComponent } from "../input-with-label/input-with-label.co
 
 @Component({
   selector: "app-dropdown-with-searcher",
-  standalone: true,
   imports: [CommonModule, InputWithLabelComponent, DownArrowIconComponent],
   template: `
     <div class="searchable-dropdown">

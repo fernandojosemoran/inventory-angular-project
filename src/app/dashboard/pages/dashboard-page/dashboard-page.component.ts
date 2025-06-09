@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
   templateUrl: "./dashboard-page.component.html",
   styleUrl: "./dashboard-page.component.css",
   imports: [ActionsBarComponent],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashBoardComponent {}

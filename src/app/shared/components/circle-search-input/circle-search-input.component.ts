@@ -12,7 +12,6 @@ import { Subject, Subscription, debounceTime } from "rxjs";
 
 @Component({
   selector: "app-circle-search-input",
-  standalone: true,
   imports: [],
   template: `
     <input

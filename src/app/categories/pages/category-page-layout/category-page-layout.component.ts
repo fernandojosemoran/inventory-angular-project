@@ -9,7 +9,6 @@ import { CategoryService } from "../../services/categories.service";
 
 @Component({
   selector: "app-category-page-layout",
-  standalone: true,
   imports: [ActionsBarComponent, HorizontalCardComponent, CommonModule, CreateCategoryDialogComponent],
   templateUrl: "./category-page-layout.component.html",
   styleUrl: "./category-page-layout.component.css",

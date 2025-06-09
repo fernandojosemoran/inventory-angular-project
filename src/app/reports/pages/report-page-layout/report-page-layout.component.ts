@@ -3,7 +3,6 @@ import { ActionsBarComponent } from "../../../shared/components/actions-bar/acti
 
 @Component({
   selector: "app-report-page-layout",
-  standalone: true,
   imports: [ActionsBarComponent],
   templateUrl: "./report-page-layout.component.html",
   styleUrl: "./report-page-layout.component.css",

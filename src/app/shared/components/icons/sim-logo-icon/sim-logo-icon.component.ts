@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular
 
 @Component({
   selector: "app-sim-logo-icon",
-  standalone: true,
   imports: [],
   templateUrl: "./sim-logo-icon.component.svg",
   changeDetection: ChangeDetectionStrategy.OnPush,

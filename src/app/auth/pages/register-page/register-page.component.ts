@@ -14,7 +14,6 @@ interface RegisterFormValidators {
 
 @Component({
   selector: "app-register",
-  standalone: true,
   imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.css",

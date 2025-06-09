@@ -7,7 +7,6 @@ type BehaviorType = "submit" | "button" | "reset";
 
 @Component({
   selector: "app-reverse-fill-button",
-  standalone: true,
   imports: [CommonModule],
   template: `
     @switch (buttonType()) {

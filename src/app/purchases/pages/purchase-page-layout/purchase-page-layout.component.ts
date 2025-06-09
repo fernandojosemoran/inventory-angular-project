@@ -3,7 +3,6 @@ import { ActionsBarComponent } from "../../../shared/components/actions-bar/acti
 
 @Component({
   selector: "app-purchase-page-layout",
-  standalone: true,
   imports: [ActionsBarComponent],
   templateUrl: "./purchase-page-layout.component.html",
   styleUrl: "./purchase-page-layout.component.css",

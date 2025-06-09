@@ -5,7 +5,6 @@ import { BadgeComponent } from "../badge/badge.component";
 
 @Component({
   selector: "app-confirm-delete-dialog",
-  standalone: true,
   imports: [AvailablePipe, BadgeComponent],
   templateUrl: "./confirm-delete-dialog.component.html",
   styleUrl: "./confirm-delete-dialog.component.css",

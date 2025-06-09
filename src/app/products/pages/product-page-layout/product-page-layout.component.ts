@@ -16,7 +16,6 @@ import { Product } from "./../../interfaces/product.interface";
 
 @Component({
   selector: "app-product-page-layout",
-  standalone: true,
   imports: [
     ActionsBarComponent,
     CommonModule,

@@ -3,7 +3,6 @@ import { ShortTextPipe } from "../../pipes/short-text-pipe.pipe";
 
 @Component({
   selector: "app-horizontal-card",
-  standalone: true,
   imports: [ShortTextPipe],
   template: `
     <figure title="{{ cardTitle() }}" class="horizontal__card">

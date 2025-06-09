@@ -16,7 +16,6 @@ import { DropdownWithSearcherComponent } from "../dropdown-with-searcher/dropdow
 
 @Component({
   selector: "app-actions-bar",
-  standalone: true,
   imports: [CircleSearchInputComponent, DropdownWithSearcherComponent, CommonModule],
   templateUrl: "./actions-bar.component.html",
   styleUrl: "./actions-bar.component.css",
