@@ -4,15 +4,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": [
-      "jest"
-    ],
+    "types": ["jest"],
     "esModuleInterop": true,
     "emitDecoratorMetadata": true
   },
-  "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ],
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"],
   "exclude": ["node_module", "dist", ".angular", "coverage", "dist"]
 }

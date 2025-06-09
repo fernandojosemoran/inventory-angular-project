@@ -67,7 +67,9 @@ export class ProductProviderService implements IProductProvider {
     const existProduct: Product | undefined = this.getOneProduct(oldProduct.id);
     let products: Product[] = [];
 
-    this.productService.getProductByPage().subscribe((response) => (products = [...(response.response.content as Product[])]));
+    this.productService.getProductByPage().subscribe((response) => {
+      products = [...(response.response.content as Product[])];
+    });
 
     if (!existProduct) {
       // TODO: replace console.error() by custom errors
