@@ -82,6 +82,15 @@ In this example, we will use Node.js.
 
 **Open your web browser** and navigate to `http://localhost:4200/`. The application will automatically reload if you modify the source files.
 
+## Best practices before collaborating
+
+  If you execute the `prepare` script, it handles code quality and security control.
+  The `prepare` script is responsible for executing actions before pushing changes to the branch where you're pushing.
+
+  ```bash
+  npm run prepare
+  ```
+
 ## Running in Production Mode
 
 1. **Run the backend application**
