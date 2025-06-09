@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, InputSignal, OnInit, forwardRef, input } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -35,7 +33,10 @@ export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
 
   public value: any = "";
   public disable: any = false;
+
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: <explanation>
   public onChange: any = () => {};
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: <explanation>
   public onTouched: any = () => {};
 
   public writeValue(value: any): void {
