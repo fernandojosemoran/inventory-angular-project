@@ -14,9 +14,10 @@ import { DownArrowIconComponent } from "../icons/down-arrow-icon/down-arrow-icon
 import { InputWithLabelComponent } from "../input-with-label/input-with-label.component";
 
 @Component({
-    selector: "app-dropdown-with-searcher",
-    imports: [CommonModule, InputWithLabelComponent, DownArrowIconComponent],
-    template: `
+  selector: "app-dropdown-with-searcher",
+  standalone: true,
+  imports: [CommonModule, InputWithLabelComponent, DownArrowIconComponent],
+  template: `
     <div class="searchable-dropdown">
       <button
         title="{{ toolTip() }}"
@@ -67,8 +68,8 @@ import { InputWithLabelComponent } from "../input-with-label/input-with-label.co
       </div>
     </div>
   `,
-    styleUrl: "./dropdown-with-searcher.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: "./dropdown-with-searcher.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownWithSearcherComponent {
   public readonly optionsList: InputSignal<string[]> = input.required<string[]>();

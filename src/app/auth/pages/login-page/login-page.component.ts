@@ -11,11 +11,12 @@ interface LoginFormValidators {
   password: ValidatorFn[];
 }
 @Component({
-    selector: "app-login",
-    imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
-    templateUrl: "./login-page.component.html",
-    styleUrl: "./login-page.component.css",
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-login",
+  standalone: true,
+  imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
+  templateUrl: "./login-page.component.html",
+  styleUrl: "./login-page.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
   private readonly router: Router = inject(Router);
