@@ -91,6 +91,35 @@ In this example, we will use Node.js.
   npm run prepare
   ```
 
+  example
+
+  ```bash
+  git add .
+  git commit -m "feat: add Husky to manage pre-push actions"
+
+  > sim@1.1.0 lint:fix
+  > biome check --fix
+
+  Checked 152 files in 727ms. Fixed 112 files.
+
+  > sim@1.1.0 test
+  > jest
+
+  PASS  src/environments/environments.spec.ts
+    ./src/environments/environments.ts
+      √ Should backend url exists (4 ms)
+      √ Should backend urls be strings (2 ms)
+
+  Test Suites: 1 passed, 1 total
+  Tests:       2 passed, 2 total
+  Snapshots:   0 total
+  Time:        3.66 s, estimated 6 s
+  Ran all test suites.
+
+  [development 00f5f0a] feat: add Husky to manage pre-push actions
+  4 files changed, 36 insertions(+), 4 deletions(-)
+  ```
+
 ## Running in Production Mode
 
 1. **Run the backend application**
