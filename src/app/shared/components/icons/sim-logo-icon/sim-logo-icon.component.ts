@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular/core";
 
 @Component({
-  selector: "app-sim-logo-icon",
-  standalone: true,
-  imports: [],
-  templateUrl: "./sim-logo-icon.component.svg",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-sim-logo-icon",
+    imports: [],
+    templateUrl: "./sim-logo-icon.component.svg",
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SimLogoIconComponent {
   public width: InputSignal<string> = input<string>("100");
