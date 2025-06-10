@@ -66,3 +66,4 @@ bun.lockb
 /dist
 
 .husky
+notes.txt

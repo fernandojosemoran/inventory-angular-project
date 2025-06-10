@@ -118,6 +118,18 @@ In this example, we will use Node.js.
 
   [development 00f5f0a] feat: add Husky to manage pre-push actions
   4 files changed, 36 insertions(+), 4 deletions(-)
+
+  git push origin development
+
+  Enumerating objects: 15, done.
+  Counting objects: 100% (15/15), done.
+  Delta compression using up to 8 threads
+  Compressing objects: 100% (10/10), done.
+  Writing objects: 100% (10/10), 1.58 KiB | 404.00 KiB/s, done.
+  Total 10 (delta 8), reused 0 (delta 0), pack-reused 0 (from 0)
+  remote: Resolving deltas: 100% (8/8), completed with 5 local objects.
+  To https://github.com/fernandojosemoran/inventory-angular-project.git
+    5435d3d..cdec8c1  development -> development
   ```
 
 ## Running in Production Mode
