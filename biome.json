@@ -3,7 +3,7 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["**/*.test.ts", "**/*.spec.ts", "node_modules", ".angular", "coverage", "**/*.mjs", ".vercel"]
+    "ignore": ["**/*.test.ts", "**/*.spec.ts", "node_modules", ".angular", "coverage", "**/*.mjs", ".vercel", "dist", "build"]
   },
   "formatter": {
     "enabled": true,

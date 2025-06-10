@@ -1,4 +1,4 @@
 export const environments = {
-  backendUrl: "https://workshop-server.up.railway.app",
-  backendApi: "https://workshop-server.up.railway.app/api/v1",
+  backendUrl: "https://simplified-inventory-management-backend.onrender.com",
+  backendApi: "https://simplified-inventory-management-backend.onrender.com/api/v1",
 };
