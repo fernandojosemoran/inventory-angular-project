@@ -1,12 +1,12 @@
 /* input normal */
 
 .input-with_label__input {
-  padding: 0.4em 0.8em;
-  background-color: transparent;
+  padding: 0.6em 0.8em;
+  background-color: var(--third-business-color);
   outline: none;
   font-size: 1em;
-  color: var(--primary-text-color);
-  caret-color: var(--primary-text-color, var(--primary-business-color));
+  color: var(--secondary-business-color);
+  /* caret-color: var(--primary-text-color, var(--primary-business-color)); */
   border: none;
   width: 100%;
   border-bottom: 1px solid var(--secondary-business-color);

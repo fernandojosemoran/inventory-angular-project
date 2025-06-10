@@ -17,9 +17,9 @@
 .register-submit__btn {
   border: none;
   outline: none;
-  color: var(--secondary-text-color);
-  background-color: var(--third-text-color);
-  padding: 0.2em 0.4em;
+  color: var(--primary-text-color);
+  background-color: var(--third-business-color);
+  padding: 0.4em 0.8em;
 }
 
 .register-submit__btn--active {

@@ -64,3 +64,6 @@ bun.lockb
 ## build
 
 /dist
+
+.husky
+notes.txt

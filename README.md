@@ -82,6 +82,56 @@ In this example, we will use Node.js.
 
 **Open your web browser** and navigate to `http://localhost:4200/`. The application will automatically reload if you modify the source files.
 
+## Best practices before collaborating
+
+  If you execute the `prepare` script, it handles code quality and security control.
+  The `prepare` script is responsible for executing actions before pushing changes to the branch where you're pushing.
+
+  ```bash
+  npm run prepare
+  ```
+
+  example
+
+  ```bash
+  git add .
+  git commit -m "feat: add Husky to manage pre-push actions"
+
+  > sim@1.1.0 lint:fix
+  > biome check --fix
+
+  Checked 152 files in 727ms. Fixed 112 files.
+
+  > sim@1.1.0 test
+  > jest
+
+  PASS  src/environments/environments.spec.ts
+    ./src/environments/environments.ts
+      √ Should backend url exists (4 ms)
+      √ Should backend urls be strings (2 ms)
+
+  Test Suites: 1 passed, 1 total
+  Tests:       2 passed, 2 total
+  Snapshots:   0 total
+  Time:        3.66 s, estimated 6 s
+  Ran all test suites.
+
+  [development 00f5f0a] feat: add Husky to manage pre-push actions
+  4 files changed, 36 insertions(+), 4 deletions(-)
+
+  git push origin development
+
+  Enumerating objects: 15, done.
+  Counting objects: 100% (15/15), done.
+  Delta compression using up to 8 threads
+  Compressing objects: 100% (10/10), done.
+  Writing objects: 100% (10/10), 1.58 KiB | 404.00 KiB/s, done.
+  Total 10 (delta 8), reused 0 (delta 0), pack-reused 0 (from 0)
+  remote: Resolving deltas: 100% (8/8), completed with 5 local objects.
+  To https://github.com/fernandojosemoran/inventory-angular-project.git
+    5435d3d..cdec8c1  development -> development
+  ```
+
 ## Running in Production Mode
 
 1. **Run the backend application**
