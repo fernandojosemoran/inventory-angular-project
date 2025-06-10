@@ -45,7 +45,8 @@
 
 @font-face {
   font-family: "Satoshi-MediumItalic";
-  src: url("assets/fonts/Satoshi-MediumItalic.woff2") format("woff2"), url("assets/fonts/Satoshi-MediumItalic.woff") format("woff"), url("assets/fonts/Satoshi-MediumItalic.ttf") format("truetype");
+  src: url("assets/fonts/Satoshi-MediumItalic.woff2") format("woff2"), url("assets/fonts/Satoshi-MediumItalic.woff")
+    format("woff"), url("assets/fonts/Satoshi-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
   font-style: italic;
@@ -98,7 +99,8 @@
 
 @font-face {
   font-family: "Satoshi-VariableItalic";
-  src: url("assets/fonts/Satoshi-VariableItalic.woff2") format("woff2"), url("assets/fonts/Satoshi-VariableItalic.woff") format("woff"), url("assets/fonts/Satoshi-VariableItalic.ttf") format("truetype");
+  src: url("assets/fonts/Satoshi-VariableItalic.woff2") format("woff2"), url("assets/fonts/Satoshi-VariableItalic.woff")
+    format("woff"), url("assets/fonts/Satoshi-VariableItalic.ttf") format("truetype");
   font-weight: 300 900;
   font-display: swap;
   font-style: italic;
