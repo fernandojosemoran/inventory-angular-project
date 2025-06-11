@@ -25,7 +25,7 @@ export class CreateCategoryDialogComponent {
     }),
   });
 
-  public submit(event: Event) {
+  public submit(event: Event): void {
     event.preventDefault();
 
     if (this.formGroup.invalid) return;

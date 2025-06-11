@@ -40,7 +40,7 @@ export class ActionsBarComponent implements OnInit {
 
   public evtDropdownOptionSelected: OutputEmitterRef<DropDownSelectedOption> = output<DropDownSelectedOption>();
 
-  public onChangeGenericSearch(term: string) {
+  public onChangeGenericSearch(term: string): void {
     this.searchTerm.emit(term);
   }
 
@@ -48,7 +48,7 @@ export class ActionsBarComponent implements OnInit {
     this.evtDropdownOptionSelected.emit(opt);
   }
 
-  public clickHandler() {
+  public clickHandler(): void {
     this.evtCreateNewBtnClicked.emit(true);
   }
 
