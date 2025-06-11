@@ -9,7 +9,7 @@
     "serve:ssr:SIM": "node dist/SIM/server/server.mjs",
     "lint": "biome check",
     "lint:fix": "biome check --fix",
-    "format": "prettier --write .",
+    "format": "biome check --write .",
     "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js",
     "test": "jest",
     "test:watch": "jest --watch",

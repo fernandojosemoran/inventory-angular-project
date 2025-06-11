@@ -9,6 +9,10 @@
   /* caret-color: var(--primary-text-color, var(--primary-business-color)); */
   border: none;
   width: 100%;
+  border-bottom: 1px solid var(--primary-text-color);
+}
+
+.input-with_label__input-active {
   border-bottom: 1px solid var(--secondary-business-color);
 }
 
@@ -32,7 +36,7 @@
 
 .input-with_label__label {
   position: absolute;
-  bottom: 10px;
+  bottom: 7px;
   left: 13px;
   transition-duration: 300ms;
   color: var(--primary-text-color);
@@ -51,43 +55,4 @@
   transform: translateY(-10px);
   font-size: 0.8em;
   color: var(--secondary-business-color);
-}
-
-/* input circle */
-
-.input-with_label-circle__input {
-  padding: 0.8em 0.8em;
-  background-color: transparent;
-  outline: none;
-  font-size: 0.8em;
-  color: var(--primary-text-color);
-  width: 100%;
-  border: 1px solid var(--secondary-business-color);
-  border-radius: 10px;
-}
-
-.input-with_label-circle__label {
-  position: absolute;
-  bottom: 10px;
-  font-size: 0.8em;
-  left: 13px;
-  transition-duration: 300ms;
-  color: var(--primary-text-color);
-}
-
-.input-with_label-circle__label--active {
-  top: 0;
-  transform: translateY(-18px);
-  font-size: 0.7em;
-  color: var(--secondary-business-color);
-}
-
-.input-with_label-circle__input:-webkit-autofill,
-.input-with_label-circle__input:-webkit-autofill:hover,
-.input-with_label-circle__input:-webkit-autofill:focus,
-.input-with_label-circle__input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-  -webkit-text-fill-color: white;
-  transition: background-color 5000s ease-in-out 0s;
-  caret-color: transparent;
 }

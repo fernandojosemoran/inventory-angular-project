@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, InputSignal, OnInit, forwardRef, in
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 type InputTypes = "text" | "file" | "email" | "password";
-type InputShape = "circle" | "normal";
 
 @Component({
   selector: "app-input-with-label",
@@ -24,7 +23,6 @@ export class InputWithLabelComponent implements ControlValueAccessor, OnInit {
   public defaultValue: InputSignal<string | number | boolean> = input<string | number | boolean>("Value Unknown");
   public type: InputSignal<InputTypes> = input<InputTypes>("text");
   public for: InputSignal<string> = input.required<string>();
-  public shape: InputSignal<InputShape> = input<InputShape>("normal");
 
   public ngOnInit(): void {
     this.value = this.defaultValue();

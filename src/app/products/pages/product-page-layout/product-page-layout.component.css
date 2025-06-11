@@ -45,26 +45,23 @@ td {
   color: var(--secondary-business-color);
 }
 
-.footer__row {
-  padding: 0.4em;
-}
-
-.footer__row > * {
-  display: inline;
-}
-
-/* tbody > tr {
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--third-business-color);
-    color: #eee;
-  }
-} */
-
 .product__table__header__actions__row {
   display: flex;
   gap: 1em;
+}
+
+.table-pagination__footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+
+  .table-pagination__1row {
+    grid-column: 1 / 2;
+  }
+
+  .table-pagination__2row {
+    grid-column: 2 / 3;
+  }
 }
 
 .product__table__header__actions__row > button {
