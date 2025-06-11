@@ -8,31 +8,39 @@ import { IProductProvider, Pagination } from "../interfaces/product.provider.int
 export class ProductProviderService implements IProductProvider {
   private readonly productService: ProductService = inject(ProductService);
 
-  public pagination: WritableSignal<Pagination> = signal<Pagination>({
+  private _pagination$: WritableSignal<Pagination> = signal<Pagination>({
     pageSize: 0,
     currentPage: 1,
     totalPages: 0,
   });
 
-  private readonly products: WritableSignal<Product[][]> = signal<Product[][]>([]);
-
-  public constructor() {
+  public get getPagination(): WritableSignal<Pagination> {
     this.productService.getProductByPage().subscribe((response) => {
       const res: ProductResponseSkeleton = response.response;
-      this.products.set([res.content as Product[]]);
-      this.pagination.set({
+
+      this._pagination$.set({
         pageSize: res.pageSize,
         currentPage: res.currentPage,
         totalPages: res.totalPages,
       });
     });
+
+    return this._pagination$;
+  }
+
+  private readonly products: WritableSignal<Product[][]> = signal<Product[][]>([]);
+
+  public loadProductProviderService(): void {
+    this.productService.getProductByPage().subscribe((response) => this.products.set([response.response.content as Product[]]));
+
+    this.getPagination();
   }
 
   public getProductByPage(page = 1): Observable<Product[]> {
     return this.productService.getProductByPage(page).pipe(
       map((response) => {
         this.products.update((oldProducts) => [...oldProducts, response.response.content as Product[]]);
-        return this.products()[page - 1];
+        return this.products()[page];
       }),
     );
   }

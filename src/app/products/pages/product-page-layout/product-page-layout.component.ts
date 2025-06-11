@@ -6,7 +6,17 @@ import { Pagination } from "@/app/shared/interfaces/product.provider.interface";
 import { CategoryProvider } from "@/app/shared/provider/categories.provider.service";
 import { ProductProviderService } from "@/app/shared/provider/product.provider.service";
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit, Signal, WritableSignal, computed, inject, signal } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  Signal,
+  WritableSignal,
+  computed,
+  inject,
+  signal,
+} from "@angular/core";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { AddProductDialogComponent } from "../../components/add-product-dialog/add-product-dialog.component";
 import { EditProductDialogComponent } from "../../components/edit-product-dialog/edit-product-dialog.component";
@@ -30,12 +40,12 @@ import { Product } from "./../../interfaces/product.interface";
   styleUrl: "./product-page-layout.component.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductPageLayoutComponent implements OnInit {
-  private readonly categoryService: CategoryProvider = inject(CategoryProvider);
-  private readonly productProvider: ProductProviderService = inject(ProductProviderService);
-  private readonly productService: ProductService = inject(ProductService);
+export class ProductPageLayoutComponent implements OnInit, OnDestroy {
+  private readonly _categoryService: CategoryProvider = inject(CategoryProvider);
+  private readonly _productProvider: ProductProviderService = inject(ProductProviderService);
+  private readonly _productService: ProductService = inject(ProductService);
 
-  public pagination: WritableSignal<Pagination> = signal<Pagination>(this.productProvider.pagination());
+  public pagination: WritableSignal<Pagination> = signal<Pagination>(this._productProvider.getPagination());
 
   public skeletonLoaderFlag: WritableSignal<boolean> = signal<boolean>(true);
   public productList: WritableSignal<Product[]> = signal<Product[]>([]);
@@ -49,35 +59,38 @@ export class ProductPageLayoutComponent implements OnInit {
   public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
-    this.productProvider.getProductByPage().subscribe((productList) => {
-      console.warn({ productList });
-      if (productList.length > 0) {
-        this.skeletonLoaderFlag.set(false);
-        this.productList.set(productList);
-      }
+    this._productProvider.loadProductProviderService();
+
+    this._productProvider.getProductByPage().subscribe((productList) => {
+      if (productList.length <= 0) return;
+
+      this.skeletonLoaderFlag.set(false);
+      this.productList.set(productList);
     });
   }
 
   public ChangePage(event: Event): void {
     const numberInput: HTMLInputElement = event.target as HTMLInputElement;
 
-    this.productProvider.getProductByPage(+numberInput.value).subscribe((productList) => this.productList.set(productList));
+    console.warn({ page: +numberInput.value });
+
+    this._productProvider.getProductByPage(+numberInput.value).subscribe((productList) => this.productList.set(productList));
   }
 
   public getCategories: Signal<string[]> = computed(() => {
-    const categories: string[] = this.categoryService.categories().map((opt) => opt.name);
-    categories.unshift("Ninguno");
-    return categories;
+    return this._categoryService.categories().map((opt) => opt.name);
   });
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {
     // if (opt.name === "Ninguno") return this.productList.set(this.productProvider.getProducts());
 
-    this.productList.set(this.productProvider.getProductByCategory(opt.name));
+    this.productList.set(this._productProvider.getProductByCategory(opt.name));
   }
 
+  // "useConsistentMemberAccessibility": "error"
+
   public editProduct(id: number): void {
-    const product: Product | undefined = this.productProvider.getOneProduct(id);
+    const product: Product | undefined = this._productProvider.getOneProduct(id);
 
     if (!product) return;
 
@@ -86,16 +99,16 @@ export class ProductPageLayoutComponent implements OnInit {
     this.editProductModalFlag.update((value) => !value);
   }
 
-  public openCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean) {
+  public openCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean): void {
     this.addProductModalFlag.set(wentClickedCreateNewProductBtn);
   }
 
-  public closeCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean) {
+  public closeCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean): void {
     this.addProductModalFlag.set(!wentClickedCreateNewProductBtn);
   }
 
   public deleteProduct(id: number): void {
-    const product: Product | undefined = this.productProvider.getOneProduct(id);
+    const product: Product | undefined = this._productProvider.getOneProduct(id);
 
     if (!product) return;
 
@@ -117,19 +130,23 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this.deleteProductModalFlag.set(!isConfirm);
 
-    const products = this.productProvider.deleteOneProduct(this.deleteProductSelected().id);
+    const products = this._productProvider.deleteOneProduct(this.deleteProductSelected().id);
 
     // TODO: replace console.error() with custom errors
     if (!products) return console.error("delete product not work");
 
-    this.productList.set(products[this.productProvider.pagination().currentPage]);
+    this.productList.set(products[this._productProvider.getPagination().currentPage]);
 
-    this.productService.deleteProduct(this.deleteProductSelected().id).subscribe((res) => console.log(res));
+    this._productService.deleteProduct(this.deleteProductSelected().id).subscribe((res) => console.log(res));
   }
 
   public searchProduct(term: string): void {
-    if (term.length === 0) return this.productList.set(this.productProvider.getProducts[this.pagination().currentPage]);
+    if (term.length === 0) return this.productList.set(this._productProvider.getProducts[this.pagination().currentPage]);
 
-    this.productService.searchProduct(term).subscribe((response: Product[]) => this.productList.set(response));
+    this._productService.searchProduct(term).subscribe((response: Product[]) => this.productList.set(response));
+  }
+
+  public ngOnDestroy(): void {
+    console.warn("Component dismounted");
   }
 }
