@@ -18,12 +18,12 @@ export class CartPageLayoutComponent {
   private readonly productService: ProductService = inject(ProductService);
   public readonly productNames: WritableSignal<string[]> = signal<string[]>([]);
 
-  public createNewCart(cart: Cart) {
+  public createNewCart(cart: Cart): void {
     console.log({ cart });
     this.isOpenCreateNewCartDialog.set(false);
   }
 
-  public openCreateNewCartDialog() {
+  public openCreateNewCartDialog(): void {
     this.isOpenCreateNewCartDialog.set(true);
 
     const products: string[] = [];
@@ -35,7 +35,7 @@ export class CartPageLayoutComponent {
     this.productNames.set(products);
   }
 
-  public closeCreateNewCartDialog(isClose: boolean) {
+  public closeCreateNewCartDialog(isClose: boolean): void {
     this.isOpenCreateNewCartDialog.set(!isClose);
   }
 }
