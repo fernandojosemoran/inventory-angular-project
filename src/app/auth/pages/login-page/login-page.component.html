@@ -3,32 +3,51 @@
   class="login__form"
   (submit)="submit()"
 >
-  <app-input-with-label
-    placeholder="Username"
-    type="text"
-    for="username-field"
-    formControlName="username"
-  />
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Username"
+      type="text"
+      for="username-field"
+      formControlName="username"
+    />
 
-  <app-input-with-label
-    placeholder="Email"
-    type="email"
-    for="email-field"
-    formControlName="email"
-  />
+    @if (isPristineField("username") && isValidField("username")) {
+      <span class="form-error">{{ handlerFormErrors("username") }}</span>
+    }
+  </div>
 
-  <app-input-with-label
-    placeholder="Password"
-    type="password"
-    for="password-field"
-    formControlName="password"
-  />
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Email"
+      type="email"
+      for="email-field"
+      formControlName="email"
+    />
+
+    @if (isPristineField("email") && isValidField("email")) {
+      <span class="form-error">{{ handlerFormErrors("email") }}</span>
+    }
+  </div>
+
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Password"
+      type="password"
+      for="password-field"
+      formControlName="password"
+    />
+
+    @if (isPristineField("password") && isValidField("password")) {
+      <span class="form-error">{{ handlerFormErrors("password") }}</span>
+    }
+  </div>
 
   <button
     type="submit"
-    [disabled]="!loginForm.valid"
+    [disabled]="loginForm.valid"
     [ngClass]="{'login-submit__btn--active': loginForm.valid}"
     class="login-submit__btn"
+    [disabled]="loginForm.invalid"
     (submit)="submit()"
   >
     Login

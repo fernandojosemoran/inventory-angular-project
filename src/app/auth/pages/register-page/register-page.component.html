@@ -3,44 +3,74 @@
   class="register__form"
   (submit)="submit()"
 >
-  <app-input-with-label
-    placeholder="Username"
-    type="text"
-    for="username-field"
-    formControlName="username"
-  />
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Username"
+      type="text"
+      for="username-field"
+      formControlName="username"
+    />
 
-  <app-input-with-label
-    placeholder="Last Name"
-    type="text"
-    for="lastName-field"
-    formControlName="lastName"
-  />
+    @if (isPristineField("username") && isValidField("username")) {
+      <span class="form-error">{{ handlerFormErrors("username") }}</span>
+    }
+  </div>
 
-  <app-input-with-label
-    placeholder="Email"
-    type="email"
-    for="email-field"
-    formControlName="email"
-  />
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Last Name"
+      type="text"
+      for="lastName-field"
+      formControlName="lastName"
+    />
 
-  <app-input-with-label
-    placeholder="Password"
-    type="password"
-    for="password-field"
-    formControlName="password"
-  />
+    @if (isPristineField("lastName") && isValidField("lastName")) {
+      <span class="form-error">{{ handlerFormErrors("lastName") }}</span>
+    }
+  </div>
 
-  <app-input-with-label
-    placeholder="Confirm Password"
-    type="password"
-    for="confirm-password-field"
-    formControlName="confirmPassword"
-  />
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Email"
+      type="email"
+      for="email-field"
+      formControlName="email"
+    />
+
+    @if (isPristineField("email") && isValidField("email")) {
+      <span class="form-error">{{ handlerFormErrors("email") }}</span>
+    }
+  </div>
+
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Password"
+      type="password"
+      for="password-field"
+      formControlName="password"
+    />
+
+    @if (isPristineField("password") && isValidField("password")) {
+      <span class="form-error">{{ handlerFormErrors("password") }}</span>
+    }
+  </div>
+
+  <div class="form-input-container">
+    <app-input-with-label
+      placeholder="Confirm Password"
+      type="password"
+      for="confirm-password-field"
+      formControlName="confirmPassword"
+    />
+
+    @if (isPristineField("confirmPassword") && isValidField("confirmPassword")) {
+      <span class="form-error">{{ handlerFormErrors("confirmPassword") }}</span>
+    }
+  </div>
 
   <button
     type="submit"
-    [disabled]="!registerForm.valid"
+    [disabled]="registerForm.invalid"
     [ngClass]="{'register-submit__btn--active': registerForm.valid}"
     class="register-submit__btn"
     (submit)="submit()"

@@ -1,3 +1,4 @@
+import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { ValidatorFn, Validators } from "@angular/forms";
@@ -21,9 +22,9 @@ export class LoginPageComponent {
   private readonly router: Router = inject(Router);
 
   private readonly validator: LoginFormValidators = {
-    username: [Validators.required],
+    username: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
     email: [Validators.required, Validators.email],
-    password: [Validators.required],
+    password: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
   };
 
   public loginForm: FormGroup = new FormGroup({
@@ -36,7 +37,23 @@ export class LoginPageComponent {
     }),
   });
 
+  public isValidField(field: string): boolean {
+    return !!this.loginForm.controls[field].errors;
+  }
+
+  public isPristineField(field: string): boolean {
+    return !this.loginForm.controls[field].pristine;
+  }
+
+  public handlerFormErrors(field: string): string | null {
+    return handlerFormFieldErrors(this.loginForm, { name: field });
+  }
+
   public submit(): void {
+    console.log({ form: this.loginForm, username_touched: this.loginForm.controls["username"].pristine });
+
+    if (this.loginForm.invalid) return;
+
     this.router.navigate(["/dashboard/home"]);
   }
 }

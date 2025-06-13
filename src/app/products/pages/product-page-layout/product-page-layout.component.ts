@@ -87,8 +87,6 @@ export class ProductPageLayoutComponent implements OnInit, OnDestroy {
     this.productList.set(this._productProvider.getProductByCategory(opt.name));
   }
 
-  // "useConsistentMemberAccessibility": "error"
-
   public editProduct(id: number): void {
     const product: Product | undefined = this._productProvider.getOneProduct(id);
 

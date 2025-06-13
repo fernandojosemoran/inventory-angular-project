@@ -2,6 +2,7 @@
 
 import { InputWithLabelComponent } from "@/app/shared/components/input-with-label/input-with-label.component";
 import { ProductProviderService } from "@/app/shared/provider/product.provider.service";
+import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { imageValidator } from "@/app/shared/validators/validate-image-type.validator";
 import { ChangeDetectionStrategy, Component, InputSignal, OnInit, OutputEmitterRef, inject, input, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
@@ -53,6 +54,8 @@ export class EditProductDialogComponent implements OnInit {
   });
 
   public ngOnInit(): void {
+    this.editProductForm;
+
     this.editProductForm.patchValue({
       ...this.product(),
       category: this.product()?.categoryName,
@@ -67,6 +70,18 @@ export class EditProductDialogComponent implements OnInit {
 
     const file = inputElement.files[0];
     this.editProductForm.get("image")?.setValue(file);
+  }
+
+  public isValidField(field: string): boolean {
+    return !!this.editProductForm.controls[field].errors;
+  }
+
+  public isPristineField(field: string): boolean {
+    return !this.editProductForm.controls[field].pristine;
+  }
+
+  public handlerFormErrors(field: string): string | null {
+    return handlerFormFieldErrors(this.editProductForm, { name: field });
   }
 
   public submit(event: Event): void {
