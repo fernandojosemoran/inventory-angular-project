@@ -24,6 +24,7 @@
   gap: 1em;
   padding: 2em;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .add-product-dialog__form {

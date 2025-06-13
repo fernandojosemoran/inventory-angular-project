@@ -1,4 +1,5 @@
 import { InputWithLabelComponent } from "@/app/shared/components/input-with-label/input-with-label.component";
+import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { imageValidator } from "@/app/shared/validators/validate-image-type.validator";
 import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, input, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
@@ -14,15 +15,19 @@ export class AddProductDialogComponent {
   public readonly dialogTitle: InputSignal<string> = input.required<string>();
   public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
 
-  public readonly formNameFieldValidators: ValidatorFn[] = [Validators.required];
+  public readonly formNameFieldValidators: ValidatorFn[] = [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(12),
+  ];
 
   public readonly formImageFieldValidators: ValidatorFn[] = [Validators.required, imageValidator];
 
-  public readonly formStockFieldValidators: ValidatorFn[] = [Validators.required];
+  public readonly formStockFieldValidators: ValidatorFn[] = [Validators.required, Validators.min(5)];
 
-  public readonly formCostFieldValidators: ValidatorFn[] = [Validators.required];
+  public readonly formCostFieldValidators: ValidatorFn[] = [Validators.required, Validators.min(5)];
 
-  public readonly formPriceFieldValidators: ValidatorFn[] = [Validators.required];
+  public readonly formPriceFieldValidators: ValidatorFn[] = [Validators.required, Validators.min(5)];
 
   public readonly formCategoryFieldValidators: ValidatorFn[] = [Validators.required];
 
@@ -51,6 +56,18 @@ export class AddProductDialogComponent {
       validators: this.formAvailableFieldValidators,
     }),
   });
+
+  public isValidField(field: string): boolean {
+    return !!this.dialogForm.controls[field].errors;
+  }
+
+  public isPristineField(field: string): boolean {
+    return !this.dialogForm.controls[field].pristine;
+  }
+
+  public handlerFormErrors(field: string): string | null {
+    return handlerFormFieldErrors(this.dialogForm, { name: field });
+  }
 
   public submit(event: Event): void {
     event.preventDefault();

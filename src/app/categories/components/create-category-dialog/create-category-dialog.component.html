@@ -8,26 +8,42 @@
     [formGroup]="formGroup"
     (submit)="submit($event)"
   >
-    <app-input-with-label
-      formControlName="name"
-      for="category-name-input"
-      placeholder="Nombre"
-      type="text"
-    />
+    <div class="form-input-container">
+      <app-input-with-label
+        formControlName="name"
+        for="category-name-input"
+        placeholder="Nombre"
+        type="text"
+      />
+      @if (isPristineField("name") && isValidField("name")) {
+        <span class="form-error">{{ handlerFormErrors("name") }}</span>
+      }
+    </div>
 
-    <app-input-with-label
-      formControlName="description"
-      for="category-description-input"
-      placeholder="Descripcion"
-      type="text"
-    />
+    <div class="form-input-container">
+      <app-input-with-label
+        formControlName="description"
+        for="category-description-input"
+        placeholder="Descripcion"
+        type="text"
+      />
+      @if (isPristineField("description") && isValidField("description")) {
+        <span class="form-error">{{ handlerFormErrors("description") }}</span>
+      }
+    </div>
 
-    <app-input-with-label
-      formControlName="image"
-      for="category-image-input"
-      placeholder="Imagen"
-      type="file"
-    />
+
+    <div class="form-input-container">
+      <app-input-with-label
+        formControlName="image"
+        for="category-image-input"
+        placeholder="Imagen"
+        type="file"
+      />
+      @if (isPristineField("image") && isValidField("image")) {
+        <span class="form-error">{{ handlerFormErrors("image") }}</span>
+      }
+    </div>
 
     <div class="add-product-dialog__btn-container">
       <button

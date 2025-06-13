@@ -1,6 +1,7 @@
 import { InputWithLabelComponent } from "@/app/shared/components/input-with-label/input-with-label.component";
+import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 
@@ -17,16 +18,17 @@ interface RegisterFormValidators {
   imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
   private readonly router: Router = inject(Router);
 
   private readonly validator: RegisterFormValidators = {
-    username: [Validators.required],
-    lastName: [Validators.required],
+    lastName: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
+    username: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
     email: [Validators.required, Validators.email],
-    password: [Validators.required],
-    confirmPassword: [Validators.required],
+    password: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
+    confirmPassword: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
   };
 
   public registerForm: FormGroup = new FormGroup({
@@ -45,7 +47,23 @@ export class RegisterPageComponent {
     }),
   });
 
+  public isValidField(field: string): boolean {
+    return !!this.registerForm.controls[field].errors;
+  }
+
+  public isPristineField(field: string): boolean {
+    return !this.registerForm.controls[field].pristine;
+  }
+
+  public handlerFormErrors(field: string): string | null {
+    return handlerFormFieldErrors(this.registerForm, { name: field });
+  }
+
   public submit(): void {
+    const fields = this.registerForm.value;
+
+    if (this.registerForm.invalid && fields["password"] !== fields["confirmPassword"]) return;
+
     this.router.navigate(["/auth/login"]);
   }
 }

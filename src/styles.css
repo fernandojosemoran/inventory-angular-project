@@ -139,8 +139,18 @@ body {
   transition-duration: 500ms;
 }
 
+.form-error {
+  color: var(--secondary_unsuccess-color);
+}
+
 .spacer {
   height: 8em;
   display: block;
   width: 100%;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }

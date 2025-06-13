@@ -9,7 +9,8 @@
     "enabled": true,
     "indentStyle": "space",
     "lineWidth": 130,
-    "indentWidth": 2
+    "indentWidth": 2,
+    "bracketSpacing": true
   },
   "organizeImports": { "enabled": true },
   "linter": { "enabled": true, "rules": { "recommended": false } },
@@ -41,6 +42,16 @@
       "linter": {
         "rules": {
           "recommended": false,
+          "nursery": {
+            "recommended": false,
+            "useExplicitType": "info",
+            "useConsistentMemberAccessibility": {
+              "level": "error",
+              "options": {
+                "accessibility": "explicit"
+              }
+            }
+          },
           "complexity": {
             "noExtraBooleanCast": "error",
             "noMultipleSpacesInRegularExpressionLiterals": "error",
@@ -105,13 +116,7 @@
       "ignore": ["node_modules", "dist", "server.ts", "setup-jest.ts"],
       "include": ["**/*.ts", "**/*.js"],
       "javascript": {
-        "globals": [],
-        "formatter": {
-          "quoteStyle": "double",
-          "trailingCommas": "all",
-          "semicolons": "always",
-          "bracketSpacing": true
-        }
+        "globals": []
       }
     },
     {
@@ -177,13 +182,7 @@
       "ignore": ["node_modules", "dist", "server.ts", "setup-jest.ts"],
       "include": ["**/*.ts", "**/*.js"],
       "javascript": {
-        "globals": [],
-        "formatter": {
-          "quoteStyle": "double",
-          "trailingCommas": "all",
-          "semicolons": "always",
-          "bracketSpacing": true
-        }
+        "globals": []
       }
     },
     {
@@ -240,13 +239,7 @@
       "ignore": ["node_modules", "dist", "server.ts", "setup-jest.ts"],
       "include": ["**/*.ts", "**/*.js"],
       "javascript": {
-        "globals": [],
-        "formatter": {
-          "quoteStyle": "double",
-          "trailingCommas": "all",
-          "semicolons": "always",
-          "bracketSpacing": true
-        }
+        "globals": []
       }
     },
     {

@@ -5,54 +5,94 @@
     [formGroup]="dialogForm"
     class="add-product-dialog__form"
   >
-    <app-input-with-label
-      for="name-input"
-      placeholder="Name"
-      formControlName="name"
-      type="text"
-      required
-    />
-    <app-input-with-label
-      for="image-input"
-      placeholder="Image"
-      formControlName="image"
-      type="file"
-    />
-    <app-input-with-label
-      for="stock-input"
-      placeholder="Stock"
-      formControlName="stock"
-      type="text"
-      required
-    />
-    <app-input-with-label
-      for="cost-input"
-      placeholder="Cost"
-      formControlName="cost"
-      type="text"
-      required
-    />
-    <app-input-with-label
-      for="price-input"
-      placeholder="Price"
-      formControlName="price"
-      type="text"
-      required
-    />
-    <app-input-with-label
-      for="category-input"
-      placeholder="Category"
-      formControlName="category"
-      type="text"
-      required
-    />
-    <app-input-with-label
-      for="available-input"
-      placeholder="Available"
-      formControlName="available"
-      type="text"
-      required
-    />
+    <div class="form-input-container">
+      <app-input-with-label
+        for="name-input"
+        placeholder="Nombre"
+        formControlName="name"
+        type="text"
+        required
+      />
+      @if (isPristineField("name") && isValidField("name")) {
+        <span class="form-error">{{ handlerFormErrors("name") }}</span>
+      }
+    </div>
+    <div class="form-input-container">
+      <app-input-with-label
+        for="image-input"
+        placeholder="Imagen"
+        formControlName="image"
+        type="file"
+      />
+      @if (isPristineField("image") && isValidField("image")) {
+        <span class="form-error">{{ handlerFormErrors("image") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        for="stock-input"
+        placeholder="Stock"
+        formControlName="stock"
+        type="text"
+        required
+      />
+      @if (isPristineField("stock") && isValidField("stock")) {
+        <span class="form-error">{{ handlerFormErrors("stock") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        for="cost-input"
+        placeholder="Costo"
+        formControlName="cost"
+        type="text"
+        required
+      />
+      @if (isPristineField("cost") && isValidField("cost")) {
+        <span class="form-error">{{ handlerFormErrors("cost") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        for="price-input"
+        placeholder="Precio"
+        formControlName="price"
+        type="text"
+        required
+      />
+      @if (isPristineField("price") && isValidField("price")) {
+        <span class="form-error">{{ handlerFormErrors("price") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        for="category-input"
+        placeholder="Categoria"
+        formControlName="category"
+        type="text"
+        required
+      />
+      @if (isPristineField("category") && isValidField("category")) {
+        <span class="form-error">{{ handlerFormErrors("category") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        for="available-input"
+        placeholder="Habilitado"
+        formControlName="available"
+        type="text"
+        required
+      />
+      @if (isPristineField("available") && isValidField("available")) {
+        <span class="form-error">{{ handlerFormErrors("available") }}</span>
+      }
+    </div>
 
     <div class="add-product-dialog__btn-container">
       <button
