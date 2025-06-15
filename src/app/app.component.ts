@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import GlobalAlertProvider from "./shared/provider/global-alert.provider.service";
 
 @Component({
   selector: "app-root",
@@ -9,4 +10,14 @@ import { RouterOutlet } from "@angular/router";
 })
 export class AppComponent {
   public title = "inventory";
+
+  private readonly _globalAlertProvider: GlobalAlertProvider = inject(GlobalAlertProvider);
+
+  public isOpen(): boolean {
+    return this._globalAlertProvider.getIsOpen();
+  }
+
+  public showMessage(): string | undefined {
+    return this._globalAlertProvider.getMessage();
+  }
 }

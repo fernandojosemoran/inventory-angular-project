@@ -154,3 +154,12 @@ body {
   flex-direction: column;
   gap: 0.5em;
 }
+
+.global-alert {
+  background-color: var(--secondary_unsuccess-color);
+  color: var(--primary-unsuccess-color);
+  padding: 0.4em 0.8em;
+  position: fixed;
+  bottom: 45px;
+  right: 10px;
+}

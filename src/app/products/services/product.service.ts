@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, map, of } from "rxjs";
 
@@ -32,13 +32,13 @@ export class ProductService implements IProductService {
     );
   }
 
-  public createProduct(product: Product): Observable<Product> {
+  public createProduct(product: FormData): Observable<Product | undefined> {
     return this._http.post<ProductResponse>(`${BACKEND_API}/products`, product).pipe(
       catchError((error) => {
         console.error(error);
-        return of();
+        return of(undefined);
       }),
-      map((response) => response.response.content as Product),
+      map((response) => response && (response.response.content as Product)),
     );
   }
 

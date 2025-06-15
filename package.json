@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --runInBand",
-    "prepare": "husky init"
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {

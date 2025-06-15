@@ -23,6 +23,17 @@
       "bracketSpacing": true
     }
   },
+  "css": {
+    "linter": {
+      "enabled": true
+    },
+    "formatter": {
+      "enabled": true,
+      "indentWidth": 2,
+      "indentStyle": "space",
+      "quoteStyle": "double"
+    }
+  },
   "json": {
     "formatter": {
       "enabled": true,
@@ -390,10 +401,52 @@
         }
       }
     },
-    { "include": ["**/*.html"], "javascript": { "globals": [] } },
-    { "include": ["**/*.html"], "linter": { "rules": {} } },
-    { "include": ["**/*.html"], "javascript": { "globals": [] } },
-    { "include": ["**/*.html"], "linter": { "rules": {} } },
-    { "include": ["**/*.html"] }
+    {
+      "include": ["**/*.html"],
+      "javascript": { "globals": [] }
+    },
+    {
+      "include": ["**/*.html"],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "suspicious": {},
+          "a11y": { "useAltText": "error" }
+        }
+      }
+    },
+    {
+      "include": ["**/*.html"],
+      "javascript": { "globals": [] },
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "suspicious": {},
+          "a11y": { "useAltText": "error" }
+        }
+      }
+    },
+    {
+      "include": ["**/*.html"],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "suspicious": {},
+          "a11y": {
+            "useAltText": "error"
+          }
+        }
+      }
+    },
+    {
+      "include": ["**/*.html"],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "suspicious": {},
+          "a11y": { "useAltText": "error" }
+        }
+      }
+    }
   ]
 }
