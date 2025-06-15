@@ -18,11 +18,13 @@
       }
     </div>
     <div class="form-input-container">
-      <app-input-with-label
-        for="image-input"
+      <input
+        id="image-input"
         placeholder="Imagen"
-        formControlName="image"
         type="file"
+        formControlName="image"
+        accept=".png, .jpeg, .jpg, .webp"
+        (change)="onFileSelected($event)"
       />
       @if (isPristineField("image") && isValidField("image")) {
         <span class="form-error">{{ handlerFormErrors("image") }}</span>

@@ -1,1 +1,7 @@
 <router-outlet class="app__container"></router-outlet>
+
+@if (isOpen()) {
+  <div class="global-alert">
+    {{ showMessage() }}
+  </div>
+}
