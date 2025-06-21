@@ -95,8 +95,6 @@ export class ProductPageLayoutComponent implements OnInit {
   public confirmCreateProduct(product: FormData): void {
     if (!product) return;
 
-    console.info({ values: product.getAll("file") });
-
     this._productService
       .createProduct(product)
       .subscribe((product) =>
@@ -111,6 +109,9 @@ export class ProductPageLayoutComponent implements OnInit {
   }
 
   public closeCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean): void {
+    this._globalAlertProvider.showAlert(
+      "Lo siento el producto no fue creado. jajajajajajajajajjajajajajajjajajajajajjajajajajajajjajajajajajajajaj",
+    );
     this.addProductModalFlag.set(!wentClickedCreateNewProductBtn);
   }
 

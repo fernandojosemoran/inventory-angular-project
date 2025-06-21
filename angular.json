@@ -5,7 +5,9 @@
   "projects": {
     "inventory": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "changeDetection": "OnPush"
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
