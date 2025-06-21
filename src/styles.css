@@ -155,11 +155,43 @@ body {
   gap: 0.5em;
 }
 
-.global-alert {
-  background-color: var(--secondary_unsuccess-color);
-  color: var(--primary-unsuccess-color);
-  padding: 0.4em 0.8em;
-  position: fixed;
-  bottom: 45px;
-  right: 10px;
+/* view transitions */
+
+::view-transition-old(root) {
+}
+::view-transition-new(root) {
+}
+
+/* animations */
+
+.ease-in-animation {
+  animation-duration: 800ms;
+  animation-name: ease-in-animation;
+  animation-timing-function: cubic-bezier(0.13, 0.52, 0.33, 0.81);
+  animation-iteration-count: 1;
+}
+
+.ease-out-animation {
+  animation-duration: 800ms;
+  animation-name: ease-out-animation;
+  animation-timing-function: cubic-bezier(0.13, 0.52, 0.33, 0.81);
+  animation-iteration-count: 1;
+}
+
+@keyframes ease-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ease-out-animation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

@@ -1,0 +1,57 @@
+.global-alert {
+  background-color: var(--primary-unsuccess-color);
+  color: var(--secondary_unsuccess-color);
+  border-radius: 5px;
+  position: fixed;
+  bottom: 45px;
+  right: 10px;
+  word-wrap: break-word;
+  max-width: 22em; /* Keep max-width for the alert container */
+}
+
+.global-alert__loader {
+  width: 0px;
+  height: 10px;
+  display: block;
+  background-color: var(--secondary_unsuccess-color);
+}
+
+.icon__container {
+  display: flex;
+  justify-content: flex-end; /* Changed to flex-end for clarity and consistency */
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.global-alert__message {
+  font-size: 20px;
+  white-space: nowrap; /* Ensures the text stays on a single line */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar for IE and Edge */
+  padding-right: 5px; /* Add some padding to the right so text doesn't touch the edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.global-alert__message::-webkit-scrollbar {
+  display: none;
+}
+
+.xmark__icon {
+  cursor: pointer;
+}
+
+.global-alert__body {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items in the middle */
+  padding-top: 0.6em;
+  padding-bottom: 0.8em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+}
+
+/* Optional: Add some spacing between the icon and the message */
+.global-alert__body app-circle-exclamation-icon {
+  margin-right: 10px; /* Adjust as needed */
+  flex-shrink: 0; /* Prevent the icon from shrinking */
+}

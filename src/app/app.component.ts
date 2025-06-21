@@ -1,10 +1,11 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import GlobalAlertProvider from "./shared/provider/global-alert.provider.service";
+import { GloabalAlertComponent } from "./shared/components/gloabal-alert/gloabal-alert.component";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, GloabalAlertComponent],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
@@ -15,9 +16,5 @@ export class AppComponent {
 
   public isOpen(): boolean {
     return this._globalAlertProvider.getIsOpen();
-  }
-
-  public showMessage(): string | undefined {
-    return this._globalAlertProvider.getMessage();
   }
 }
