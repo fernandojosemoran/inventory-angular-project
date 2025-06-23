@@ -67,8 +67,6 @@ export class ProductPageLayoutComponent implements OnInit {
   public changePage(event: Event): void {
     const numberInput: HTMLInputElement = event.target as HTMLInputElement;
 
-    console.warn({ page: +numberInput.value });
-
     this._productProvider.getProductByPage(+numberInput.value).subscribe((productList) => this.productList.set(productList));
   }
 
@@ -109,9 +107,6 @@ export class ProductPageLayoutComponent implements OnInit {
   }
 
   public closeCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean): void {
-    this._globalAlertProvider.showAlert(
-      "Lo siento el producto no fue creado. jajajajajajajajajjajajajajajjajajajajajjajajajajajajjajajajajajajajaj",
-    );
     this.addProductModalFlag.set(!wentClickedCreateNewProductBtn);
   }
 

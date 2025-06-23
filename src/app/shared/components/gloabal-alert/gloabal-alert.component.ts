@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, signal, WritableSignal } from "@angular/core";
-import { XMarkComponent } from "../icons/x-mark-icon/x-mark-icon.component";
 import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, WritableSignal, inject, signal } from "@angular/core";
+import { XMarkComponent } from "../icons/x-mark-icon/x-mark-icon.component";
 
 import GlobalAlertProvider from "../../provider/global-alert.provider.service";
 import { CircleExclamationIconComponent } from "../icons/circle-exclamation-icon/circle-exclamation-icon.component";

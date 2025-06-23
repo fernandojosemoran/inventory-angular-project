@@ -1,6 +1,104 @@
 <app-actions-bar
-  title="Compras"
-  [showDropdownOption]="false"
-  [dropdownOptionList]="[]"
   dropdownTitle=""
+  [dropdownOptionList]="[]"
+  [showDropdownOption]="false"
+  title="Purchase"
+  (searchTerm)="searchPurchase($event)"
+  (evtCreateNewBtnClicked)="openAddPurchase($event)"
 />
+
+<!-- [dropdownOptionList]="getCategories()" -->
+
+<!-- <ng-container *ngIf="isOpenUpdatePurchaseModal()">
+  <app-edit-product-dialog
+    class="ease-in-animation"
+    [product]="editPurchaseSelected()"
+    (isConfirm)="confirmUpdatePurchase($event)"
+  />
+</ng-container>
+
+<ng-container *ngIf="isOpenDeletePurchaseModal()">
+  <app-confirm-delete-dialog
+    class="ease-in-animation"
+    (isConfirm)="confirmDeletePurchase($event)"
+    [product]="deletePurchaseSelected()"
+    title="Confirmar eliminacion"
+  />
+</ng-container>
+
+<ng-container *ngIf="isOpenAddPurchaseModal()">
+  <app-add-product-dialog
+    class="ease-in-animation"
+    dialogTitle="Crear un producto"
+    (evtCloseCreateNew)="closeAddPurchase($event)"
+    (evtConfirmCreateNew)="confirmAddPurchase($event)"
+  />
+</ng-container> -->
+
+
+@if (!skeletonLoader()) {
+  <table id="product__table">
+    <thead>
+      <tr>
+        <th data-sort="id">ID</th>
+        <th data-sort="provider">Provider</th>
+        <th data-sort="count">Count</th>
+        <th data-sort="totalPrice">TotalPrice</th>
+        <th data-sort="discount">Discount</th>
+        <th data-sort="createdAt">CreatedAt</th>
+        <th data-sort="updatedAt">UpdatedAt</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(purchase of purchaseList(); track purchase.id){
+      <tr>
+        <td>{{ purchase.id }}</td>
+        <td>{{ purchase.provider }}</td>
+        <td>{{ purchase.count }}</td>
+        <td>{{ purchase.totalPrice }}</td>
+        <td>{{ purchase.discount }}</td>
+        <td>{{ purchase.createdAt }}</td>
+        <td>{{ purchase.updatedAt }}</td>
+        <td>
+          <div class="product-table-header-actions__row">
+            <app-reverse-fill-button
+              text="Editar"
+              buttonType="rounded"
+              (evtClick)="openUpdatePurchase(purchase.id)"
+            />
+
+            <app-reverse-fill-button
+              text="Eliminar"
+              color="unsuccess"
+              buttonType="rounded"
+              (evtClick)="openDeletePurchase(purchase.id)"
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+<!--
+    <div class="table-pagination__footer">
+      <div class="table-pagination__1row">
+        <p>Total de paginas: <span class="pages-count">{{ pagination().totalPages }}</span></p>
+      </div>
+
+      <div class="table-pagination__2row">
+        <label for="page__input">Pagina actual: </label>
+        <input
+          id="page__input"
+          type="number"
+          min="0"
+          max="{{ pagination().totalPages }}"
+          contenteditable="false"
+          value="{{ pagination().currentPage }}"
+          (input)="changePage($event)"
+        >
+      </div>
+    </div> -->
+}@else {
+  <app-table-skeleton [tableDataList]="[1,2,3,4,5,6,7]"/>
+}
+<span class="spacer"></span>
