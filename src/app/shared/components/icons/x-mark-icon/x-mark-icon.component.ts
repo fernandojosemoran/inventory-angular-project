@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal, output, OutputEmitterRef } from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, OutputEmitterRef, input, output } from "@angular/core";
 
 @Component({
   selector: "app-x-mark-icon",

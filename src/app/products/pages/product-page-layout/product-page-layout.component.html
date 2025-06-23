@@ -10,6 +10,7 @@
 
 <ng-container *ngIf="editProductModalFlag()">
   <app-edit-product-dialog
+    class="ease-in-animation"
     [product]="editProductSelected()"
     (isConfirm)="confirmEditProduct($event)"
   />
@@ -17,6 +18,7 @@
 
 <ng-container *ngIf="deleteProductModalFlag()">
   <app-confirm-delete-dialog
+    class="ease-in-animation"
     (isConfirm)="confirmDeleteProduct($event)"
     [product]="deleteProductSelected()"
     title="Confirmar eliminacion"
@@ -25,6 +27,7 @@
 
 <ng-container *ngIf="addProductModalFlag()">
   <app-add-product-dialog
+    class="ease-in-animation"
     dialogTitle="Crear un producto"
     (evtCloseCreateNew)="closeCreateNewProductDialog($event)"
     (evtConfirmCreateNew)="confirmCreateProduct($event)"
@@ -32,12 +35,12 @@
 </ng-container>
 
 @if (!skeletonLoaderFlag()) {
-  <table id="product__table__container">
+  <table id="product__table">
     <thead>
       <tr>
         <th data-sort="code">Codigo</th>
-        <th data-sort="name">Nombre</th>
         <th data-sort="image">Imagen</th>
+        <th data-sort="name">Nombre</th>
         <th data-sort="stock">Stock</th>
         <th data-sort="cost">Costo</th>
         <th data-sort="price">Precio</th>
@@ -50,21 +53,21 @@
       @for(product of productList(); track product.id){
       <tr>
         <td>{{ product.code }}</td>
-        <td>{{ product.name }}</td>
-        <td class="product__table__header__field__list_image">
+        <td class="product-table-header-field-list__image">
           <img
-            class="product__table__header__field__list_image"
+            class="product-table-header-field-list__image"
             src="{{ product.imageUrl | defaultImage}}"
             alt="producto {{ product.name }}"
           />
         </td>
+        <td>{{ product.name }}</td>
         <td>{{ product.stock }}</td>
         <td>{{ product.cost }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.categoryName }}</td>
         <td>{{ product.available | isAvailable }}</td>
         <td>
-          <div class="product__table__header__actions__row">
+          <div class="product-table-header-actions__row">
             <app-reverse-fill-button
               text="Editar"
               buttonType="rounded"

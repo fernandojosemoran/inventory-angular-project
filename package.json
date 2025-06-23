@@ -7,7 +7,7 @@
     "build": "npm run changeEnvironmentFileNames && ng build --aot --optimization",
     "watch": "ng build --watch --configuration development",
     "serve:ssr:SIM": "node dist/SIM/server/server.mjs",
-    "lint": "biome check --diagnostic-level=warn ",
+    "lint": "biome check --diagnostic-level=warn",
     "lint:fix": "biome check --fix --diagnostic-level=warn ",
     "format": "biome check --write --diagnostic-level=warn .",
     "changeEnvironmentFileNames": "node ./scripts/change-environment-file-names.js",

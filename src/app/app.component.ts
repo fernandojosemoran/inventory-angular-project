@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import GlobalAlertProvider from "./shared/provider/global-alert.provider.service";
 import { GloabalAlertComponent } from "./shared/components/gloabal-alert/gloabal-alert.component";
+import GlobalAlertProvider from "./shared/provider/global-alert.provider.service";
 
 @Component({
   selector: "app-root",

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, InputSignal, input } from "@angular/core";
 
 @Component({
   selector: "app-circle-exclamation-icon",
