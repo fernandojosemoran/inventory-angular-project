@@ -2,16 +2,11 @@ import { InputWithLabelComponent } from "@/app/shared/components/input-with-labe
 import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
+import { RegisterFormValidators } from "../../types/register-validators";
 
-interface RegisterFormValidators {
-  username: ValidatorFn[];
-  lastName: ValidatorFn[];
-  email: ValidatorFn[];
-  password: ValidatorFn[];
-  confirmPassword: ValidatorFn[];
-}
+import AuthService from "../../services/auth.service";
 
 @Component({
   selector: "app-register",
@@ -21,27 +16,32 @@ interface RegisterFormValidators {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
-  private readonly router: Router = inject(Router);
+  private readonly _router: Router = inject(Router);
+  private readonly _authService: AuthService = inject(AuthService);
 
   private readonly validator: RegisterFormValidators = {
     lastName: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
-    username: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
+    name: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
     email: [Validators.required, Validators.email],
     password: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
     confirmPassword: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
   };
 
   public registerForm: FormGroup = new FormGroup({
-    username: new FormControl<string>("", {
-      validators: this.validator.username,
+    name: new FormControl<string>("", {
+      validators: this.validator.name,
     }),
+
     lastName: new FormControl<string>("", {
       validators: this.validator.password,
     }),
+
     email: new FormControl<string>("", { validators: this.validator.email }),
+
     password: new FormControl<string>("", {
       validators: this.validator.password,
     }),
+
     confirmPassword: new FormControl<string>("", {
       validators: this.validator.confirmPassword,
     }),
@@ -64,6 +64,9 @@ export class RegisterPageComponent {
 
     if (this.registerForm.invalid && fields["password"] !== fields["confirmPassword"]) return;
 
-    this.router.navigate(["/auth/login"]);
+    this._authService.singup(this.registerForm.value).subscribe({
+      error: (error): void => console.error(error),
+      next: (): unknown => this._router.navigate(["/auth/login"]),
+    });
   }
 }

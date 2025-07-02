@@ -5,12 +5,9 @@ import { ValidatorFn, Validators } from "@angular/forms";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
+import AuthService from "../../services/auth.service";
+import { LoginFormValidators } from "../../types/login-validators";
 
-interface LoginFormValidators {
-  username: ValidatorFn[];
-  email: ValidatorFn[];
-  password: ValidatorFn[];
-}
 @Component({
   selector: "app-login",
   imports: [ReactiveFormsModule, InputWithLabelComponent, RouterLink, CommonModule],
@@ -20,16 +17,17 @@ interface LoginFormValidators {
 })
 export class LoginPageComponent {
   private readonly router: Router = inject(Router);
+  private readonly _authService: AuthService = inject(AuthService);
 
   private readonly validator: LoginFormValidators = {
-    username: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
+    name: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
     email: [Validators.required, Validators.email],
     password: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
   };
 
   public loginForm: FormGroup = new FormGroup({
-    username: new FormControl<string>("", {
-      validators: this.validator.username,
+    name: new FormControl<string>("", {
+      validators: this.validator.name,
     }),
     email: new FormControl<string>("", { validators: this.validator.email }),
     password: new FormControl<string>("", {
@@ -50,10 +48,14 @@ export class LoginPageComponent {
   }
 
   public submit(): void {
-    console.log({ form: this.loginForm, username_touched: this.loginForm.controls["username"].pristine });
-
     if (this.loginForm.invalid) return;
 
-    this.router.navigate(["/dashboard/home"]);
+    this._authService.signin(this.loginForm.value).subscribe({
+      error: (error): void => console.error(error),
+      next: (response): void => {
+        localStorage.setItem("accessToken", response.response.accessToken);
+        this.router.navigate(["/dashboard/home"]);
+      },
+    });
   }
 }
