@@ -1,9 +1,9 @@
+import HttpError from "@/app/shared/errors/http-error";
 import { environments } from "@/environments/environments";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, map, of, throwError } from "rxjs";
 import { IPurchaseService, Purchase, PurchaseResponse } from "../interfaces/purchase";
-import HttpError from "@/app/shared/errors/http-error";
 
 // hidden dependencies
 

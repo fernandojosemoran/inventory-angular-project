@@ -2,10 +2,10 @@ import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams } f
 import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, map, of } from "rxjs";
 
+import HttpError from "@/app/shared/errors/http-error";
 import { environments } from "@/environments/environments";
 import { Product, ProductResponse } from "../interfaces/product.interface";
 import { IProductService } from "../interfaces/product.service.interface";
-import HttpError from "@/app/shared/errors/http-error";
 
 // hidden dependencies
 const BACKEND_API: string = environments.backendApi;
