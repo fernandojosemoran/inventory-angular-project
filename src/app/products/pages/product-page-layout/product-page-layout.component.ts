@@ -16,6 +16,8 @@ import { Product } from "./../../interfaces/product.interface";
 
 import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
 import DefaultImagePipe from "../../pipes/default-image.pipe";
+import { map } from "rxjs";
+import { Category } from "@/app/categories/interfaces/category.interface";
 
 @Component({
   selector: "app-product-page-layout",
@@ -53,14 +55,19 @@ export class ProductPageLayoutComponent implements OnInit {
   public deleteProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
   public addProductModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
+  private handlerGetAllProductsResponse(productList: Product[]): void {
+    if (productList.length <= 0) return;
+
+    this.skeletonLoaderFlag.set(false);
+    this.productList.set(productList);
+  }
+
   public ngOnInit(): void {
     this._productProvider.loadProductProviderService();
 
-    this._productProvider.getProductByPage().subscribe((productList) => {
-      if (productList.length <= 0) return;
-
-      this.skeletonLoaderFlag.set(false);
-      this.productList.set(productList);
+    this._productProvider.getProductByPage().subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: this.handlerGetAllProductsResponse,
     });
   }
 
@@ -71,7 +78,14 @@ export class ProductPageLayoutComponent implements OnInit {
   }
 
   public getCategories: Signal<string[]> = computed(() => {
-    return this._categoryService.categories().map((opt) => opt.name);
+    const categoryNames: string[] = [];
+
+    this._categoryService.getAllCategories.subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (categories: Category[]): void => categories.forEach((opt) => categoryNames.unshift(opt.name)),
+    });
+
+    return categoryNames;
   });
 
   public dropdownOptionSelected(opt: DropDownSelectedOption): void {
@@ -93,13 +107,10 @@ export class ProductPageLayoutComponent implements OnInit {
   public confirmCreateProduct(product: FormData): void {
     if (!product) return;
 
-    this._productService
-      .createProduct(product)
-      .subscribe((product) =>
-        product
-          ? this._globalAlertProvider.showAlert(`Producto ${product.name} creado exitosamente.`)
-          : this._globalAlertProvider.showAlert("Lo siento el producto no fue creado."),
-      );
+    this._productService.createProduct(product).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (product): void => console.log(`product ${product?.name} created successfully 😃.`),
+    });
   }
 
   public openCreateNewProductDialog(wentClickedCreateNewProductBtn: boolean): void {
@@ -125,13 +136,10 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this.editProductModalFlag.set(!isConfirm);
 
-    this._productService
-      .updateProduct(this.editProductSelected())
-      .subscribe((product) =>
-        product
-          ? this._globalAlertProvider.showAlert(`Producto ${product.name} fue actualizado correctamente`)
-          : this._globalAlertProvider.showAlert("Lo siento el producto no fue actualizado"),
-      );
+    this._productService.updateProduct(this.editProductSelected()).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (product): void => console.info(`product ${product?.name} updated successfully 😉.`),
+    });
   }
 
   public confirmDeleteProduct(isConfirm: boolean): void {
@@ -147,18 +155,18 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this.productList.set(products[this._productProvider.getPagination().currentPage]);
 
-    this._productService
-      .deleteProduct(this.deleteProductSelected().id)
-      .subscribe((isDeleted) =>
-        isDeleted
-          ? this._globalAlertProvider.showAlert(`El producto con el ID ${id} eliminado correctamente`)
-          : this._globalAlertProvider.showAlert("Lo siento el producto no fue eliminado."),
-      );
+    this._productService.deleteProduct(this.deleteProductSelected().id).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (): void => this._globalAlertProvider.showAlert(`El producto con el ID ${id} eliminado correctamente`),
+    });
   }
 
   public searchProduct(term: string): void {
     if (term.length === 0) return this.productList.set(this._productProvider.getProducts[this.pagination().currentPage]);
 
-    this._productService.searchProduct(term).subscribe((response: Product[]) => this.productList.set(response));
+    this._productService.searchProduct(term).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (response: Product[]): void => this.productList.set(response),
+    });
   }
 }

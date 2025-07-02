@@ -1,8 +1,9 @@
 import { environments } from "@/environments/environments";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable, catchError, map, of } from "rxjs";
+import { Observable, catchError, map, of, throwError } from "rxjs";
 import { IPurchaseService, Purchase, PurchaseResponse } from "../interfaces/purchase";
+import HttpError from "@/app/shared/errors/http-error";
 
 // hidden dependencies
 
@@ -14,9 +15,9 @@ export default class PurchaseService implements IPurchaseService {
 
   public createPurchase(purchase: Purchase): Observable<PurchaseResponse> {
     return this._httpClient.post<PurchaseResponse>(`${BACKEND_URL}/purchase/create`, purchase).pipe(
-      catchError((error) => {
+      catchError((error: HttpErrorResponse) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
     );
   }
@@ -25,7 +26,7 @@ export default class PurchaseService implements IPurchaseService {
     return this._httpClient.put<PurchaseResponse>(`${BACKEND_URL}/purchase/update`, purchase).pipe(
       catchError((error) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
     );
   }
@@ -34,7 +35,7 @@ export default class PurchaseService implements IPurchaseService {
     return this._httpClient.delete<PurchaseResponse>(`${BACKEND_URL}/purchase/delete/${id}`).pipe(
       catchError((error) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => (response.response ? true : false)),
     );
@@ -44,7 +45,7 @@ export default class PurchaseService implements IPurchaseService {
     return this._httpClient.get<PurchaseResponse>(`${BACKEND_URL}/purchase/${id}`).pipe(
       catchError((error) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
     );
   }
@@ -53,7 +54,7 @@ export default class PurchaseService implements IPurchaseService {
     return this._httpClient.get<PurchaseResponse>(`${BACKEND_URL}/purchase/search/${term}`).pipe(
       catchError((error) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
     );
   }
@@ -62,7 +63,7 @@ export default class PurchaseService implements IPurchaseService {
     return this._httpClient.get<PurchaseResponse>(`${BACKEND_URL}/purchase/getAll`).pipe(
       catchError((error) => {
         console.error(error as HttpErrorResponse);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => response.response as Purchase[]),
     );

@@ -2,15 +2,20 @@ import { Category } from "@/app/categories/interfaces/category.interface";
 import { CategoryService } from "@/app/categories/services/categories.service";
 import { Injectable, WritableSignal, inject, signal } from "@angular/core";
 import { ICategoryProvider } from "../interfaces/category.provider.interface";
+import { Observable, of, tap } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class CategoryProvider implements ICategoryProvider {
   private readonly categoriesService: CategoryService = inject(CategoryService);
 
-  public readonly categories: WritableSignal<Category[]> = signal<Category[]>([]);
+  private readonly categories: WritableSignal<Category[]> = signal<Category[]>([]);
 
-  public constructor() {
-    this.categoriesService.getAllCategories().subscribe((response) => this.categories.set(response));
+  public get getAllCategories(): Observable<Category[]> {
+    if (this.categories().length === 0) {
+      return this.categoriesService.getAllCategories().pipe(tap((response) => this.categories.set(response)));
+    }
+
+    return of(this.categories());
   }
 
   public addCategory(category: Category): Category[] {
