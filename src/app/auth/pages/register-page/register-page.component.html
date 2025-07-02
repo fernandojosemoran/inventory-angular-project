@@ -8,11 +8,11 @@
       placeholder="Username"
       type="text"
       for="username-field"
-      formControlName="username"
+      formControlName="name"
     />
 
-    @if (isPristineField("username") && isValidField("username")) {
-      <span class="form-error">{{ handlerFormErrors("username") }}</span>
+    @if (isPristineField("name") && isValidField("name")) {
+      <span class="form-error">{{ handlerFormErrors("name") }}</span>
     }
   </div>
 

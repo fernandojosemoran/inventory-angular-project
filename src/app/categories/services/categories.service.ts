@@ -3,9 +3,9 @@ import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, map, of } from "rxjs";
 import { ICategoryService } from "../interfaces/category.service.interface";
 
+import HttpError from "@/app/shared/errors/http-error";
 import { environments } from "@/environments/environments";
 import { CategoriesResponse, Category, CategoryResponse } from "../interfaces/category.interface";
-import HttpError from "@/app/shared/errors/http-error";
 
 // hidden dependencies
 const BACKEND_API: string = environments.backendApi;
