@@ -1,8 +1,8 @@
 import { Category } from "@/app/categories/interfaces/category.interface";
 import { CategoryService } from "@/app/categories/services/categories.service";
 import { Injectable, WritableSignal, inject, signal } from "@angular/core";
-import { ICategoryProvider } from "../interfaces/category.provider.interface";
 import { Observable, of, tap } from "rxjs";
+import { ICategoryProvider } from "../interfaces/category.provider.interface";
 
 @Injectable({ providedIn: "root" })
 export class CategoryProvider implements ICategoryProvider {

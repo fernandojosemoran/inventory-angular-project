@@ -1,13 +1,13 @@
 import { CategoryProvider } from "@/app/shared/provider/categories.provider.service";
+import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, WritableSignal, inject, signal } from "@angular/core";
+import { Observable } from "rxjs";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { HorizontalCardComponent } from "../../../shared/components/horizontal-card/horizontal-card.component";
 import { CreateCategoryDialogComponent } from "../../components/create-category-dialog/create-category-dialog.component";
 import { Category } from "../../interfaces/category.interface";
 import { CategoryService } from "../../services/categories.service";
-import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-category-page-layout",

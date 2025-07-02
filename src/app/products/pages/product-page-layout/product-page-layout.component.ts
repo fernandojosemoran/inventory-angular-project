@@ -14,10 +14,10 @@ import { AvailablePipe } from "../../pipes/available.pipe";
 import { ProductService } from "../../services/product.service";
 import { Product } from "./../../interfaces/product.interface";
 
-import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
-import DefaultImagePipe from "../../pipes/default-image.pipe";
-import { map } from "rxjs";
 import { Category } from "@/app/categories/interfaces/category.interface";
+import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
+import { map } from "rxjs";
+import DefaultImagePipe from "../../pipes/default-image.pipe";
 
 @Component({
   selector: "app-product-page-layout",

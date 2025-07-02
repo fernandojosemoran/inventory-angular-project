@@ -6,9 +6,9 @@ import { ReverseFillButtonComponent } from "../../../shared/components/reverse-f
 import { TableSkeletonComponent } from "../../../shared/components/table-skeleton/table-skeleton.component";
 import { Purchase } from "../../interfaces/purchase";
 
-import PurchaseService from "../../services/purchase.service";
 import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
 import PurchaseProviderService from "@/app/shared/provider/purchase.provider.service";
+import PurchaseService from "../../services/purchase.service";
 
 @Component({
   selector: "app-purchase-page-layout",
