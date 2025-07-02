@@ -1,21 +1,25 @@
 import { PurchasePagination } from "@/app/shared/interfaces/purchasse.provider.interface";
-import PurchaseProviderService from "@/app/shared/provider/purchase.provider.service";
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, WritableSignal, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from "@angular/core";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { ReverseFillButtonComponent } from "../../../shared/components/reverse-fill-button/reverse-fill-button.component";
 import { TableSkeletonComponent } from "../../../shared/components/table-skeleton/table-skeleton.component";
 import { Purchase } from "../../interfaces/purchase";
+
 import PurchaseService from "../../services/purchase.service";
+import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
+import PurchaseProviderService from "@/app/shared/provider/purchase.provider.service";
 
 @Component({
   selector: "app-purchase-page-layout",
   imports: [ActionsBarComponent, CommonModule, ReverseFillButtonComponent, TableSkeletonComponent],
   templateUrl: "./purchase-page-layout.component.html",
   styleUrl: "./purchase-page-layout.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PurchasePageLayoutComponent implements OnInit {
   private readonly _purchaseService: PurchaseService = inject(PurchaseService);
+  private readonly _globalAlertProvider: GlobalAlertProvider = inject(GlobalAlertProvider);
   private readonly _purchaseProviderService: PurchaseProviderService = inject(PurchaseProviderService);
 
   private readonly _termSearched: WritableSignal<string> = signal<string>("");
@@ -31,18 +35,26 @@ export class PurchasePageLayoutComponent implements OnInit {
 
   public readonly pagination: WritableSignal<PurchasePagination> = signal<PurchasePagination>({} as PurchasePagination);
 
-  public ngOnInit(): void {
-    this._purchaseService.getAll().subscribe((response) => {
-      if (response.length <= 0) return;
+  private handlerGetAllResponse(response: Purchase[]): void {
+    if (response.length <= 0) return;
 
-      this.purchaseList.set(response);
-      this.skeletonLoader.update((state) => !state);
-      // this._purchaseProviderService
+    this.purchaseList.set(response);
+    this.skeletonLoader.update((state) => !state);
+    // this._purchaseProviderService
+  }
+
+  public ngOnInit(): void {
+    this._purchaseService.getAll().subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: this.handlerGetAllResponse,
     });
   }
 
   public searchPurchase(term: string): void {
-    this._purchaseService.searchPurchase(term).subscribe();
+    this._purchaseService.searchPurchase(term).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (response): void => console.log(response.response),
+    });
   }
 
   public openAddPurchase(state: boolean): void {

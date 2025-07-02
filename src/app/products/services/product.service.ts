@@ -5,6 +5,7 @@ import { Observable, catchError, map, of } from "rxjs";
 import { environments } from "@/environments/environments";
 import { Product, ProductResponse } from "../interfaces/product.interface";
 import { IProductService } from "../interfaces/product.service.interface";
+import HttpError from "@/app/shared/errors/http-error";
 
 // hidden dependencies
 const BACKEND_API: string = environments.backendApi;
@@ -15,18 +16,18 @@ export class ProductService implements IProductService {
 
   public getProductByPage(page = 0, size = 10): Observable<ProductResponse> {
     return this._http.get<ProductResponse>(`${BACKEND_API}/products/page?page=${page}&size=${size}`).pipe(
-      catchError((error) => {
-        console.error(error as HttpErrorResponse);
-        return of();
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return HttpError.handler(error.message, error.status);
       }),
     );
   }
 
   public getProduct(id: number): Observable<Product> {
     return this._http.get<ProductResponse>(`${BACKEND_API}/products/${id}`).pipe(
-      catchError((error) => {
+      catchError((error: HttpErrorResponse) => {
         console.error(error);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => response.response.content as Product),
     );
@@ -34,9 +35,9 @@ export class ProductService implements IProductService {
 
   public createProduct(product: FormData): Observable<Product | undefined> {
     return this._http.post<ProductResponse>(`${BACKEND_API}/products`, product).pipe(
-      catchError((error) => {
+      catchError((error: HttpErrorResponse) => {
         console.error(error);
-        return of(undefined);
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => response && (response.response.content as Product)),
     );
@@ -44,9 +45,9 @@ export class ProductService implements IProductService {
 
   public updateProduct(product: Product): Observable<Product> {
     return this._http.put<ProductResponse>(`${BACKEND_API}/products/${product.id}`, product).pipe(
-      catchError((error) => {
+      catchError((error: HttpErrorResponse) => {
         console.error(error);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => response.response.content as Product),
     );
@@ -54,9 +55,9 @@ export class ProductService implements IProductService {
 
   public deleteProduct(id: number): Observable<boolean | undefined> {
     return this._http.delete(`${BACKEND_API}/products/${id}`, { observe: "response" }).pipe(
-      catchError(({ error }) => {
-        console.error({ error: error });
-        return of();
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return HttpError.handler(error.message, error.status);
       }),
       map((response) => response!.ok),
     );
@@ -64,9 +65,9 @@ export class ProductService implements IProductService {
 
   public searchProduct(name: string): Observable<Product[]> {
     return this._http.get<{ status: string; response: Product[] }>(`${BACKEND_API}/products/search?keyword=${name}`).pipe(
-      catchError((error) => {
+      catchError((error: HttpErrorResponse) => {
         console.error(error);
-        return of();
+        return HttpError.handler(error.message, error.status);
       }),
       // TODO: change this http request
       map((response) => response.response as Product[]),

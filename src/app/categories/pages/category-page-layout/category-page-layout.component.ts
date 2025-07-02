@@ -6,6 +6,8 @@ import { HorizontalCardComponent } from "../../../shared/components/horizontal-c
 import { CreateCategoryDialogComponent } from "../../components/create-category-dialog/create-category-dialog.component";
 import { Category } from "../../interfaces/category.interface";
 import { CategoryService } from "../../services/categories.service";
+import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-category-page-layout",
@@ -14,8 +16,9 @@ import { CategoryService } from "../../services/categories.service";
   styleUrl: "./category-page-layout.component.css",
 })
 export class CategoryPageLayoutComponent implements OnInit {
-  public categoryService: CategoryService = inject(CategoryService);
-  public categoryProvider: CategoryProvider = inject(CategoryProvider);
+  private readonly _categoryService: CategoryService = inject(CategoryService);
+  private readonly _categoryProvider: CategoryProvider = inject(CategoryProvider);
+  private readonly _globalAlertProvider: GlobalAlertProvider = inject(GlobalAlertProvider);
 
   public categoriesList: WritableSignal<Category[]> = signal<Category[]>([]);
 
@@ -23,31 +26,38 @@ export class CategoryPageLayoutComponent implements OnInit {
   public createCategoryModalFlag: WritableSignal<boolean> = signal<boolean>(false);
 
   public ngOnInit(): void {
-    const categories: Category[] = this.categoryProvider.categories();
+    const categories$: Observable<Category[]> = this._categoryProvider.getAllCategories;
 
-    if (!categories) return;
-
-    this.categoriesList.set(categories);
+    categories$.subscribe({
+      error: (errro): void => this._globalAlertProvider.showAlert(errro),
+      next: (categoriesList): void => categoriesList && this.categoriesList.set(categoriesList),
+    });
   }
 
-  public openDialog() {
+  public openDialog(): void {
     this.createCategoryModalFlag.set(true);
   }
 
-  public createNewCategory(category: Category) {
-    this.categoryService
-      .createCategory(category)
-      .subscribe((response) => this.categoriesList.set(this.categoryProvider.addCategory(response)));
+  public createNewCategory(category: Category): void {
+    this._categoryService.createCategory(category).subscribe({
+      error: (error): void => this._globalAlertProvider.showAlert(error),
+      next: (response): void => this.categoriesList.set(this._categoryProvider.addCategory(response)),
+    });
     this.createCategoryModalFlag.set(false);
   }
 
-  public closeDialog(isClose: boolean) {
+  public closeDialog(isClose: boolean): void {
     this.createCategoryModalFlag.set(isClose);
   }
 
-  public searchCategory(term: string) {
-    if (!term) return this.categoriesList.set(this.categoryProvider.categories());
+  public searchCategory(term: string): void {
+    if (!term) {
+      this._categoryProvider.getAllCategories.subscribe({
+        error: (error): void => this._globalAlertProvider.showAlert(error),
+        next: (categories: Category[]): void => this.categoriesList.set(categories),
+      });
+    }
 
-    this.categoriesList.set(this.categoryProvider.searchCategory(term));
+    this.categoriesList.set(this._categoryProvider.searchCategory(term));
   }
 }
