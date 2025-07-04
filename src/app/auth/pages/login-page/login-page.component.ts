@@ -1,12 +1,16 @@
 import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { ValidatorFn, Validators } from "@angular/forms";
+import { Validators } from "@angular/forms";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
-import AuthService from "../../services/auth.service";
 import { LoginFormValidators } from "../../types/login-validators";
+
+import AuthHttpError from "@/app/auth/errors/auth-http-error";
+import localStorageKeys from "@/app/shared/constants/local-storage-keys";
+import AuthAlertService from "../../services/auth-alert.service";
+import AuthService from "../../services/auth.service";
 
 @Component({
   selector: "app-login",
@@ -18,6 +22,7 @@ import { LoginFormValidators } from "../../types/login-validators";
 export class LoginPageComponent {
   private readonly router: Router = inject(Router);
   private readonly _authService: AuthService = inject(AuthService);
+  private readonly _authAlertService: AuthAlertService = inject(AuthAlertService);
 
   private readonly validator: LoginFormValidators = {
     name: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],
@@ -51,9 +56,9 @@ export class LoginPageComponent {
     if (this.loginForm.invalid) return;
 
     this._authService.signin(this.loginForm.value).subscribe({
-      error: (error): void => console.error(error),
+      error: (error: AuthHttpError): void => this._authAlertService.showAlert(error.message),
       next: (response): void => {
-        localStorage.setItem("accessToken", response.response.accessToken);
+        localStorage.setItem(localStorageKeys.ACCESS_TOKEN, response.response.accessToken);
         this.router.navigate(["/dashboard/home"]);
       },
     });
