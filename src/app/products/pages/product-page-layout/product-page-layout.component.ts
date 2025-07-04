@@ -14,9 +14,11 @@ import { AvailablePipe } from "../../pipes/available.pipe";
 import { ProductService } from "../../services/product.service";
 import { Product } from "./../../interfaces/product.interface";
 
+import CategoryHttpError from "@/app/categories/errors/category-http-error";
 import { Category } from "@/app/categories/interfaces/category.interface";
 import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
 import { map } from "rxjs";
+import ProductHttpError from "../../errors/product-http-error";
 import DefaultImagePipe from "../../pipes/default-image.pipe";
 
 @Component({
@@ -66,7 +68,7 @@ export class ProductPageLayoutComponent implements OnInit {
     this._productProvider.loadProductProviderService();
 
     this._productProvider.getProductByPage().subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: this.handlerGetAllProductsResponse,
     });
   }
@@ -81,7 +83,7 @@ export class ProductPageLayoutComponent implements OnInit {
     const categoryNames: string[] = [];
 
     this._categoryService.getAllCategories.subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: CategoryHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (categories: Category[]): void => categories.forEach((opt) => categoryNames.unshift(opt.name)),
     });
 
@@ -108,7 +110,7 @@ export class ProductPageLayoutComponent implements OnInit {
     if (!product) return;
 
     this._productService.createProduct(product).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (product): void => console.log(`product ${product?.name} created successfully 😃.`),
     });
   }
@@ -137,7 +139,7 @@ export class ProductPageLayoutComponent implements OnInit {
     this.editProductModalFlag.set(!isConfirm);
 
     this._productService.updateProduct(this.editProductSelected()).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (product): void => console.info(`product ${product?.name} updated successfully 😉.`),
     });
   }
@@ -156,7 +158,7 @@ export class ProductPageLayoutComponent implements OnInit {
     this.productList.set(products[this._productProvider.getPagination().currentPage]);
 
     this._productService.deleteProduct(this.deleteProductSelected().id).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (): void => this._globalAlertProvider.showAlert(`El producto con el ID ${id} eliminado correctamente`),
     });
   }
@@ -165,7 +167,7 @@ export class ProductPageLayoutComponent implements OnInit {
     if (term.length === 0) return this.productList.set(this._productProvider.getProducts[this.pagination().currentPage]);
 
     this._productService.searchProduct(term).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (response: Product[]): void => this.productList.set(response),
     });
   }

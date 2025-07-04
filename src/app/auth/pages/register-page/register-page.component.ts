@@ -6,6 +6,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { Router, RouterLink } from "@angular/router";
 import { RegisterFormValidators } from "../../types/register-validators";
 
+import AuthHttpError from "@/app/auth/errors/auth-http-error";
+import AuthAlertService from "../../services/auth-alert.service";
 import AuthService from "../../services/auth.service";
 
 @Component({
@@ -18,6 +20,7 @@ import AuthService from "../../services/auth.service";
 export class RegisterPageComponent {
   private readonly _router: Router = inject(Router);
   private readonly _authService: AuthService = inject(AuthService);
+  private readonly _authAlertService: AuthAlertService = inject(AuthAlertService);
 
   private readonly validator: RegisterFormValidators = {
     lastName: [Validators.required, Validators.maxLength(12), Validators.minLength(8)],
@@ -65,7 +68,7 @@ export class RegisterPageComponent {
     if (this.registerForm.invalid && fields["password"] !== fields["confirmPassword"]) return;
 
     this._authService.singup(this.registerForm.value).subscribe({
-      error: (error): void => console.error(error),
+      error: (error: AuthHttpError): void => this._authAlertService.showAlert(error.message),
       next: (): unknown => this._router.navigate(["/auth/login"]),
     });
   }

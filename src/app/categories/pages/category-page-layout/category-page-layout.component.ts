@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { HorizontalCardComponent } from "../../../shared/components/horizontal-card/horizontal-card.component";
 import { CreateCategoryDialogComponent } from "../../components/create-category-dialog/create-category-dialog.component";
+import CategoryHttpError from "../../errors/category-http-error";
 import { Category } from "../../interfaces/category.interface";
 import { CategoryService } from "../../services/categories.service";
 
@@ -29,7 +30,7 @@ export class CategoryPageLayoutComponent implements OnInit {
     const categories$: Observable<Category[]> = this._categoryProvider.getAllCategories;
 
     categories$.subscribe({
-      error: (errro): void => this._globalAlertProvider.showAlert(errro),
+      error: (errro: CategoryHttpError): void => this._globalAlertProvider.showAlert(errro.message),
       next: (categoriesList): void => categoriesList && this.categoriesList.set(categoriesList),
     });
   }
@@ -40,7 +41,7 @@ export class CategoryPageLayoutComponent implements OnInit {
 
   public createNewCategory(category: Category): void {
     this._categoryService.createCategory(category).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: CategoryHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (response): void => this.categoriesList.set(this._categoryProvider.addCategory(response)),
     });
     this.createCategoryModalFlag.set(false);
@@ -53,7 +54,7 @@ export class CategoryPageLayoutComponent implements OnInit {
   public searchCategory(term: string): void {
     if (!term) {
       this._categoryProvider.getAllCategories.subscribe({
-        error: (error): void => this._globalAlertProvider.showAlert(error),
+        error: (errro: CategoryHttpError): void => this._globalAlertProvider.showAlert(errro.message),
         next: (categories: Category[]): void => this.categoriesList.set(categories),
       });
     }

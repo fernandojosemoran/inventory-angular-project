@@ -8,6 +8,7 @@ import { Purchase } from "../../interfaces/purchase";
 
 import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
 import PurchaseProviderService from "@/app/shared/provider/purchase.provider.service";
+import PurchaseHttpError from "../../errors/purchase-http-error";
 import PurchaseService from "../../services/purchase.service";
 
 @Component({
@@ -45,14 +46,14 @@ export class PurchasePageLayoutComponent implements OnInit {
 
   public ngOnInit(): void {
     this._purchaseService.getAll().subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: PurchaseHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: this.handlerGetAllResponse,
     });
   }
 
   public searchPurchase(term: string): void {
     this._purchaseService.searchPurchase(term).subscribe({
-      error: (error): void => this._globalAlertProvider.showAlert(error),
+      error: (error: PurchaseHttpError): void => this._globalAlertProvider.showAlert(error.message),
       next: (response): void => console.log(response.response),
     });
   }
