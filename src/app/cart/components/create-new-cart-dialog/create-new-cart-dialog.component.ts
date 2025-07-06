@@ -15,7 +15,8 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from "@angular/forms";
 import { DropdownWithSearcherComponent } from "../../../shared/components/dropdown-with-searcher/dropdown-with-searcher.component";
 import { InputWithLabelComponent } from "../../../shared/components/input-with-label/input-with-label.component";
-import { Cart } from "../../types/cart.api";
+
+import { CartItem } from "../../types/cart";
 
 @Component({
   selector: "app-create-new-cart-dialog",
@@ -85,7 +86,7 @@ import { Cart } from "../../types/cart.api";
 export class CreateNewCartDialogComponent implements OnInit {
   public readonly dialogTitle: InputSignal<string> = input.required<string>();
   public readonly evtCloseCreateNew: OutputEmitterRef<boolean> = output<boolean>();
-  public readonly evtCreateNewCart: OutputEmitterRef<Cart> = output<Cart>();
+  public readonly evtCreateNewCart: OutputEmitterRef<CartItem> = output<CartItem>();
 
   public optionSelected: WritableSignal<DropDownSelectedOption> = signal<DropDownSelectedOption>({} as DropDownSelectedOption);
   public ProductProvider: ProductProviderService = inject(ProductProviderService);
@@ -134,7 +135,7 @@ export class CreateNewCartDialogComponent implements OnInit {
     this.evtCreateNewCart.emit({
       ...this.dialogForm.value,
       product: this.optionSelected().name,
-    } as Cart);
+    } as CartItem);
   }
 
   public cancel(): void {

@@ -1,7 +1,7 @@
 import { Product, ProductResponseSkeleton } from "@/app/products/interfaces/product.interface";
 import { ProductService } from "@/app/products/services/product.service";
 import { Injectable, WritableSignal, inject, signal } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable, map, tap } from "rxjs";
 import { IProductProvider, Pagination } from "../interfaces/product.provider.interface";
 
 @Injectable({ providedIn: "root" })

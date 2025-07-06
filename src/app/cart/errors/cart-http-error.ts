@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { ProductErrorResponse } from "../types/product-error-response";
+import { CartErrorResponse } from "../types/cart-http-errors-response";
 
-export default class ProductHttpError extends Error {
+export default class CartHttpError extends Error {
   private constructor(public override readonly message: string) {
     super(message);
   }
@@ -17,18 +17,18 @@ export default class ProductHttpError extends Error {
   public static handler(error: HttpErrorResponse): Observable<never> {
     console.error(error);
 
-    const validateStatus: string | undefined = ProductHttpError.handlerHttpStatusCode(error.status);
+    const validateStatus: string | undefined = CartHttpError.handlerHttpStatusCode(error.status);
 
-    if (validateStatus) return throwError(() => new ProductHttpError(validateStatus));
+    if (validateStatus) return throwError(() => new CartHttpError(validateStatus));
 
-    const { response } = error.error as ProductErrorResponse;
+    const { response } = error.error as CartErrorResponse;
 
     const data: string[] = Object.values(response.errors);
 
     if (data.find((err) => err === "Bad credentials")) {
-      return throwError(() => new ProductHttpError("Las credentiales no son validas."));
+      return throwError(() => new CartHttpError("Las credentiales no son validas."));
     }
 
-    return throwError(() => new ProductHttpError(data[0]));
+    return throwError(() => new CartHttpError(data[0]));
   }
 }

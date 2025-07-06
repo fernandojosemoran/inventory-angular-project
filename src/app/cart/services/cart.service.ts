@@ -1,92 +1,107 @@
 import { environments } from "@/environments/environments";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable, catchError, map, of } from "rxjs";
+import { Observable, catchError, map } from "rxjs";
 import { ICartService } from "../interfaces/cart.interface";
-import { Cart, DeleteCartResponse, GetAllCartsResponse } from "../types/cart.api";
-import { AddProductToCartResponse, DecreaseItemQuantityResponse } from "./../types/cart.api";
+import { CartItem } from "../types/cart";
+import {
+  AddProductToCartItemResponse,
+  DecreaseCartItemResponse,
+  DeleteCartItemResponse,
+  DeleteCartResponse,
+  GetActiveCartsResponse,
+  GetCartCount,
+} from "../types/cart-http-response";
+import { AddProductToCartParams } from "../types/cart-params";
+
+import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
+import CartHttpError from "../errors/cart-http-error";
 
 const BACKEND_API: string = environments.backendApi;
 
 @Injectable({ providedIn: "root" })
 export class CartService implements ICartService {
-  private readonly http: HttpClient = inject(HttpClient);
+  private readonly _http: HttpClient = inject(HttpClient);
+  private readonly _ACCESS_TOKEN: string = localStorage.getItem(LocalStorageProperties.ACCESS_TOKEN) ?? "";
+  private readonly _DEFAULT_HEADERS: HttpHeaders = new HttpHeaders().set("Authorization", `Bearer ${this._ACCESS_TOKEN}`);
 
-  public deleteCart(id: string): Observable<boolean> {
-    return this.http.delete<DeleteCartResponse>(`${BACKEND_API}/carts/items/${id}`).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.error(err);
-        return of(err.message);
-      }),
-      map((response) => {
-        if (typeof response === "string") return false;
-
-        return response.cartMessage ? true : false;
-      }),
+  public getActiveCartItemCount(): Observable<number> {
+    return this._http.get<GetActiveCartsResponse>(BACKEND_API.concat(`/carts/active`), { headers: this._DEFAULT_HEADERS }).pipe(
+      catchError(CartHttpError.handler),
+      map((response) => response.response.totalItemsCount),
     );
   }
 
-  // TODO: Should return a cart not a boolean
-  public addProductToCart(product: {
-    item_id: number;
-    quantity: number;
-  }): Observable<boolean> {
-    return this.http
-      .post<AddProductToCartResponse>(`${BACKEND_API}/carts/add-product`, undefined, { params: { ...product } })
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.error(err);
-          return of(err.message);
-        }),
-        map((response) => {
-          if (typeof response === "string") return false;
+  public getCurrentActiveCartItem(): Observable<number> {
+    return this._http.get<GetActiveCartsResponse>(BACKEND_API.concat(`/carts/active`), { headers: this._DEFAULT_HEADERS }).pipe(
+      catchError(CartHttpError.handler),
+      map((response) => response.response.id),
+    );
+  }
 
-          return response.cartMessage ? true : false;
-        }),
+  public deleteCartItem(id: number): Observable<string> {
+    return this._http
+      .delete<DeleteCartItemResponse>(BACKEND_API.concat(`/carts/items/${id}`), { headers: this._DEFAULT_HEADERS })
+      .pipe(
+        catchError(CartHttpError.handler),
+        map(({ response }) => response.response.cart_message),
       );
   }
 
-  public getAllCarts(): Observable<Cart[]> {
-    return this.http.get<GetAllCartsResponse>(`${BACKEND_API}/carts`).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.error(err);
-        return of(err.message);
-      }),
-      map((response) => {
-        if (typeof response === "string") return [];
-
-        return response.carts;
-      }),
+  public getCartCount(): Observable<number> {
+    return this._http.get<GetCartCount>(BACKEND_API.concat(`/carts/items/${id}`), { headers: this._DEFAULT_HEADERS }).pipe(
+      catchError(CartHttpError.handler),
+      map((response) => response.response),
     );
   }
 
-  // TODO: Check out this method, functionality is not compressible
-  public decreaseItemQuantity(id: number): Observable<boolean> {
-    return this.http.patch<DecreaseItemQuantityResponse>(`${BACKEND_API}/items/${id}/decrease"`, undefined).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.error(err);
-        return of(err.message);
-      }),
-      map((response) => {
-        if (typeof response === "string") return false;
+  public addProductToCart(product: AddProductToCartParams): Observable<string> {
+    return this._http
+      .post<AddProductToCartItemResponse>(BACKEND_API.concat("/carts/add-product"), undefined, {
+        params: { ...product },
+        headers: this._DEFAULT_HEADERS,
+      })
+      .pipe(
+        catchError(CartHttpError.handler),
+        map(({ response }) => response.response.cart_message),
+      );
+  }
 
-        return response.cartMessage ? true : false;
-      }),
+  public getAllCarts(): Observable<CartItem[]> {
+    return this._http.get<GetActiveCartsResponse>(BACKEND_API.concat("/carts"), { headers: this._DEFAULT_HEADERS }).pipe(
+      catchError(CartHttpError.handler),
+      map((response) => response.response.cartItems),
     );
   }
 
-  // TODO: Check out this method, functionality is not compressible
-  public increaseItemQuantity(id: number): Observable<boolean> {
-    return this.http.patch<DecreaseItemQuantityResponse>(`${BACKEND_API}/items/${id}/decrease"`, undefined).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.error(err);
-        return of(err.message);
-      }),
-      map((response) => {
-        if (typeof response === "string") return false;
+  public decreaseItemQuantity(id: number): Observable<string> {
+    return this._http
+      .patch<DecreaseCartItemResponse>(BACKEND_API.concat(`/carts/items/${id}/decrease`), undefined, {
+        headers: this._DEFAULT_HEADERS,
+      })
+      .pipe(
+        catchError(CartHttpError.handler),
+        map(({ response }) => response.response.cart_message),
+      );
+  }
 
-        return response.cartMessage ? true : false;
-      }),
-    );
+  public increaseItemQuantity(id: number): Observable<string> {
+    return this._http
+      .patch<DecreaseCartItemResponse>(BACKEND_API.concat(`/carts/items/${id}/decrease`), undefined, {
+        headers: this._DEFAULT_HEADERS,
+      })
+      .pipe(
+        catchError(CartHttpError.handler),
+        map(({ response }) => response.response.cart_message),
+      );
+  }
+
+  public emptyCart(): Observable<string> {
+    return this._http
+      .delete<DecreaseCartItemResponse>(BACKEND_API.concat("/carts/empty-cart"), { headers: this._DEFAULT_HEADERS })
+      .pipe(
+        catchError(CartHttpError.handler),
+        map(({ response }) => response.response.cart_message),
+      );
   }
 }

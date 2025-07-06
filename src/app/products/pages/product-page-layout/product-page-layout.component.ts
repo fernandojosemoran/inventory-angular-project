@@ -69,7 +69,7 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this._productProvider.getProductByPage().subscribe({
       error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
-      next: this.handlerGetAllProductsResponse,
+      next: (products): void => this.handlerGetAllProductsResponse(products),
     });
   }
 

@@ -47,7 +47,7 @@ export class PurchasePageLayoutComponent implements OnInit {
   public ngOnInit(): void {
     this._purchaseService.getAll().subscribe({
       error: (error: PurchaseHttpError): void => this._globalAlertProvider.showAlert(error.message),
-      next: this.handlerGetAllResponse,
+      next: (purchases): void => this.handlerGetAllResponse(purchases),
     });
   }
 

@@ -8,7 +8,7 @@ import { InputWithLabelComponent } from "../../../shared/components/input-with-l
 import { LoginFormValidators } from "../../types/login-validators";
 
 import AuthHttpError from "@/app/auth/errors/auth-http-error";
-import localStorageKeys from "@/app/shared/constants/local-storage-keys";
+import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
 import AuthAlertService from "../../services/auth-alert.service";
 import AuthService from "../../services/auth.service";
 
@@ -57,8 +57,8 @@ export class LoginPageComponent {
 
     this._authService.signin(this.loginForm.value).subscribe({
       error: (error: AuthHttpError): void => this._authAlertService.showAlert(error.message),
-      next: (response): void => {
-        localStorage.setItem(localStorageKeys.ACCESS_TOKEN, response.response.accessToken);
+      next: ({ response }): void => {
+        localStorage.setItem(LocalStorageProperties.ACCESS_TOKEN, response.accessToken);
         this.router.navigate(["/dashboard/home"]);
       },
     });
