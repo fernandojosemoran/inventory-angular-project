@@ -1,11 +1,14 @@
 import { Observable } from "rxjs";
-import { Cart } from "../types/cart.api";
+import { CartItem } from "../types/cart";
+import { AddProductToCartParams } from "../types/cart-params";
 
 export interface ICartService {
-  deleteCart(id: string): Observable<boolean>;
-  addProductToCart(cart: {
-    item_id: number;
-    quantity: number;
-  }): Observable<boolean>;
-  getAllCarts(): Observable<Cart[]>;
+  deleteCartItem(id: number): Observable<string>;
+  addProductToCart(cart: AddProductToCartParams): Observable<string>;
+  increaseItemQuantity(id: number): Observable<string>;
+  decreaseItemQuantity(id: number): Observable<string>;
+  getAllCarts(): Observable<CartItem[]>;
+  getActiveCartItemCount(): Observable<number>;
+  emptyCart(): Observable<string>;
+  getCurrentActiveCartItem(): Observable<number>;
 }
