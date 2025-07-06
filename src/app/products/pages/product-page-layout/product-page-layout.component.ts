@@ -1,3 +1,4 @@
+import { Category } from "@/app/categories/interfaces/category.interface";
 import { ConfirmDeleteDialogComponent } from "@/app/shared/components/confirm-delete-dialog/confirm-delete-dialog.component";
 import { ReverseFillButtonComponent } from "@/app/shared/components/reverse-fill-button/reverse-fill-button.component";
 import { TableSkeletonComponent } from "@/app/shared/components/table-skeleton/table-skeleton.component";
@@ -15,9 +16,7 @@ import { ProductService } from "../../services/product.service";
 import { Product } from "./../../interfaces/product.interface";
 
 import CategoryHttpError from "@/app/categories/errors/category-http-error";
-import { Category } from "@/app/categories/interfaces/category.interface";
 import GlobalAlertProvider from "@/app/shared/provider/global-alert.provider.service";
-import { map } from "rxjs";
 import ProductHttpError from "../../errors/product-http-error";
 import DefaultImagePipe from "../../pipes/default-image.pipe";
 
@@ -69,7 +68,7 @@ export class ProductPageLayoutComponent implements OnInit {
 
     this._productProvider.getProductByPage().subscribe({
       error: (error: ProductHttpError): void => this._globalAlertProvider.showAlert(error.message),
-      next: this.handlerGetAllProductsResponse,
+      next: (products): void => this.handlerGetAllProductsResponse(products),
     });
   }
 

@@ -7,10 +7,12 @@ import { SingninRequest, SingninResponse } from "../types/signin";
 import { SignupRequest, SignupResponse } from "../types/signup";
 
 import AuthHttpError from "@/app/auth/errors/auth-http-error";
+import { BackendProxy } from "@/app/shared/types/backend-proxy";
 import IAuthService from "../interfaces/auth-service.interface";
 
 // hidden dependencies
-const BACKEND_API = environments.backendApi;
+const BACKEND_PROXY: BackendProxy = "WEBSITE";
+const BACKEND_API: string = environments.proxy === BACKEND_PROXY ? environments.backendApiWebsite : environments.backendApi;
 
 @Injectable({ providedIn: "root" })
 export default class AuthService implements IAuthService {

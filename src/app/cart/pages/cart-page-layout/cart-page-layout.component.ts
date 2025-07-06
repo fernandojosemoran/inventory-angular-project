@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { Component, WritableSignal, inject, signal } from "@angular/core";
 import { ActionsBarComponent } from "../../../shared/components/actions-bar/actions-bar.component";
 import { CreateNewCartDialogComponent } from "../../components/create-new-cart-dialog/create-new-cart-dialog.component";
-import { Cart } from "../../types/cart.api";
+import { CartItem } from "../../types/cart";
 
 @Component({
   selector: "app-cart-layout",
@@ -18,8 +18,8 @@ export class CartPageLayoutComponent {
   private readonly productService: ProductService = inject(ProductService);
   public readonly productNames: WritableSignal<string[]> = signal<string[]>([]);
 
-  public createNewCart(cart: Cart): void {
-    console.log({ cart });
+  public createNewCart(cart: CartItem): void {
+    console.log(cart);
     this.isOpenCreateNewCartDialog.set(false);
   }
 
