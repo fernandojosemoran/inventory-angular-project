@@ -7,8 +7,7 @@ import { CartItem } from "../types/cart";
 import {
   AddProductToCartItemResponse,
   DecreaseCartItemResponse,
-  DeleteCartItemResponse,
-  DeleteCartResponse,
+  DeleteCartItemRespon,
   GetActiveCartsResponse,
   GetCartCount,
 } from "../types/cart-http-response";
@@ -17,7 +16,12 @@ import { AddProductToCartParams } from "../types/cart-params";
 import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
 import CartHttpError from "../errors/cart-http-error";
 
-const BACKEND_API: string = environments.backendApi;
+import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
+import { BackendProxy } from "@/app/shared/types/backend-proxy";
+import CartHttpError from "../errors/cart-http-error";
+
+const BACKEND_PROXY: BackendProxy = "WEBSITE";
+const BACKEND_API: string = environments.proxy === BACKEND_PROXY ? environments.backendApiWebsite : environments.backendApi;
 
 @Injectable({ providedIn: "root" })
 export class CartService implements ICartService {

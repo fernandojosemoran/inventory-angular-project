@@ -5,12 +5,15 @@ import { ICategoryService } from "../interfaces/category.service.interface";
 
 import AuthHttpError from "@/app/auth/errors/auth-http-error";
 import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
+
+import { BackendProxy } from "@/app/shared/types/backend-proxy";
 import { environments } from "@/environments/environments";
 import CategoryHttpError from "../errors/category-http-error";
 import { CategoriesResponse, Category, CategoryResponse } from "../interfaces/category.interface";
 
 // hidden dependencies
-const BACKEND_API: string = environments.backendApi;
+const BACKEND_PROXY: BackendProxy = "WEBSITE";
+const BACKEND_API: string = environments.proxy === BACKEND_PROXY ? environments.backendApiWebsite : environments.backendApi;
 
 @Injectable({ providedIn: "root" })
 export class CategoryService implements ICategoryService {

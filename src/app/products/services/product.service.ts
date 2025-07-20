@@ -2,6 +2,7 @@ import { environments } from "@/environments/environments";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable, catchError, map, tap } from "rxjs";
+import { BackendProxy } from "../../shared/types/backend-proxy";
 import { Product, ProductResponse } from "../interfaces/product.interface";
 import { IProductService } from "../interfaces/product.service.interface";
 
@@ -9,7 +10,8 @@ import LocalStorageProperties from "@/app/shared/constants/local-storage-propert
 import ProductHttpError from "../errors/product-http-error";
 
 // hidden dependencies
-const BACKEND_API: string = environments.backendApi;
+const BACKEND_PROXY: BackendProxy = "WEBSITE";
+const BACKEND_API: string = environments.proxy === BACKEND_PROXY ? environments.backendApiWebsite : environments.backendApi;
 
 @Injectable({ providedIn: "root" })
 export class ProductService implements IProductService {
