@@ -7,11 +7,14 @@ import { CartItem } from "../types/cart";
 import {
   AddProductToCartItemResponse,
   DecreaseCartItemResponse,
-  DeleteCartItemResponse,
+  DeleteCartItemRespon,
   GetActiveCartsResponse,
   GetCartCount,
 } from "../types/cart-http-response";
 import { AddProductToCartParams } from "../types/cart-params";
+
+import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
+import CartHttpError from "../errors/cart-http-error";
 
 import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
 import { BackendProxy } from "@/app/shared/types/backend-proxy";
