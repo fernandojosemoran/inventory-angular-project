@@ -5,6 +5,7 @@ import { ICategoryService } from "../interfaces/category.service.interface";
 
 import AuthHttpError from "@/app/auth/errors/auth-http-error";
 import LocalStorageProperties from "@/app/shared/constants/local-storage-properties";
+
 import { BackendProxy } from "@/app/shared/types/backend-proxy";
 import { environments } from "@/environments/environments";
 import CategoryHttpError from "../errors/category-http-error";
