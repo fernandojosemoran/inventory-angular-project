@@ -55,3 +55,21 @@
     background-color: var();
   }
 }
+
+.login__credentials {
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: var(--secondary-color);
+  padding: 2em;
+  margin-top: 2em;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

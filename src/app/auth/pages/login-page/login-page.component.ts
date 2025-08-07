@@ -1,6 +1,6 @@
 import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from "@angular/core";
 import { Validators } from "@angular/forms";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
@@ -23,6 +23,12 @@ export class LoginPageComponent {
   private readonly router: Router = inject(Router);
   private readonly _authService: AuthService = inject(AuthService);
   private readonly _authAlertService: AuthAlertService = inject(AuthAlertService);
+
+  public readonly credentials: Signal<{ user: string; email: string; password: string }> = computed(() => ({
+    user: "useracount",
+    email: "useracount@gmail.com",
+    password: "12345678",
+  }));
 
   private readonly validator: LoginFormValidators = {
     name: [Validators.required, Validators.minLength(8), Validators.maxLength(12)],

@@ -1,60 +1,71 @@
-<form
-  [formGroup]="loginForm"
-  class="login__form"
-  (submit)="submit()"
->
-  <div class="form-input-container">
-    <app-input-with-label
-      placeholder="Username"
-      type="text"
-      for="username-field"
-      formControlName="name"
-    />
-
-    @if (isPristineField("name") && isValidField("name")) {
-      <span class="form-error">{{ handlerFormErrors("name") }}</span>
-    }
-  </div>
-
-  <div class="form-input-container">
-    <app-input-with-label
-      placeholder="Email"
-      type="email"
-      for="email-field"
-      formControlName="email"
-    />
-
-    @if (isPristineField("email") && isValidField("email")) {
-      <span class="form-error">{{ handlerFormErrors("email") }}</span>
-    }
-  </div>
-
-  <div class="form-input-container">
-    <app-input-with-label
-      placeholder="Password"
-      type="password"
-      for="password-field"
-      formControlName="password"
-    />
-
-    @if (isPristineField("password") && isValidField("password")) {
-      <span class="form-error">{{ handlerFormErrors("password") }}</span>
-    }
-  </div>
-
-  <button
-    type="submit"
-    [disabled]="loginForm.valid"
-    [ngClass]="{'login-submit__btn--active': loginForm.valid}"
-    class="login-submit__btn"
-    [disabled]="loginForm.invalid"
+<div class="login__container">
+  <form
+    [formGroup]="loginForm"
+    class="login__form"
     (submit)="submit()"
   >
-    Login
-  </button>
+    <div class="form-input-container">
+      <app-input-with-label
+        placeholder="Username"
+        type="text"
+        for="username-field"
+        formControlName="name"
+      />
 
-  <div class="login-form-link__container">
-    <a routerLink="/auth/register" class="login-form__link">No tengo una cuenta.</a>
-    <a routerLink="/auth/recover-password" class="login-form__link">Olvide mi contraseña</a>
+      @if (isPristineField("name") && isValidField("name")) {
+        <span class="form-error">{{ handlerFormErrors("name") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        placeholder="Email"
+        type="email"
+        for="email-field"
+        formControlName="email"
+      />
+
+      @if (isPristineField("email") && isValidField("email")) {
+        <span class="form-error">{{ handlerFormErrors("email") }}</span>
+      }
+    </div>
+
+    <div class="form-input-container">
+      <app-input-with-label
+        placeholder="Password"
+        type="password"
+        for="password-field"
+        formControlName="password"
+      />
+
+      @if (isPristineField("password") && isValidField("password")) {
+        <span class="form-error">{{ handlerFormErrors("password") }}</span>
+      }
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="loginForm.valid"
+      [ngClass]="{'login-submit__btn--active': loginForm.valid}"
+      class="login-submit__btn"
+      [disabled]="loginForm.invalid"
+      (submit)="submit()"
+    >
+      Login
+    </button>
+
+    <div class="login-form-link__container">
+      <a routerLink="/auth/register" class="login-form__link">No tengo una cuenta.</a>
+      <a routerLink="/auth/recover-password" class="login-form__link">Olvide mi contraseña</a>
+    </div>
+  </form>
+
+  <div class="login__credentials">
+    <p>Estas son las credenciales por defecto, si quieres probar la aplicación.</p>
+    <ol>
+      <li>usuario: {{ credentials().user }}</li>
+      <li>correo: {{ credentials().email }}</li>
+      <li>contraseña: {{ credentials().password }}</li>
+    </ol>
   </div>
-</form>
+</div>
