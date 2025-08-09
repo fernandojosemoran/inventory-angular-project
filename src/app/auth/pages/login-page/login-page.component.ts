@@ -1,6 +1,6 @@
 import { handlerFormFieldErrors } from "@/app/shared/utilities/handler-form-field-error";
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, computed, inject, Signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Signal, computed, inject } from "@angular/core";
 import { Validators } from "@angular/forms";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
@@ -25,8 +25,8 @@ export class LoginPageComponent {
   private readonly _authAlertService: AuthAlertService = inject(AuthAlertService);
 
   public readonly credentials: Signal<{ user: string; email: string; password: string }> = computed(() => ({
-    user: "useracount",
-    email: "useracount@gmail.com",
+    user: "useraccount",
+    email: "useraccount@gmail.com",
     password: "12345678",
   }));
 
